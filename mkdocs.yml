@@ -1,0 +1,100 @@
+site_name: Java Testing Mastery Path
+site_description: A structured, module-wise software testing training program using Java — manual QA and test automation, entry level to master level.
+site_url: https://sigilipelli.github.io/java-testing-mastery-path/
+repo_url: https://github.com/SIGILIPELLI/java-testing-mastery-path
+repo_name: java-testing-mastery-path
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - content.code.copy
+    - content.code.annotate
+    - search.suggest
+    - search.highlight
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - Privacy Policy: privacy.md
+  - "Level 1 · Entry":
+      - Overview: level-1/index.md
+      - "01 · What Is Software Testing?": level-1/01-what-is-software-testing.md
+      - "02 · Test Case Design & Documentation": level-1/02-test-case-design.md
+      - "03 · Test Types & Levels": level-1/03-test-types-levels.md
+      - "04 · Defect Lifecycle & Bug Reporting": level-1/04-defect-lifecycle.md
+      - "05 · Manual Testing in Practice": level-1/05-manual-testing-practice.md
+      - "06 · Java Setup for Testers": level-1/06-java-setup-for-testers.md
+      - "07 · JUnit 5 Fundamentals": level-1/07-junit5-fundamentals.md
+      - "08 · Selenium WebDriver Basics": level-1/08-selenium-webdriver-basics.md
+      - "09 · TestNG Basics": level-1/09-testng-basics.md
+      - "10 · Project — Manual Test Plan + Automated Suite": level-1/10-project-test-plan-suite.md
+  - "Level 2 · Intermediate":
+      - Overview: level-2/index.md
+      - "01 · Page Object Model (POM)": level-2/01-page-object-model.md
+      - "02 · Selenium Advanced": level-2/02-selenium-advanced.md
+      - "03 · TestNG Advanced": level-2/03-testng-advanced.md
+      - "04 · API Testing with RestAssured": level-2/04-api-testing-restassured.md
+      - "05 · Test Data Management": level-2/05-test-data-management.md
+      - "06 · Maven/Gradle for Test Projects": level-2/06-maven-gradle-test-projects.md
+      - "07 · Assertions & Matchers": level-2/07-assertions-matchers.md
+      - "08 · Reporting (Allure, ExtentReports)": level-2/08-reporting.md
+      - "09 · Cross-Browser Testing": level-2/09-cross-browser-testing.md
+      - "10 · Project — POM Framework with API Tests": level-2/10-project-pom-framework.md
+  - "Level 3 · Advanced":
+      - Overview: level-3/index.md
+      - "01 · BDD with Cucumber": level-3/01-bdd-cucumber.md
+      - "02 · Mocking with Mockito": level-3/02-mocking-mockito.md
+      - "03 · CI/CD Integration": level-3/03-cicd-integration.md
+      - "04 · Selenium Grid & Parallel Execution": level-3/04-selenium-grid-parallel.md
+      - "05 · Performance Testing Basics (JMeter)": level-3/05-performance-testing-jmeter.md
+      - "06 · Mobile Testing with Appium": level-3/06-mobile-testing-appium.md
+      - "07 · Database Testing from Java": level-3/07-database-testing.md
+      - "08 · Framework Design Patterns": level-3/08-framework-design-patterns.md
+      - "09 · Flaky Test Diagnosis & Stabilization": level-3/09-flaky-test-diagnosis.md
+      - "10 · Project — Hybrid BDD Framework with CI": level-3/10-project-bdd-framework-ci.md
+  - "Level 4 · Master":
+      - Overview: level-4/index.md
+      - "01 · Test Architecture at Scale": level-4/01-test-architecture-at-scale.md
+      - "02 · Shift-Left & Continuous Testing": level-4/02-shift-left-continuous-testing.md
+      - "03 · Contract Testing (Pact)": level-4/03-contract-testing-pact.md
+      - "04 · Security Testing Basics for QA": level-4/04-security-testing-basics.md
+      - "05 · Test Metrics & Quality Gates": level-4/05-test-metrics-quality-gates.md
+      - "06 · Containerized Test Environments": level-4/06-containerized-test-environments.md
+      - "07 · AI-Assisted Testing": level-4/07-ai-assisted-testing.md
+      - "08 · Building an In-House Test Framework": level-4/08-in-house-test-framework.md
+      - "09 · QA Leadership & Strategy": level-4/09-qa-leadership-strategy.md
+      - "10 · Capstone — Production-Grade Test Framework": level-4/10-capstone-test-framework.md
