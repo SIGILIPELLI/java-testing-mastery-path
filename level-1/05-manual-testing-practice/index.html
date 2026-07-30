@@ -1,0 +1,3340 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A structured, module-wise software testing training program using Java — manual QA and test automation, entry level to master level.">
+      
+      
+      
+        <link rel="canonical" href="https://sigilipelli.github.io/java-testing-mastery-path/level-1/05-manual-testing-practice/">
+      
+      
+        <link rel="prev" href="../04-defect-lifecycle/">
+      
+      
+        <link rel="next" href="../06-java-setup-for-testers/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>05 · Manual Testing in Practice - Java Testing Mastery Path</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Java Testing Mastery Path">
+  <meta property="og:title" content="05 · Manual Testing in Practice">
+  <meta property="og:description" content="A structured, module-wise software testing program built on Java — manual QA fundamentals and test automation with JUnit, Selenium and TestNG, from entry level to master level.">
+  <meta property="og:url" content="https://sigilipelli.github.io/java-testing-mastery-path/level-1/05-manual-testing-practice/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="05 · Manual Testing in Practice">
+  <meta name="twitter:description" content="A structured, module-wise software testing program built on Java — manual QA fundamentals and test automation with JUnit, Selenium and TestNG, from entry level to master level.">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9440969811959397"
+     crossorigin="anonymous"></script>
+
+  <!-- Mastery Path premium gate: homepage + Level 1 stay free and crawlable;
+       Levels 2-4 require a signed-in account. -->
+  <script>
+    (function () {
+      if (!/\/level-[234]\//.test(window.location.pathname)) return;
+
+      var root = document.documentElement;
+      root.style.visibility = "hidden";
+
+      function reveal() { root.style.visibility = "visible"; }
+      function toLogin() {
+        window.location.replace(
+          "/login.html?redirect=" + encodeURIComponent(window.location.href)
+        );
+      }
+
+      var settled = false;
+      window.addEventListener("mastery-auth-ready", function (e) {
+        if (settled) return;
+        settled = true;
+        if (e.detail && e.detail.user) { reveal(); } else { toLogin(); }
+      }, { once: true });
+
+      // Fail closed: if Firebase never loads (blocked/offline), send to login
+      // rather than leaving a blank page or silently exposing the content.
+      setTimeout(function () {
+        if (!settled) { settled = true; toLogin(); }
+      }, 8000);
+    })();
+  </script>
+  <script type="module" src="/mastery-auth.js"></script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#05-manual-testing-in-practice" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Java Testing Mastery Path" class="md-header__button md-logo" aria-label="Java Testing Mastery Path" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Java Testing Mastery Path
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              05 · Manual Testing in Practice
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SIGILIPELLI/java-testing-mastery-path" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    java-testing-mastery-path
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../privacy/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Privacy Policy
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 1 · Entry
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../level-2/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 2 · Intermediate
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../level-3/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 3 · Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../level-4/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 4 · Master
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Java Testing Mastery Path" class="md-nav__button md-logo" aria-label="Java Testing Mastery Path" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Java Testing Mastery Path
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SIGILIPELLI/java-testing-mastery-path" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    java-testing-mastery-path
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../privacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 1 · Entry
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 1 · Entry
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-what-is-software-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · What Is Software Testing?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-test-case-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Test Case Design & Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-test-types-levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Test Types & Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-defect-lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Defect Lifecycle & Bug Reporting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Manual Testing in Practice
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Manual Testing in Practice
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-equivalence-partitioning-ep" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Equivalence Partitioning (EP)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Equivalence Partitioning (EP)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#worked-example-an-age-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example — an age field
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#worked-example-a-discount-tier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example — a discount tier
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-boundary-value-analysis-bva" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Boundary Value Analysis (BVA)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Boundary Value Analysis (BVA)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#worked-example-the-same-age-field-1860" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example — the same age field (18–60)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boundaries-hide-in-more-than-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boundaries hide in more than numbers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combining-ep-and-bva-a-password-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combining EP and BVA — a password field
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-decision-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Decision tables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Decision tables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#worked-example-an-e-commerce-discount" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example — an e-commerce discount
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-state-transition-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. State transition testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. State transition testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#worked-example-login-with-account-lockout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example — login with account lockout
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-exploratory-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Exploratory testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Exploratory testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#session-based-test-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session-based test management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heuristics-for-what-to-try" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heuristics for what to try
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-quick-note-on-test-data-with-teeth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A quick note on "test data with teeth"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-choosing-a-technique" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Choosing a technique
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-java-setup-for-testers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Java Setup for Testers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-junit5-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · JUnit 5 Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-selenium-webdriver-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Selenium WebDriver Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-testng-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · TestNG Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-project-test-plan-suite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Project — Manual Test Plan + Automated Suite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../level-2/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 2 · Intermediate
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 2 · Intermediate
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-2/01-page-object-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Page Object Model (POM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-2/02-selenium-advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Selenium Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-2/03-testng-advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · TestNG Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-2/04-api-testing-restassured/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · API Testing with RestAssured
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-2/05-test-data-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Test Data Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-2/06-maven-gradle-test-projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Maven/Gradle for Test Projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-2/07-assertions-matchers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Assertions & Matchers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-2/08-reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Reporting (Allure, ExtentReports)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-2/09-cross-browser-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Cross-Browser Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-2/10-project-pom-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Project — POM Framework with API Tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../level-3/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 3 · Advanced
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 3 · Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-3/01-bdd-cucumber/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · BDD with Cucumber
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-3/02-mocking-mockito/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Mocking with Mockito
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-3/03-cicd-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · CI/CD Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-3/04-selenium-grid-parallel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Selenium Grid & Parallel Execution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-3/05-performance-testing-jmeter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Performance Testing Basics (JMeter)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-3/06-mobile-testing-appium/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Mobile Testing with Appium
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-3/07-database-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Database Testing from Java
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-3/08-framework-design-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Framework Design Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-3/09-flaky-test-diagnosis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Flaky Test Diagnosis & Stabilization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-3/10-project-bdd-framework-ci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Project — Hybrid BDD Framework with CI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../level-4/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 4 · Master
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 4 · Master
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-4/01-test-architecture-at-scale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Test Architecture at Scale
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-4/02-shift-left-continuous-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Shift-Left & Continuous Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-4/03-contract-testing-pact/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Contract Testing (Pact)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-4/04-security-testing-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Security Testing Basics for QA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-4/05-test-metrics-quality-gates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Test Metrics & Quality Gates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-4/06-containerized-test-environments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Containerized Test Environments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-4/07-ai-assisted-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · AI-Assisted Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-4/08-in-house-test-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Building an In-House Test Framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-4/09-qa-leadership-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · QA Leadership & Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../level-4/10-capstone-test-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Capstone — Production-Grade Test Framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-equivalence-partitioning-ep" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Equivalence Partitioning (EP)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Equivalence Partitioning (EP)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#worked-example-an-age-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example — an age field
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#worked-example-a-discount-tier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example — a discount tier
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-boundary-value-analysis-bva" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Boundary Value Analysis (BVA)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Boundary Value Analysis (BVA)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#worked-example-the-same-age-field-1860" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example — the same age field (18–60)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boundaries-hide-in-more-than-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boundaries hide in more than numbers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combining-ep-and-bva-a-password-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combining EP and BVA — a password field
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-decision-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Decision tables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Decision tables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#worked-example-an-e-commerce-discount" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example — an e-commerce discount
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-state-transition-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. State transition testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. State transition testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#worked-example-login-with-account-lockout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example — login with account lockout
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-exploratory-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Exploratory testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Exploratory testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#session-based-test-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session-based test management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heuristics-for-what-to-try" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heuristics for what to try
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-quick-note-on-test-data-with-teeth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A quick note on "test data with teeth"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-choosing-a-technique" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Choosing a technique
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="05-manual-testing-in-practice">05 · Manual Testing in Practice<a class="headerlink" href="#05-manual-testing-in-practice" title="Permanent link">&para;</a></h1>
+<p>Exhaustive testing is impossible. A single field accepting 10 alphanumeric
+characters has more than 3 × 10^15 possible inputs — you could not test them
+all if you started at the Big Bang. So the entire craft of manual testing is
+<strong>choosing a small set of inputs with the highest probability of exposing a
+defect.</strong></p>
+<p>This module gives you four formal techniques for making that choice —
+equivalence partitioning, boundary value analysis, decision tables, and state
+transition testing — plus exploratory testing, the disciplined form of "just
+poking at it."</p>
+<h2 id="1-equivalence-partitioning-ep">1. Equivalence Partitioning (EP)<a class="headerlink" href="#1-equivalence-partitioning-ep" title="Permanent link">&para;</a></h2>
+<p><strong>The idea:</strong> divide the input domain into groups (<em>partitions</em>) where every
+value in a group should be handled identically by the software. Test one
+representative value from each group. If it works for one, it works for all
+of them; if it fails for one, it fails for all of them.</p>
+<h3 id="worked-example-an-age-field">Worked example — an age field<a class="headerlink" href="#worked-example-an-age-field" title="Permanent link">&para;</a></h3>
+<p>Requirement: <em>The Age field accepts whole numbers from 18 to 60. Values
+outside that range are rejected with "Age must be between 18 and 60."</em></p>
+<table>
+<thead>
+<tr>
+<th>Partition</th>
+<th>Range</th>
+<th>Type</th>
+<th>Representative value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1 — Below range</td>
+<td>0 to 17</td>
+<td>Invalid</td>
+<td><code>10</code></td>
+</tr>
+<tr>
+<td>P2 — Valid range</td>
+<td>18 to 60</td>
+<td><strong>Valid</strong></td>
+<td><code>35</code></td>
+</tr>
+<tr>
+<td>P3 — Above range</td>
+<td>61 and above</td>
+<td>Invalid</td>
+<td><code>75</code></td>
+</tr>
+<tr>
+<td>P4 — Negative</td>
+<td>−∞ to −1</td>
+<td>Invalid</td>
+<td><code>-5</code></td>
+</tr>
+<tr>
+<td>P5 — Non-numeric</td>
+<td>letters, symbols</td>
+<td>Invalid</td>
+<td><code>abc</code></td>
+</tr>
+<tr>
+<td>P6 — Empty</td>
+<td>""</td>
+<td>Invalid</td>
+<td><em>(blank)</em></td>
+</tr>
+<tr>
+<td>P7 — Decimal</td>
+<td>non-integers</td>
+<td>Invalid</td>
+<td><code>25.5</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>7 test cases instead of infinity.</strong> That is the entire value of the
+technique. Note that partitions P4–P7 are the ones beginners forget; the
+requirement only mentioned a numeric range, but a real text input can receive
+anything a keyboard can produce.</p>
+<div class="admonition info">
+<p class="admonition-title">One valid partition per field, or one per rule?</p>
+<p>If different valid inputs trigger <em>different behaviour</em>, they are
+different partitions. A shipping-cost field where orders under ₹500 pay
+₹50 and orders of ₹500+ ship free has <strong>two</strong> valid partitions, not one —
+because the software treats them differently.</p>
+</div>
+<h3 id="worked-example-a-discount-tier">Worked example — a discount tier<a class="headerlink" href="#worked-example-a-discount-tier" title="Permanent link">&para;</a></h3>
+<p>Requirement: <em>Orders under ₹1,000 get no discount; ₹1,000–₹4,999 get 5%;
+₹5,000–₹9,999 get 10%; ₹10,000 and above get 15%.</em></p>
+<table>
+<thead>
+<tr>
+<th>Partition</th>
+<th>Range</th>
+<th>Expected</th>
+<th>Representative</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>₹0 – ₹999.99</td>
+<td>0% discount</td>
+<td>₹500</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>₹1,000 – ₹4,999.99</td>
+<td>5% discount</td>
+<td>₹2,500</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>₹5,000 – ₹9,999.99</td>
+<td>10% discount</td>
+<td>₹7,500</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>₹10,000+</td>
+<td>15% discount</td>
+<td>₹15,000</td>
+</tr>
+<tr>
+<td>P5</td>
+<td>negative</td>
+<td>Rejected</td>
+<td>−₹100</td>
+</tr>
+<tr>
+<td>P6</td>
+<td>zero</td>
+<td>Rejected or 0% (clarify with BA!)</td>
+<td>₹0</td>
+</tr>
+</tbody>
+</table>
+<p>P6 is a genuine ambiguity — the requirement does not say. Raising it is
+static testing (Module 03) and prevents a defect before code is written.</p>
+<h2 id="2-boundary-value-analysis-bva">2. Boundary Value Analysis (BVA)<a class="headerlink" href="#2-boundary-value-analysis-bva" title="Permanent link">&para;</a></h2>
+<p><strong>The idea:</strong> defects cluster at the <em>edges</em> of partitions, because that is
+where developers write <code>&lt;</code> when they meant <code>&lt;=</code>. So test the values right at
+and around each boundary.</p>
+<p>For a boundary at value <em>B</em>, test <strong>B−1, B, B+1</strong> (the three-value method) or
+just <strong>B and B+1</strong> on each side (the two-value method). The three-value form
+is the safer default.</p>
+<h3 id="worked-example-the-same-age-field-1860">Worked example — the same age field (18–60)<a class="headerlink" href="#worked-example-the-same-age-field-1860" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Partition side</th>
+<th>Expected</th>
+<th>Why it's tested</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>17</code></td>
+<td>Just below lower bound</td>
+<td>❌ Rejected</td>
+<td>Catches <code>age &lt;= 18</code> written as <code>age &lt; 18</code> errors</td>
+</tr>
+<tr>
+<td><code>18</code></td>
+<td><strong>Lower bound</strong></td>
+<td>✅ Accepted</td>
+<td>The minimum valid value</td>
+</tr>
+<tr>
+<td><code>19</code></td>
+<td>Just above lower bound</td>
+<td>✅ Accepted</td>
+<td>Confirms the range opens correctly</td>
+</tr>
+<tr>
+<td><code>59</code></td>
+<td>Just below upper bound</td>
+<td>✅ Accepted</td>
+<td>Confirms the range is still open</td>
+</tr>
+<tr>
+<td><code>60</code></td>
+<td><strong>Upper bound</strong></td>
+<td>✅ Accepted</td>
+<td>The maximum valid value — the classic off-by-one</td>
+</tr>
+<tr>
+<td><code>61</code></td>
+<td>Just above upper bound</td>
+<td>❌ Rejected</td>
+<td>Catches <code>age &lt;= 60</code> written as <code>age &lt; 60</code></td>
+</tr>
+</tbody>
+</table>
+<p>Six boundary tests. Combine them with the EP representatives above and you
+have a thorough, defensible 13-case set for one field.</p>
+<div class="admonition warning">
+<p class="admonition-title">The off-by-one defect</p>
+<p>If a developer writes <code>if (age &gt; 18)</code> instead of <code>if (age &gt;= 18)</code>, the
+application rejects an 18-year-old. A tester who only tried <code>35</code> would
+never find it. <strong>The value <code>60</code> is far more likely to expose a bug than
+the value <code>35</code>.</strong> This is why BVA is the highest-yield technique per test
+case in all of manual testing.</p>
+</div>
+<h3 id="boundaries-hide-in-more-than-numbers">Boundaries hide in more than numbers<a class="headerlink" href="#boundaries-hide-in-more-than-numbers" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field type</th>
+<th>Boundaries to test</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Text length (3–20 chars)</td>
+<td>2, 3, 4, 19, 20, 21 characters</td>
+</tr>
+<tr>
+<td>Date range</td>
+<td>First and last day of the range; also 31 Jan, 28/29 Feb (leap year), 31 Dec</td>
+</tr>
+<tr>
+<td>File upload (max 5 MB)</td>
+<td>4.9 MB, exactly 5 MB, 5.1 MB, 0-byte file</td>
+</tr>
+<tr>
+<td>Pagination (20 per page)</td>
+<td>0, 1, 19, 20, 21, 40, 41 records</td>
+</tr>
+<tr>
+<td>Array/list</td>
+<td>Empty list, one item, maximum items, maximum + 1</td>
+</tr>
+<tr>
+<td>Currency</td>
+<td>0.00, 0.01, the smallest and largest allowed amounts</td>
+</tr>
+<tr>
+<td>Time</td>
+<td>23:59, 00:00, DST changeover, timezone edges</td>
+</tr>
+</tbody>
+</table>
+<h3 id="combining-ep-and-bva-a-password-field">Combining EP and BVA — a password field<a class="headerlink" href="#combining-ep-and-bva-a-password-field" title="Permanent link">&para;</a></h3>
+<p>Requirement: <em>Password must be 8–20 characters, contain at least one
+uppercase letter, one digit and one special character.</em></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Test data</th>
+<th>Technique</th>
+<th>Expected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>Pass1@ab</code> (8 chars)</td>
+<td>BVA — lower bound</td>
+<td>✅ Accepted</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>Pas1@ab</code> (7 chars)</td>
+<td>BVA — below lower</td>
+<td>❌ "Minimum 8 characters"</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>Pass1@abc</code> (9 chars)</td>
+<td>BVA — above lower</td>
+<td>✅ Accepted</td>
+</tr>
+<tr>
+<td>4</td>
+<td>20-char valid password</td>
+<td>BVA — upper bound</td>
+<td>✅ Accepted</td>
+</tr>
+<tr>
+<td>5</td>
+<td>21-char valid password</td>
+<td>BVA — above upper</td>
+<td>❌ "Maximum 20 characters"</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>password1@</code></td>
+<td>EP — no uppercase</td>
+<td>❌ "Must contain an uppercase letter"</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>Password@x</code></td>
+<td>EP — no digit</td>
+<td>❌ "Must contain a digit"</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>Password12</code></td>
+<td>EP — no special char</td>
+<td>❌ "Must contain a special character"</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>PASSWORD1@</code></td>
+<td>EP — no lowercase</td>
+<td>✅ Accepted (not required by the spec!)</td>
+</tr>
+<tr>
+<td>10</td>
+<td><em>(empty)</em></td>
+<td>EP — empty</td>
+<td>❌ "Password is required"</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>Pass 1@ab</code> (with a space)</td>
+<td>EP — whitespace</td>
+<td>❓ Undefined — ask the BA</td>
+</tr>
+</tbody>
+</table>
+<p>Rows 9 and 11 are the interesting ones. Row 9 passes because the requirement
+never demanded a lowercase letter — testers must test the requirement as
+written, then <em>question</em> it separately. Row 11 exposes an undocumented case.</p>
+<h2 id="3-decision-tables">3. Decision tables<a class="headerlink" href="#3-decision-tables" title="Permanent link">&para;</a></h2>
+<p>When output depends on a <strong>combination</strong> of conditions, EP and BVA are not
+enough — you need to cover the combinations systematically. A decision table
+lays out every combination of conditions and the action for each.</p>
+<h3 id="worked-example-an-e-commerce-discount">Worked example — an e-commerce discount<a class="headerlink" href="#worked-example-an-e-commerce-discount" title="Permanent link">&para;</a></h3>
+<p>Rules: <em>Premium members get 10% off. Orders over ₹5,000 get free shipping.
+Anyone using a valid coupon gets an extra 5%. Premium members always get free
+shipping regardless of order value.</em></p>
+<p>Three conditions → 2³ = 8 rules.</p>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>R1</th>
+<th>R2</th>
+<th>R3</th>
+<th>R4</th>
+<th>R5</th>
+<th>R6</th>
+<th>R7</th>
+<th>R8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Premium member?</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>N</td>
+<td>N</td>
+<td>N</td>
+<td>N</td>
+</tr>
+<tr>
+<td>Order &gt; ₹5,000?</td>
+<td>Y</td>
+<td>Y</td>
+<td>N</td>
+<td>N</td>
+<td>Y</td>
+<td>Y</td>
+<td>N</td>
+<td>N</td>
+</tr>
+<tr>
+<td>Valid coupon?</td>
+<td>Y</td>
+<td>N</td>
+<td>Y</td>
+<td>N</td>
+<td>Y</td>
+<td>N</td>
+<td>Y</td>
+<td>N</td>
+</tr>
+<tr>
+<td><strong>Action</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Member discount 10%</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Coupon discount 5%</td>
+<td>✔</td>
+<td>—</td>
+<td>✔</td>
+<td>—</td>
+<td>✔</td>
+<td>—</td>
+<td>✔</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Free shipping</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Total discount</strong></td>
+<td>15%</td>
+<td>10%</td>
+<td>15%</td>
+<td>10%</td>
+<td>5%</td>
+<td>0%</td>
+<td>5%</td>
+<td>0%</td>
+</tr>
+<tr>
+<td><strong>Shipping</strong></td>
+<td>Free</td>
+<td>Free</td>
+<td>Free</td>
+<td>Free</td>
+<td>Free</td>
+<td>Free</td>
+<td>Paid</td>
+<td>Paid</td>
+</tr>
+</tbody>
+</table>
+<p>Each column is one test case — eight cases that cover every combination. Read
+across R3: a premium member with a small order and a coupon still gets free
+shipping. That is the rule most likely to be implemented wrong, and the table
+made it visible.</p>
+<div class="admonition info">
+<p class="admonition-title">Collapsing a decision table</p>
+<p>With many conditions the table explodes (5 conditions = 32 rules). You
+can collapse columns where a condition is <em>irrelevant</em> to the outcome,
+marking it <code>-</code> (don't care). In the table above, for premium members the
+"order &gt; ₹5,000" condition is irrelevant to shipping, so R1/R3 and R2/R4
+can be merged for the shipping action alone. Collapse carefully —
+over-collapsing loses real coverage.</p>
+</div>
+<h2 id="4-state-transition-testing">4. State transition testing<a class="headerlink" href="#4-state-transition-testing" title="Permanent link">&para;</a></h2>
+<p>Use this when the system behaves differently depending on what happened
+before — logins, order status, subscriptions, media players.</p>
+<h3 id="worked-example-login-with-account-lockout">Worked example — login with account lockout<a class="headerlink" href="#worked-example-login-with-account-lockout" title="Permanent link">&para;</a></h3>
+<p>States: <code>Logged Out</code> → <code>Logged In</code>, with a failed-attempt counter and a
+<code>Locked</code> state after 3 failures.</p>
+<table>
+<thead>
+<tr>
+<th>Current state</th>
+<th>Event</th>
+<th>Next state</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Logged Out (0 fails)</td>
+<td>Correct credentials</td>
+<td>Logged In</td>
+<td>Counter resets to 0</td>
+</tr>
+<tr>
+<td>Logged Out (0 fails)</td>
+<td>Wrong credentials</td>
+<td>Logged Out (1 fail)</td>
+<td></td>
+</tr>
+<tr>
+<td>Logged Out (1 fail)</td>
+<td>Wrong credentials</td>
+<td>Logged Out (2 fails)</td>
+<td></td>
+</tr>
+<tr>
+<td>Logged Out (2 fails)</td>
+<td>Wrong credentials</td>
+<td><strong>Locked</strong></td>
+<td>Lockout email sent</td>
+</tr>
+<tr>
+<td>Logged Out (2 fails)</td>
+<td><strong>Correct</strong> credentials</td>
+<td>Logged In</td>
+<td>Counter must reset — commonly buggy</td>
+</tr>
+<tr>
+<td>Locked</td>
+<td>Correct credentials</td>
+<td><strong>Locked</strong></td>
+<td>Must still refuse</td>
+</tr>
+<tr>
+<td>Locked</td>
+<td>15 minutes elapse</td>
+<td>Logged Out (0 fails)</td>
+<td>Auto-unlock</td>
+</tr>
+<tr>
+<td>Logged In</td>
+<td>Click Logout</td>
+<td>Logged Out (0 fails)</td>
+<td></td>
+</tr>
+<tr>
+<td>Logged In</td>
+<td>30 min inactivity</td>
+<td>Logged Out</td>
+<td>Session timeout</td>
+</tr>
+</tbody>
+</table>
+<p>The two rows to notice: <em>correct credentials after 2 failures</em> (does the
+counter reset?) and <em>correct credentials while locked</em> (does lockout actually
+hold?). Both are classic production bugs that only a state-based approach
+surfaces.</p>
+<p><strong>Invalid transitions matter too.</strong> Test that you <em>cannot</em> reach the checkout
+confirmation page by pasting its URL without going through payment. Skipping
+states is a whole class of security defect.</p>
+<h2 id="5-exploratory-testing">5. Exploratory testing<a class="headerlink" href="#5-exploratory-testing" title="Permanent link">&para;</a></h2>
+<p>Everything above is <strong>scripted</strong> — you decide the checks in advance.
+Exploratory testing is <em>simultaneous</em> learning, test design and execution:
+you use what you just discovered to decide what to try next. It is not
+random clicking; it is structured investigation.</p>
+<h3 id="session-based-test-management">Session-based test management<a class="headerlink" href="#session-based-test-management" title="Permanent link">&para;</a></h3>
+<p>The professional form gives exploratory work a container:</p>
+<ol>
+<li><strong>Charter</strong> — a one-line mission. <em>"Explore the checkout flow with
+   multiple payment methods to discover defects in order total calculation."</em></li>
+<li><strong>Time box</strong> — typically 60 or 90 minutes, uninterrupted.</li>
+<li><strong>Notes</strong> — record every action, observation, question and bug as you go.</li>
+<li><strong>Debrief</strong> — report what you covered, what you found, what you could not
+   reach, and what should become a scripted test case.</li>
+</ol>
+<h3 id="heuristics-for-what-to-try">Heuristics for what to try<a class="headerlink" href="#heuristics-for-what-to-try" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Heuristic</th>
+<th>Ask</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Goldilocks</strong></td>
+<td>Too big, too small, just right — for every input</td>
+</tr>
+<tr>
+<td><strong>CRUD</strong></td>
+<td>Can I create, read, update and delete this? What if I delete something in use?</td>
+</tr>
+<tr>
+<td><strong>Interruption</strong></td>
+<td>What if I close the tab, hit Back, refresh, or lose network mid-flow?</td>
+</tr>
+<tr>
+<td><strong>Double-click / double-submit</strong></td>
+<td>Does clicking Pay twice charge twice?</td>
+</tr>
+<tr>
+<td><strong>Boundaries of time</strong></td>
+<td>Midnight, month end, leap day, DST switch, expired session</td>
+</tr>
+<tr>
+<td><strong>Zero, one, many</strong></td>
+<td>Empty cart, one item, 500 items</td>
+</tr>
+<tr>
+<td><strong>Injection-flavoured input</strong></td>
+<td><code>&lt;script&gt;alert(1)&lt;/script&gt;</code>, <code>' OR 1=1 --</code>, <code>%00</code>, emoji, right-to-left text</td>
+</tr>
+<tr>
+<td><strong>Copy-paste</strong></td>
+<td>Paste formatted text, paste 50,000 characters, paste with trailing whitespace</td>
+</tr>
+<tr>
+<td><strong>Permissions</strong></td>
+<td>Log in as a low-privilege user and hit an admin URL directly</td>
+</tr>
+<tr>
+<td><strong>Concurrency</strong></td>
+<td>Two tabs, same account, conflicting actions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="a-quick-note-on-test-data-with-teeth">A quick note on "test data with teeth"<a class="headerlink" href="#a-quick-note-on-test-data-with-teeth" title="Permanent link">&para;</a></h3>
+<p>Keep a personal file of nasty-but-legal inputs and reuse it on every text
+field you meet:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>O&#39;Brien                      (apostrophe — breaks naive SQL and string escaping)
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Zoë Müller-Ærø               (accents, umlauts, ligatures — encoding issues)
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>你好世界                        (non-Latin — font and byte-length issues)
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>🙂🎉                          (emoji — 4-byte UTF-8, breaks utf8 vs utf8mb4 columns)
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>   leading and trailing      (whitespace — is it trimmed?)
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>aaaa…(5,000 chars)           (length — is there a server-side limit?)
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>&lt;script&gt;alert(1)&lt;/script&gt;    (XSS — is output escaped?)
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>&#39; OR &#39;1&#39;=&#39;1                  (SQL injection shape)
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>../../etc/passwd             (path traversal shape)
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>-1, 0, 0.1, 1e10, NaN        (numeric edges)
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Ethics and scope</p>
+<p>Only run injection-flavoured inputs against systems you are authorized to
+test, on non-production environments. Testing your employer's QA
+environment as part of your job is fine; probing a third party's live
+site is not. Level 4, Module 04 covers security testing properly.</p>
+</div>
+<h2 id="6-choosing-a-technique">6. Choosing a technique<a class="headerlink" href="#6-choosing-a-technique" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Technique</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A single input field with a range or format</td>
+<td>Equivalence partitioning + BVA</td>
+</tr>
+<tr>
+<td>Any numeric, length or date limit</td>
+<td>Boundary value analysis</td>
+</tr>
+<tr>
+<td>Output depends on several conditions combined</td>
+<td>Decision table</td>
+</tr>
+<tr>
+<td>Behaviour depends on previous events / status</td>
+<td>State transition testing</td>
+</tr>
+<tr>
+<td>New feature, thin requirements, need to learn fast</td>
+<td>Exploratory (session-based)</td>
+</tr>
+<tr>
+<td>Rules stated as complex business logic</td>
+<td>Decision table, then EP on each input</td>
+</tr>
+<tr>
+<td>Long form with many fields</td>
+<td>EP + BVA per field, then a decision table for cross-field rules</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>Core idea</th>
+<th>Test count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>EP</strong></td>
+<td>One value per behaviour group</td>
+<td>1 per partition</td>
+</tr>
+<tr>
+<td><strong>BVA</strong></td>
+<td>Test at the edges: B−1, B, B+1</td>
+<td>3 per boundary</td>
+</tr>
+<tr>
+<td><strong>Decision table</strong></td>
+<td>Every combination of conditions</td>
+<td>2ⁿ (collapsible)</td>
+</tr>
+<tr>
+<td><strong>State transition</strong></td>
+<td>Every valid and invalid state change</td>
+<td>1 per transition</td>
+</tr>
+<tr>
+<td><strong>Exploratory</strong></td>
+<td>Learn and test simultaneously, time-boxed with a charter</td>
+<td>Session-based</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>A hotel booking form has these rules:</p>
+<ul>
+<li><strong>Check-in date</strong> must be today or later; <strong>check-out</strong> must be after
+  check-in; a stay may be 1 to 28 nights.</li>
+<li><strong>Number of guests</strong> is 1 to 6 per room.</li>
+<li><strong>Promo code</strong> is optional; a valid code gives 12% off.</li>
+<li>Guests who are <strong>loyalty members</strong> get free breakfast. Bookings of <strong>7+
+  nights</strong> also get free breakfast. Bookings of 7+ nights by loyalty members
+  additionally get a free room upgrade.</li>
+</ul>
+<p>Produce:</p>
+<ol>
+<li>An <strong>equivalence partition table</strong> for <em>Number of guests</em>, including all
+   invalid partitions a text input could receive.</li>
+<li>A <strong>BVA table</strong> for <em>Number of nights</em> (1–28), listing every value you
+   would test and the expected outcome.</li>
+<li>A <strong>decision table</strong> for the breakfast/upgrade rules, with columns for
+   every combination of <code>loyalty member</code> and <code>7+ nights</code>, plus a <code>valid promo
+   code</code> condition. State the expected actions for each rule.</li>
+<li>A <strong>state transition table</strong> for a booking's lifecycle: <code>Draft →
+   Confirmed → Checked In → Checked Out</code>, plus <code>Cancelled</code>. Include at least
+   two <strong>invalid</strong> transitions you would test (e.g. cancelling a booking
+   that is already checked out).</li>
+<li>A <strong>60-minute exploratory charter</strong> for the date-selection part of this
+   form, plus five specific things you would try, drawn from the heuristics
+   table in section 5.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "content.code.copy", "content.code.annotate", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
