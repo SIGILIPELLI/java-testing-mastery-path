@@ -62,8 +62,19 @@ nav:
       - "08 · Selenium WebDriver Basics": level-1/08-selenium-webdriver-basics.md
       - "09 · TestNG Basics": level-1/09-testng-basics.md
       - "10 · Project — Manual Test Plan + Automated Suite": level-1/10-project-test-plan-suite.md
+  - "Level 2 · Intermediate":
+      - Overview: level-2/index.md
+      - "01 · Page Object Model (POM)": level-2/01-page-object-model.md
+      - "02 · Selenium Advanced": level-2/02-selenium-advanced.md
+      - "03 · TestNG Advanced": level-2/03-testng-advanced.md
+      - "04 · API Testing with RestAssured": level-2/04-api-testing-restassured.md
+      - "05 · Test Data Management": level-2/05-test-data-management.md
+      - "06 · Maven/Gradle for Test Projects": level-2/06-maven-gradle-test-projects.md
+      - "07 · Assertions & Matchers": level-2/07-assertions-matchers.md
+      - "08 · Reporting (Allure, ExtentReports)": level-2/08-reporting.md
+      - "09 · Cross-Browser Testing": level-2/09-cross-browser-testing.md
+      - "10 · Project — POM Framework with API Tests": level-2/10-project-pom-framework.md
 # --- auto-pruned stub levels (see AdSense low-value-content fix) ---
 exclude_docs: |
-  level-2/*.md
   level-3/*.md
   level-4/*.md
