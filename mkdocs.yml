@@ -74,7 +74,27 @@ nav:
       - "08 · Reporting (Allure, ExtentReports)": level-2/08-reporting.md
       - "09 · Cross-Browser Testing": level-2/09-cross-browser-testing.md
       - "10 · Project — POM Framework with API Tests": level-2/10-project-pom-framework.md
-# --- auto-pruned stub levels (see AdSense low-value-content fix) ---
-exclude_docs: |
-  level-3/*.md
-  level-4/*.md
+  - "Level 3 · Advanced":
+      - Overview: level-3/index.md
+      - "01 · BDD with Cucumber": level-3/01-bdd-cucumber.md
+      - "02 · Mocking with Mockito": level-3/02-mocking-mockito.md
+      - "03 · CI/CD Integration": level-3/03-cicd-integration.md
+      - "04 · Selenium Grid & Parallel Execution": level-3/04-selenium-grid-parallel.md
+      - "05 · Performance Testing Basics (JMeter)": level-3/05-performance-testing-jmeter.md
+      - "06 · Mobile Testing with Appium": level-3/06-mobile-testing-appium.md
+      - "07 · Database Testing from Java": level-3/07-database-testing.md
+      - "08 · Framework Design Patterns": level-3/08-framework-design-patterns.md
+      - "09 · Flaky Test Diagnosis & Stabilization": level-3/09-flaky-test-diagnosis.md
+      - "10 · Project — Hybrid BDD Framework with CI": level-3/10-project-bdd-framework-ci.md
+  - "Level 4 · Master":
+      - Overview: level-4/index.md
+      - "01 · Test Architecture at Scale": level-4/01-test-architecture-at-scale.md
+      - "02 · Shift-Left & Continuous Testing": level-4/02-shift-left-continuous-testing.md
+      - "03 · Contract Testing (Pact)": level-4/03-contract-testing-pact.md
+      - "04 · Security Testing Basics for QA": level-4/04-security-testing-basics.md
+      - "05 · Test Metrics & Quality Gates": level-4/05-test-metrics-quality-gates.md
+      - "06 · Containerized Test Environments": level-4/06-containerized-test-environments.md
+      - "07 · AI-Assisted Testing": level-4/07-ai-assisted-testing.md
+      - "08 · Building an In-House Test Framework": level-4/08-in-house-test-framework.md
+      - "09 · QA Leadership & Strategy": level-4/09-qa-leadership-strategy.md
+      - "10 · Capstone — Production-Grade Test Framework": level-4/10-capstone-test-framework.md

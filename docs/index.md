@@ -17,8 +17,8 @@ each level.
 |-------|-------|---------|
 | [Level 1 · Entry](level-1/index.md) | Testing fundamentals + first automation | 9 topics + 1 project |
 | [Level 2 · Intermediate](level-2/index.md) | Frameworks, API testing, reporting | 9 topics + 1 project |
-| Level 3 · Advanced (coming soon) | BDD, CI/CD, mobile, performance | 9 topics + 1 project |
-| Level 4 · Master (coming soon) | Test architecture, strategy & scale | 9 topics + 1 capstone |
+| [Level 3 · Advanced](level-3/index.md) | BDD, CI/CD, mobile, performance | 9 topics + 1 project |
+| [Level 4 · Master](level-4/index.md) | Test architecture, strategy & scale | 9 topics + 1 capstone |
 
 ## How to use this site
 
