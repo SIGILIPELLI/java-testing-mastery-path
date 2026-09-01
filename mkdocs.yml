@@ -1,8 +1,8 @@
 site_name: Java Testing Mastery Path
 site_description: A structured, module-wise software testing training program using Java — manual QA and test automation, entry level to master level.
-site_url: https://sigilipelli.github.io/java-testing-skillmastery/
-repo_url: https://github.com/SIGILIPELLI/java-testing-skillmastery
-repo_name: java-testing-skillmastery
+site_url: https://sigilipelli.github.io/java-testing-mastery-path/
+repo_url: https://github.com/SIGILIPELLI/java-testing-mastery-path
+repo_name: java-testing-mastery-path
 
 theme:
   name: material
