@@ -252,6 +252,37 @@ coverage and test pass/fail on every PR, is the common compromise.
 | Dependency vulnerabilities | dependency-check (Level 4 Module 04) | Inherited risk, not authored code |
 | Composite gate | `mvn verify` combining several plugins | One command, one pass/fail signal |
 
+## How It Actually Works
+
+JaCoCo's `prepare-agent` goal doesn't analyze your source code — it
+attaches a **Java agent** (`-javaagent:jacocoagent.jar`) to the forked JVM
+that Surefire launches to run your tests, and a Java agent gets a hook
+called `premain` that runs before your own code, wired via the standard
+`java.lang.instrument` API. From that hook, JaCoCo registers a
+**bytecode transformer** with the JVM: every time a class is loaded (via
+`ClassLoader.defineClass`), the JVM hands its raw bytecode to JaCoCo's
+transformer *before* it becomes a runnable class, and JaCoCo rewrites that
+bytecode, inserting a small counter-increment instruction at the start of
+each basic block (a straight-line run of bytecode instructions with no
+branches in or out) — so a probe fires whenever that block actually
+executes. This is why coverage numbers are exact rather than sampled or
+estimated: every single branch taken during the run increments a real
+counter baked directly into the running bytecode, not observed from
+outside.
+
+At the end of the test JVM's life, JaCoCo dumps the accumulated
+per-class, per-line, per-branch counter data to a binary `.exec` file; the
+separate `report` goal then cross-references that data against your
+compiled `.class` files' debug information (line-number tables the
+compiler embeds) to produce the human-readable HTML/line-highlighted
+report, and `check` compares the aggregated ratio against your configured
+`<minimum>`. Because `check` is bound to the `verify` phase — one phase
+*after* `test` in Maven's lifecycle (Module 2.06) — a coverage-gate failure
+happens as a distinct build failure from a test-assertion failure, which
+is exactly why "tests passed but the build failed" is a normal, expected
+outcome under a coverage gate: two independent checks, bound to two
+different lifecycle phases, both required to pass.
+
 ## Exercise
 
 1. Add JaCoCo to a project from this course, set a coverage minimum of

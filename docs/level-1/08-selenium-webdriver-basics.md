@@ -505,6 +505,36 @@ WebDriver driver = new FirefoxDriver(ffOptions);
 | Screenshot | `((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE)` |
 | End the session | `driver.quit()` |
 
+## How It Actually Works
+
+`driver.findElement(By.id("submit"))` is not a direct memory reference into
+the browser's DOM — Java and the browser are two separate operating-system
+processes with no shared memory, so every WebDriver call is actually
+serialized to JSON and sent as an HTTP request. Calling `findElement`
+sends something like `POST /session/{id}/element` with body
+`{"using": "css selector", "value": "#submit"}` to `chromedriver`, which is
+listening on a local port; `chromedriver` then talks to Chrome itself over
+the **Chrome DevTools Protocol (CDP)**, asking the real rendering engine to
+resolve that selector against its live DOM. The response — a DevTools
+"element reference" — gets wrapped by `chromedriver` into a WebDriver
+`element-6066-11e4-a52e-4f735466cecf` JSON object and handed back over
+HTTP, which is what your Java `WebElement` object actually wraps: an opaque
+ID, not the element itself. Every subsequent call (`.click()`, `.getText()`)
+repeats this round trip — send the element ID plus the action, get a
+result — which is exactly why a loop of a hundred `findElement` calls is
+orders of magnitude slower than a hundred method calls in a unit test: each
+one is a real network hop between two OS processes, not a JVM stack frame.
+
+This also explains `StaleElementReferenceException`: if the page
+re-renders (a SPA framework replaces the DOM subtree) after you fetched an
+element reference but before you act on it, the ID you're holding no longer
+points at anything Chrome recognizes — the fix is always to re-locate the
+element, not to retry the stale reference. And it's why `--headless=new`
+still launches an entire real Chrome process (compositor, renderer,
+JavaScript V8 engine, layout) rather than a lightweight stub — "headless"
+only means no window is drawn to a physical display; every other subsystem,
+including CDP, still runs exactly as in a normal window.
+
 ## Exercise
 
 Use the practice site `https://the-internet.herokuapp.com/`, which is built

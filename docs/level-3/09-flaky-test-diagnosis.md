@@ -238,6 +238,36 @@ guessing:
 | Fails after another test runs first | Isolation, run-order dependency | `@TestMethodOrder` isolation test, then fix state leak |
 | Diagnostic tool | JUnit 5 | `@RepeatedTest(N)` to measure real failure rate |
 
+## How It Actually Works
+
+`@RepeatedTest(50)` isn't one test method invoked in a loop from within a
+single test instance — JUnit 5's Jupiter engine treats it as 50 distinct
+**dynamic test instances**, each going through the full lifecycle
+independently: a fresh instance of `SuspectedFlakeTest` is constructed
+(via the same reflective `Class.newInstance`-style path covered in Module
+1.07) for each repetition, `@BeforeEach`/`@AfterEach` run around each one,
+and each repetition gets its own entry in the test report
+(`asyncResultEventuallyArrives()[1]` through `[50]`) — which is exactly why
+it reveals a 10% flake rate concretely (5 of 50 fail) rather than just
+"sometimes fails," and why isolation bugs (leftover static state) surface
+differently under `@RepeatedTest` than under a hand-rolled `for` loop
+inside one test method: a hand-rolled loop shares one instance's fields
+across iterations, masking exactly the kind of state leakage `@RepeatedTest`'s
+fresh-instance-per-repetition exposes.
+
+The reason `Thread.sleep(5)` is unreliable isn't really about the number
+5 — it's that `Thread.sleep` makes zero contract with the *actual*
+completion signal: `counter.incrementAsync()` likely hands work to another
+thread or an executor's thread pool, and the JVM's own thread scheduler
+decides when that thread actually runs relative to your sleeping test
+thread, influenced by CPU contention, garbage collection pauses, and OS
+scheduling that varies between your laptop and a shared CI runner. A
+polling wait (the `Awaitility`-style `await().until(() -> counter.get() ==
+1)` pattern, mechanically identical to Selenium's `FluentWait` from Module
+2.02) instead re-checks the *actual* condition repeatedly until it's true,
+which is a correctness fix, not a timing tweak — it removes the assumption
+about how long "eventually" takes entirely.
+
 ## Exercise
 
 1. Build `AsyncCounter`/`SuspectedFlakeTest` exactly as above and run it

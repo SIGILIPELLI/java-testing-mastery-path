@@ -205,6 +205,42 @@ this environment.
 | Business-rule correctness | Low | Domain knowledge stays human |
 | Visual diff tooling | Tool-dependent | Confirm flagged diffs are real regressions |
 
+## How It Actually Works
+
+The `assertNotNull(result)` bug is worth tracing to the exact language
+mechanism that makes it compile and pass. `applyCode` returns a primitive
+`int`, which can never be `null` by the JVM's own type system — a
+primitive isn't a reference, it has no null representation at all. When
+that `int` is passed to `assertNotNull(Object)`, Java's **autoboxing**
+inserts an implicit `Integer.valueOf(result)` call at compile time,
+wrapping the primitive in a heap object so it satisfies the method's
+`Object` parameter type — and that wrapper object is, trivially, never
+null, since it was just freshly constructed. The assertion is therefore
+tautological: no return value from `applyCode` — correct, wrong, or an
+exception thrown before reaching this line — could ever make it fail
+except a `null` reference itself, which the method's `int` return type
+makes structurally impossible. This is a useful lens for *why* an LLM
+produces this pattern reliably: a language model generates test code by
+predicting statistically likely tokens conditioned on the method
+signature and common test idioms it was trained on, not by executing the
+method or reasoning about its actual arithmetic — `assertNotNull` after
+calling a method is an extremely common token sequence in real codebases
+regardless of return type, so it gets generated with high probability
+whether or not it's meaningful for *this* particular signature.
+
+AI-driven visual diffing tools work on a completely different, genuinely
+mechanistic basis worth contrasting: they render a page (via a real
+headless browser, same CDP mechanism as Module 1.08), capture a pixel
+bitmap, and compare it against a stored baseline bitmap using perceptual
+diffing algorithms (structural similarity index, or a trained model
+tolerant of anti-aliasing/font-rendering noise) that flag regions whose
+pixel difference exceeds a threshold — this is closer to a specialized
+image-comparison algorithm than to language generation, and it's why
+visual-diff tools are comparatively reliable at their one narrow job
+(catching unintended visual regressions) while LLM-generated test *logic*
+requires the same skeptical review as code written by a junior engineer
+who has read a lot of test code but not run this specific one.
+
 ## Exercise
 
 1. Take a method from any earlier module in this course, generate a test

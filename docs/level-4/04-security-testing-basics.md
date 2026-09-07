@@ -258,6 +258,42 @@ against their documented APIs/behavior, not executed.
 | Vulnerable dependencies | `dependency-check-maven` in CI, fail on CVSS threshold |
 | Output encoding | HTML-escape user content before rendering |
 
+## How It Actually Works
+
+`@ParameterizedTest` with `@ValueSource` runs through the same discovery
+mechanism as `@Test` (Module 1.07's reflective scan), with one addition:
+JUnit's `ParameterizedTestExtension` intercepts the invocation step and,
+instead of calling your method once, resolves an `ArgumentsProvider` (for
+`@ValueSource`, a built-in one that just wraps each literal string) and
+invokes the method once per provided value, each counted and reported as
+its own `TestTemplateInvocationContext` — mechanically the same
+"one-method-becomes-many-results" pattern as TestNG's `@DataProvider`
+(Module 2.03), implemented via JUnit 5's `TestTemplate` extension point
+instead of TestNG's method-cloning.
+
+`sanitizeForDisplay`'s HTML-entity replacement works because of *where* a
+browser's HTML parser decides something is a tag versus text: a parser
+only treats `<script>` as element markup because it recognizes the literal
+`<` byte as the start of a tag-open token in its state machine. Once `<`
+has been replaced with the entity reference `&lt;` in the served HTML, the
+parser's tokenizer never enters "tag open" state at all — it sees `&lt;`
+as character data, decodes it to a literal `<` character for *display*
+only, at a later stage than the phase that would have interpreted it as
+markup. This is exactly why an incomplete escaping list is a real
+vulnerability — missing `"`/`'` escaping still permits **attribute
+injection** in contexts like `value="INPUT"`, because a raw quote there
+closes the attribute early and lets a subsequent word be parsed as a new
+attribute, e.g. an `onerror=` handler — the escaping has to match every
+syntactic position (tag content, attribute value, JS string, URL) the
+untrusted input could land in, not just the most obvious one.
+
+The `'; DROP TABLE` payload targets the SQL-injection mechanism from
+Module 3.07 in reverse: this test suite exists specifically to prove the
+*application layer* never lets that string reach a query built by
+concatenation, complementing (not replacing) the `PreparedStatement`
+defense at the persistence layer — defense in depth, tested at two
+different layers independently.
+
 ## Exercise
 
 1. Build `InputValidator` and `InputValidatorTest` exactly as above, run

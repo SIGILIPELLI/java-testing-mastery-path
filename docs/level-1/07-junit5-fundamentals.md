@@ -445,6 +445,45 @@ run becomes a CI dashboard in Level 3.
 | `assertAll(…)` | Report every failure in one run |
 | `mvn test` | Run the suite |
 
+## How It Actually Works
+
+Nothing in `CalculatorTest` ever calls `addsTwoPositiveNumbers()` directly —
+you never write a `main` method, and no line of your code invokes that
+method by name. JUnit 5 finds and runs it through **reflection-based test
+discovery**: the JUnit Platform's discovery phase scans every `.class` file
+on the test classpath, loads each class via `Class.forName(...)`, and asks
+the Jupiter engine's `TestEngine` implementation to inspect it for methods
+annotated `@Test` using `java.lang.reflect.Method.getAnnotations()`. Nothing
+about the *name* `addsTwoPositiveNumbers` matters to the framework — only
+the annotation does, which is why you're free to name test methods in plain
+English describing behavior.
+
+Once a `@Test` method is found, JUnit builds a fresh instance of the test
+class **per test method** (`new CalculatorTest()` runs again for every
+`@Test`, by default) specifically so that fields aren't shared state
+leaking between tests, then invokes the method reflectively via
+`method.invoke(instance)`. Any thrown exception — including the
+`AssertionError` an assertion raises — is caught by the engine and recorded
+as a failure; a clean return is recorded as a pass. That's the entire
+mechanism behind `expected: <6> but was: <5>`: `assertEquals` doesn't
+"fail" the test in any special way, it just constructs and throws a
+`org.opentest4j.AssertionFailedError` with that message, and the engine's
+`invoke()` call sees the exception propagate and marks the result
+accordingly — an assertion failure and an uncaught bug in your code (a
+`NullPointerException`, say) are structurally the same event to JUnit,
+which is why Surefire's report distinguishes "Failures" (assertion
+failures) from "Errors" (everything else) even though both come through
+the identical reflective invocation path.
+
+The Maven Surefire plugin sits one layer above this: it doesn't run JUnit
+directly, it forks a JVM process, puts your compiled test classes and
+JUnit's jars on that JVM's classpath, and hands control to the JUnit
+Platform Launcher API, which is what actually drives discovery and
+execution and reports results back up to Maven's build lifecycle — this is
+why `mvn test` can run tests written against JUnit, TestNG, or both, in the
+same build: Surefire talks to a stable Launcher API, not to any one
+framework's internals.
+
 ## Exercise
 
 Working in the `java-testing-practice` project from Module 06:

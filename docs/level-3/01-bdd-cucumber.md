@@ -263,6 +263,37 @@ throughout Level 1, not verified output.
 | JUnit 5 runner | `@Suite @IncludeEngines("cucumber")` |
 | Attach failure context | `scenario.isFailed()` inside `@After` |
 
+## How It Actually Works
+
+A Gherkin line like `When the user logs in as "alice" with password
+"correct-horse"` connects to Java through **regular-expression (or Cucumber
+Expression) matching against annotation values**, resolved at runtime, not
+at compile time. Cucumber's `cucumber-java` module scans your test
+classpath for methods annotated `@When`, `@Given`, `@Then` and builds an
+internal registry mapping each annotation's pattern string to that method
+— `@When("the user logs in as {string} with password {string}")` compiles
+internally to a regex with two capture groups. When the runner executes a
+feature file, it parses each Gherkin step into plain text, walks the
+registry looking for exactly one pattern that matches, and if it finds one,
+extracts the matched groups, converts them to the method's declared
+parameter types, and invokes the step definition method reflectively with
+those arguments — which is exactly why a step matching *two* different
+`@When` patterns throws an `AmbiguousStepDefinitionsException` at runtime
+rather than a compile error: nothing checks pattern uniqueness until a
+scenario actually tries to run.
+
+`Scenario Outline` + `Examples` is a pure text-substitution mechanism
+happening before any of that matching occurs: Cucumber's Gherkin parser
+expands one outline into N concrete scenarios — one per Examples row — by
+literally substituting `<username>`/`<password>`/`<message>` with each
+row's values and treating the result as N independent, ordinary
+scenarios, each matched against step definitions exactly as described
+above. That's why a typo in an `<placeholder>` name produces a scenario
+whose step text still contains the literal angle brackets — the
+substitution simply found nothing to replace it with and left it alone —
+usually surfacing as a step-matching failure rather than an outline-parsing
+error, which is a common early debugging trap.
+
 ## Exercise
 
 1. Write `login.feature` and `LoginSteps` exactly as above; run it through

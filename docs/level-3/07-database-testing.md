@@ -271,6 +271,39 @@ persistence instead of memory.
 | Rollback-based isolation | `setAutoCommit(false)` + `rollback()` in `@AfterEach` |
 | Row count from an UPDATE | return value of `executeUpdate()` |
 
+## How It Actually Works
+
+H2's "in-memory mode" isn't a mock of a database — it's a real, complete
+relational database engine (its own SQL parser, query planner, storage
+engine, transaction manager) that simply stores its pages in the JVM heap
+instead of on disk, addressed by a URL like `jdbc:h2:mem:testdb`. Because
+storage is backed by heap memory tied to the JVM process, the entire
+database vanishes the instant that JVM (your test's forked Surefire
+process) exits — which is precisely what makes it "fresh every run" with
+zero cleanup: there's no file left behind to delete, no server to reset,
+because there was never persistent storage to begin with. `DriverManager`
+resolves `jdbc:h2:mem:` at runtime via Java's SPI (`ServiceLoader`)
+mechanism, loading H2's `Driver` class listed in its jar's
+`META-INF/services/java.sql.Driver` file — the same JDBC driver-discovery
+mechanism used regardless of which real database you eventually point the
+same code at, which is exactly why code tested against H2 exercises "the
+same `java.sql` code path" as production Postgres: `Connection`,
+`PreparedStatement`, `ResultSet` are all interfaces, and your repository
+code never references H2 or Postgres directly, only those interfaces.
+
+`PreparedStatement` with `?` placeholders is SQL-injection-safe for a
+concrete mechanical reason, not just convention: `connection.prepareStatement(sql)`
+sends the SQL *text* to the database and gets it **parsed and compiled
+into an execution plan before any parameter values are attached** —
+`ps.setString(1, name)` afterward transmits `name` purely as typed data
+bound to a placeholder slot in that already-fixed plan, never as text
+that's concatenated back into SQL and re-parsed. A malicious string like
+`'; DROP TABLE employees;--` passed as a bound parameter is therefore
+inert — it's stored or compared as a literal string value, because there
+is no second parsing step left in which it could be reinterpreted as SQL
+syntax. String-concatenated SQL has no such separation, which is the whole
+vulnerability.
+
 ## Exercise
 
 1. Build `EmployeeRepository` and `EmployeeRepositoryTest` exactly as above,

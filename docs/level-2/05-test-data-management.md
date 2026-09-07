@@ -365,6 +365,33 @@ cleanup, and it runs even when the UI test failed halfway.
 | Load a resource | `getClass().getResourceAsStream("/file.csv")` |
 | Cleanup | `@AfterEach` delete through the API |
 
+## How It Actually Works
+
+DataFaker's `new Faker()` producing a plausible name or email isn't
+templating strings at random — it's driven by a seeded **pseudo-random
+number generator (PRNG)** combined with large, curated YAML data files
+bundled inside the library's jar (lists of first names, surnames, domain
+words, per-locale format patterns). Calling `faker.name().fullName()`
+picks an index into those lists using the PRNG's next value, so
+`new Faker(new Random(42))` is deterministic for one crucial reason:
+`java.util.Random` (or any seeded PRNG) is a pure function of its seed and
+call sequence — given the same seed and the same sequence of `.nextInt()`
+calls, it produces the identical stream of indices every time, on any
+machine. That's what makes a seeded Faker safe for tests that must be
+repeatable (a CI failure reproducible locally) while an unseeded one is
+appropriate for tests that specifically want a fresh, collision-free value
+each run (a new user's email, so re-running signup tests doesn't hit a
+"user already exists" from the last run).
+
+The builder pattern (`UserBuilder.aUser().withRole("admin").build()`) is a
+different, purely compile-time mechanism: each `with*` method returns
+`this`, so the calls chain, and `build()` is the one method that actually
+constructs the immutable target object from the builder's accumulated
+fields — the intermediate `UserBuilder` object never escapes into your
+test as usable data, it exists only to make constructing a slightly-varied
+object readable without an explosion of constructor overloads for every
+combination of fields a test might want to vary.
+
 ## Exercise
 
 1. Build the `Config` class from section 2 with `config.properties`, and

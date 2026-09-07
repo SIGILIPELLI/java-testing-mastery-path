@@ -292,6 +292,32 @@ than in a spreadsheet.
 | Deferred | Real bug, postponed by the business |
 | DRE | % of defects caught before production |
 
+## How It Actually Works
+
+A Jira "workflow" is literally a finite state machine defined in
+configuration, not code you write, but it behaves exactly like one: a set
+of named **statuses** (nodes) and named **transitions** (directed edges),
+each transition optionally guarded by a **condition** (e.g. only the
+assignee may transition to Resolved), triggering a **post-function**
+(auto-assign, send a notification, set the Resolution field) and sometimes
+requiring a **screen** (a form, like "Resolution: Fixed / Won't Fix /
+Duplicate"). When you click a transition button, Jira isn't just changing a
+text label — it evaluates every condition, runs every validator, then
+every post-function, in a defined order, and only then writes the new
+status to the issue's history, which is what backs the "Verified vs
+Closed" distinction and lets `status != Closed` in JQL reliably mean
+"still open" rather than relying on a free-text field.
+
+JQL itself compiles to a query against Jira's indexed issue store (Lucene
+under the hood in most self-hosted/Data Center deployments), which is why
+`created >= -7d` and `assignee = currentUser()` return instantly even
+across a project with hundreds of thousands of issues — the fields you
+filter on (project, status, assignee, created, priority) are indexed
+exactly because they're the fields workflows and dashboards query
+constantly; a JQL search on an unindexed custom field falls back to a much
+slower text scan, which is why teams are told to keep custom fields to a
+minimum.
+
 ## Exercise
 
 You are testing an online bookstore, build 3.1.0, on Chrome 126 / macOS 14.

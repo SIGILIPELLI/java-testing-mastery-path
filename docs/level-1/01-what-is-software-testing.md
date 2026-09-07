@@ -195,6 +195,39 @@ deliverables is a common interview question.
 | **RTM** | Requirement Traceability Matrix — maps requirements to test cases |
 | **Regression** | Re-testing existing features to confirm a change broke nothing |
 
+## How It Actually Works
+
+"Testing" isn't one activity — it's several distinct feedback loops running
+at different speeds inside real software delivery, and understanding *why*
+they're separated explains most of what looks arbitrary about QA process:
+
+- **Static feedback (no execution)** — a compiler type-checking your code,
+  a linter, or a code review catches whole classes of defects (typos,
+  null-safety violations, unreachable code) before a single test runs, at
+  the cost of milliseconds to seconds. This is why "shift-left" pushes
+  checks as early as possible: the further left a defect is caught, the
+  cheaper it is, because it hasn't yet been built on top of.
+- **Dynamic feedback (execution)** — unit tests actually run the code in
+  an isolated process, typically inside a JVM the build tool (Maven/Gradle)
+  spins up per test run, loading only the classes under test and their
+  direct dependencies via the normal classloader — no network, no database,
+  no browser. This is why unit tests finish in milliseconds: there's no I/O
+  in the loop, just method calls and JVM bytecode execution.
+- **Boundary/system feedback** — integration and E2E tests introduce real
+  I/O: a real HTTP call, a real browser process (Selenium spins up an
+  actual Chrome/Firefox binary and talks to it over the W3C WebDriver
+  protocol), a real database connection. Each of these adds seconds because
+  each is a real process boundary with its own startup and network
+  round-trip cost — which is precisely why the test pyramid pushes you
+  toward *many* fast unit tests and *few* slow system tests: the total time
+  budget for the pipeline is the sum of every I/O boundary a test crosses.
+
+The "defect cost curve" you may have heard cited (a bug costs 1x to fix if
+caught in a code review, 10x in a unit test, 100x in production) reflects
+this mechanically: every stage a defect survives means more code was
+written *assuming* the earlier stage was correct, so the fix now has to
+account for everything built on the wrong assumption.
+
 ## Exercise
 
 Pick any app you use daily — a food-delivery app, your banking app, or a

@@ -198,6 +198,35 @@ BUILD SUCCESS
 | Where to put a new test | Ask: fastest test that still proves the rule is *wired up*, not just correct in isolation |
 | Anti-pattern to watch for | Ice-cream cone (E2E-heavy, unit-light) |
 
+## How It Actually Works
+
+`@Tag("unit")` looks like metadata but drives an actual **discovery-time
+filter** inside the JUnit Platform Launcher, not a post-hoc grouping
+applied to results. When Surefire (or `mvn test -Dgroups=unit`) passes tag
+expressions to the Launcher, the Jupiter engine's discovery phase — the
+same reflective classpath scan from Module 1.07 — inspects each
+`@Test`-annotated method's and class's `@Tag` annotations *before*
+constructing anything, and simply never includes non-matching tests in the
+`TestPlan` it builds. This matters mechanically: a filtered-out
+`@Tag("integration")` test's `@BeforeAll` never runs, its class is never
+even instantiated — filtering happens at the discovery/selection stage,
+strictly before the execution stage, so "fast feedback on every commit"
+isn't unit tests running faster than integration tests, it's integration
+tests never being asked to start at all.
+
+The pyramid's cost ratios trace back to the same process-boundary argument
+from Module 1.03, just compounded at scale: 2,000 unit tests at a few
+milliseconds each is a couple of minutes total because each is a bare
+method call inside one already-running JVM; 200 integration tests each
+paying tens to hundreds of milliseconds of Spring-context or database
+startup cost adds up to minutes even though there are 10x fewer of them;
+50 E2E tests each launching a full browser process and crossing dozens of
+network round trips can singlehandedly dominate total suite time despite
+being the smallest test count — the pyramid's *shape* (many/few) is a
+direct, deliberate counterweight to each layer's *fixed per-test cost*
+being roughly inverse to its count, so that no single layer dominates the
+total wall-clock budget.
+
 ## Exercise
 
 1. Take three tests from earlier levels of this course (any mix of unit/

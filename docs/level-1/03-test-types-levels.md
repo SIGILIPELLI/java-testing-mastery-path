@@ -208,6 +208,31 @@ layer of slow end-to-end UI tests covering critical journeys.
 | Static | Review without executing |
 | Dynamic | Execute and observe |
 
+## How It Actually Works
+
+The test pyramid isn't a style preference — it's a direct consequence of
+what each layer has to instantiate to run at all. A unit test loads classes
+into the existing JVM process and calls methods directly: no process
+boundary, no serialization, sub-millisecond per assertion. An integration
+test typically starts a real Spring context or an embedded database
+(H2, Testcontainers), which means classpath scanning, dependency injection
+wiring, and often a real socket connection — tens to hundreds of
+milliseconds of fixed startup cost *before* the first assertion runs. An
+end-to-end/UI test launches an entire separate OS process (a browser
+binary) and drives it over the WebDriver wire protocol — HTTP requests
+between your test process and the browser process for every single click —
+which is why E2E suites run in seconds-per-test rather than
+milliseconds-per-test. Given a fixed CI time budget, the only way to keep
+feedback fast while still covering business logic thoroughly is to push the
+overwhelming majority of assertions down to the layer with the lowest fixed
+cost — hence "many unit tests, fewer integration tests, few E2E tests." Test
+categorization (smoke/sanity/regression) works on a different axis: it's
+about *which subset* of the full suite runs, selected by risk and time
+budget rather than by layer — a CI pipeline typically runs the full unit
+layer on every commit (cheap enough to always run) but only runs the full
+E2E regression suite nightly or pre-release, because that layer's total
+wall-clock cost doesn't fit inside a fast feedback loop.
+
 ## Exercise
 
 An e-commerce team has just deployed build 7.3.0 to QA. It contains: (a) a

@@ -536,6 +536,33 @@ seconds instead of re-running everything.
 | Parallel | `<suite parallel="methods" thread-count="4">` |
 | Re-run failures | `test-output/testng-failed.xml` |
 
+## How It Actually Works
+
+TestNG's suite features (grouping, dependencies, XML configuration) exist
+because TestNG builds an explicit **execution graph** before running
+anything, rather than JUnit 5's simpler "discover and invoke each method"
+model. When TestNG parses `testng.xml` (or reads annotations if you skip
+the XML), it constructs an internal model of suites → tests → classes →
+methods, resolves `dependsOnMethods`/`dependsOnGroups` into a directed
+graph, and performs a topological sort so that a method depending on
+`login` is guaranteed to run only after every method tagged `login` has
+completed — and if a dependency fails, TestNG marks dependents `SKIP`
+rather than running them and letting them fail confusingly against broken
+preconditions. This graph is also what `parallel="methods"` /
+`thread-count` operates on: TestNG partitions independent nodes of that
+graph across a real Java `ExecutorService` thread pool, so "parallel"
+tests are literally separate JVM threads calling your test methods
+concurrently — which is exactly why shared mutable state (a static field, a
+single shared `WebDriver` instance) causes intermittent failures under
+parallel TestNG runs but not sequential ones: two threads are genuinely
+racing on the same object.
+
+Priorities (`priority = 1`) are a much blunter mechanism by comparison:
+TestNG simply sorts methods within a class by that integer before
+execution — no graph, just a sort key — which is why priority alone can't
+express "run B only if A passed" the way `dependsOnMethods` can; it only
+expresses ordering, not conditional execution.
+
 ## Exercise
 
 1. Convert your `LoginSeleniumTest` from Module 08 to TestNG. Use

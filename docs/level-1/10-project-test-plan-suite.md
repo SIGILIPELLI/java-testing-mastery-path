@@ -564,6 +564,36 @@ planned cases executed.
    field makes the suite unsafe, and what a `ThreadLocal<WebDriver>` would
    fix.
 
+## How It Actually Works
+
+REQ-10 — "navigating directly to `/secure` without logging in is
+rejected" — is worth understanding mechanically because it's the one
+requirement in this list that isn't about the DOM at all: the server holds
+a **session** (typically a cookie-backed session ID mapping to
+server-side state saying "this session authenticated"), and `/secure`'s
+handler checks that state before rendering anything, redirecting to
+`/login` if it's absent. Your Selenium test never sees that server-side
+check directly — it only sees the *effect* (a redirect, a URL change) —
+which is why the correct automated assertion is `assertEquals("/login",
+driver.getCurrentUrl())` after navigating straight to `/secure` with a
+fresh `WebDriver` instance (fresh instance matters: `@BeforeEach` creating
+a new `ChromeDriver` means a new browser profile with no cookies, so you're
+verifying the *unauthenticated* path, not accidentally reusing a session
+from a previous test).
+
+This is also where JUnit 5's and TestNG's lifecycle guarantees earn their
+keep in a real suite: because each `@Test` gets setup/teardown around it
+(`@BeforeEach driver = new ChromeDriver()`, `@AfterEach driver.quit()`),
+every test in this project starts from an identical, isolated browser
+process with no leftover cookies or local storage from the previous test —
+without that isolation, REQ-10 could pass or fail depending on **test
+execution order**, which is exactly the kind of flakiness Module 3.09
+(Flaky Test Diagnosis) exists to catch. `driver.quit()` specifically tells
+`chromedriver` to close every window in the session and then terminate its
+own process — skipping it (using `driver.close()` instead, or nothing at
+all) is the single most common cause of orphaned `chromedriver`/browser
+processes silently consuming memory across a long CI run.
+
 ## Exercise
 
 Complete all six deliverables and place them in a single repository with this

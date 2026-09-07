@@ -230,6 +230,36 @@ runner's user given permission to use it.
 | Wait for real readiness | `.waitingFor(Wait.forHttp("/health").forStatusCode(200))` |
 | Tag as integration, not unit | `@Tag("integration")` (Level 4 Module 01) |
 
+## How It Actually Works
+
+Testcontainers works by talking to the **Docker Engine API** directly over
+its Unix socket (or named pipe on Windows) — `/var/run/docker.sock` — the
+exact same API the `docker` CLI itself calls; there's no special
+integration on Docker's side, Testcontainers is simply an HTTP client for
+that API written in Java. When your test class starts a
+`PostgreSQLContainer`, the library sends a "create container" request
+naming the pinned image, waits (polling, the same repeated-check pattern
+as `FluentWait` in Module 2.02 and `Awaitility` in Module 3.09) for the
+container's health check or a log-line pattern indicating Postgres has
+finished booting and is accepting connections, then reads back the
+dynamically-assigned host port Docker mapped to Postgres's internal 5432 —
+this is why your JDBC URL isn't a fixed `localhost:5432`, it's built at
+runtime from `container.getJdbcUrl()`, because a fixed port would collide
+the moment two test runs (or two developers) tried to start a container
+simultaneously.
+
+The "torn down automatically when the JVM exits" guarantee comes from a
+JVM shutdown hook Testcontainers registers via
+`Runtime.getRuntime().addShutdownHook(...)`, plus a companion "Ryuk"
+container Testcontainers itself starts, which monitors your test JVM's
+process and force-removes any container it created if the JVM dies
+uncleanly (a crash, a killed CI job) rather than exiting gracefully — a
+belt-and-suspenders mechanism specifically because a Docker container,
+unlike a JVM object, doesn't get garbage collected just because nothing
+references it anymore; without Ryuk, a crashed test run would leave
+containers running indefinitely, consuming the CI runner's resources
+until someone notices.
+
 ## Exercise
 
 1. Confirm Docker is available (`docker info`) and build

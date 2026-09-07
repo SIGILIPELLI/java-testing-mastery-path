@@ -245,6 +245,34 @@ executed.
 | Upload artifacts on failure | `if: failure()` + `upload-artifact` |
 | Cap a hung job | `timeout-minutes: 15` on the job |
 
+## How It Actually Works
+
+The entire "CI blocks a bad merge" contract rests on one thin mechanism:
+a **process exit code**. Every operating system process, when it
+terminates, returns a small integer to whatever launched it — `0`
+conventionally means success, anything else means failure. Surefire is
+what actually decides that number for `mvn test`: it collects results from
+every forked test JVM, and if any test failed *and* `testFailureIgnore` is
+`false` (the default), Surefire causes the overall Maven process to exit
+non-zero. GitHub Actions (or any CI runner) does nothing more sophisticated
+than checking that same exit code on the shell step that ran `mvn test` —
+a `run: mvn test` step in a workflow YAML is exit-code-checked exactly like
+a script you run in your own terminal, which is why `testFailureIgnore=true`
+silently defeats the entire point of CI: Maven exits `0` regardless of
+failures, so the workflow step is marked green, and GitHub's branch
+protection rule (which also just checks "did this required check report
+success") sees nothing wrong.
+
+The Surefire XML report exists as a *separate* artifact from that exit
+code specifically because the exit code alone can't say *which* test
+failed — CI UIs that show a per-test breakdown (GitHub's own test
+reporting, or a plugin) do so by having a separate step parse
+`target/surefire-reports/*.xml`, extracting `<testcase>` elements and
+their `<failure>` children, and rendering that structured data — the exit
+code answers "did the build pass," the XML answers "what, specifically,
+failed and why," and CI dashboards need both because they're produced,
+and consumed, independently.
+
 ## Exercise
 
 1. Write a `tests.yml` workflow that runs `mvn test` on every push and pull

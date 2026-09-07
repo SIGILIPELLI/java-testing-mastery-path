@@ -252,6 +252,43 @@ debug later.
 | Partial mock of a real object | `spy(realObject)` |
 | Override one spy method | `doReturn(x).when(spy).method()` |
 
+## How It Actually Works
+
+`Mockito.mock(PaymentGateway.class)` does not return an instance of any
+class you wrote — it returns a brand-new class, generated at runtime,
+that Mockito's bytecode engine builds specifically for that test. Since
+Mockito 5, that engine is **ByteBuddy** (earlier versions used cglib
+directly): given `PaymentGateway.class`, ByteBuddy generates a new class
+that implements `PaymentGateway` — or, for a concrete class like
+`OrderService`, *subclasses* it — and overrides every method with a stub
+that, instead of running your real logic, delegates to a single shared
+`MethodInterceptor` object. That interceptor is what actually implements
+"mock behavior": it records the call (method, arguments) into an internal
+invocation log, checks that log against any `when(...).thenReturn(...)`
+stub you configured, and returns the stubbed value if one matches, or a
+sensible default (`null`, `0`, `false`, an empty collection) if you never
+stubbed that call at all — which is the real explanation for why an
+un-stubbed mock method "just returns null" rather than throwing: there is
+no real method body, only the interceptor's default-value fallback.
+
+`verify(gateway).charge(customerId, cents)` reads the exact same
+invocation log from the other direction: rather than configuring a return
+value, it asserts that a call matching those arguments appears in the
+recorded history, throwing `WantedButNotInvoked` if it doesn't. This is
+why Mockito cannot mock `final` classes or methods without an extra opt-in
+(`mockito-inline`, which switches from subclass-generation to bytecode
+*instrumentation* of the original class via a Java agent) — ByteBuddy's
+default strategy works by generating a subclass that overrides methods,
+and a `final` method cannot be overridden by definition, so there's no
+seam for the interceptor to insert itself into without a different,
+lower-level rewriting technique.
+
+`@Mock` plus `MockitoExtension` (JUnit 5) or `@ExtendWith` automates only
+the *construction* of these generated proxies and their injection into
+annotated fields via reflection (`Field.setAccessible(true)` +
+`field.set(instance, mock)`) before each test method runs — the mocking
+mechanism itself is identical to calling `Mockito.mock(...)` by hand.
+
 ## Exercise
 
 1. Build `OrderService`, `PaymentGateway`, `OrderRepository`, `Order` exactly

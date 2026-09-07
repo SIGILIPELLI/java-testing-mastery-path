@@ -205,6 +205,37 @@ sequence executed for real as shown in section 3.
 | Change-based test selection | Keeps PR feedback fast as the suite grows |
 | Full suite on merge/nightly | Safety net for what fast paths might miss |
 
+## How It Actually Works
+
+A Git pre-commit hook is nothing more than an executable file at
+`.git/hooks/pre-commit` (or one installed by a framework like Husky, which
+just manages the same file) that Git itself invokes — synchronously,
+blocking `git commit` — right after you run the command and before the
+commit object is actually written to the object database. Git checks that
+script's process **exit code** exactly the way CI does (Module 3.03): a
+non-zero exit aborts the commit before it's created, a zero exit lets it
+proceed. This is why `mvn -q test -Dtest.groups=unit` is the entire
+enforcement mechanism — there's no special "pre-commit test runner," it's
+the same Surefire exit-code contract, just triggered by a different event
+(a local `git commit` invocation) instead of a CI webhook. `--no-verify`
+works because Git explicitly documents that flag as a way to skip the
+hook script entirely — it isn't bypassing a check that ran and failed, it's
+skipping the invocation altogether, which is exactly why an org relying on
+pre-commit hooks alone (with no server-side enforcement) has no real
+guarantee: any developer's local flag defeats it completely, which is why
+production-grade pipelines treat pre-commit hooks as a fast local
+convenience and CI/branch-protection (which nobody can `--no-verify`
+around) as the actual gate.
+
+TDD's red-green-refactor cycle maps onto the exact reflective
+discovery/execution loop from Module 1.07 in an inverted order: writing
+the test first means the JUnit Platform discovers and attempts to invoke
+a method against a class or method that doesn't yet compile or exist,
+which is why "red" in TDD is often a compile failure, not a runtime
+assertion failure — the very first feedback loop shift-left produces is
+literally one step earlier than a failing assertion, at the compiler
+stage described in Module 1.01.
+
 ## Exercise
 
 1. Write a pre-commit hook running your `unit`-tagged tests from Level 4

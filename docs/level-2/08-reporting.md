@@ -323,6 +323,36 @@ If your report cannot answer "can we ship?", it is decoration.
 | Extent screenshot | `test.addScreenCaptureFromBase64String(base64, "caption")` |
 | Extent finalise | `extent.flush()` in `onFinish` |
 
+## How It Actually Works
+
+Allure's step-by-step, screenshot-rich report isn't produced by re-running
+your tests through a special "reporting mode" — it works via a
+**listener/agent hooked into the same lifecycle events every runner
+already fires**. `allure-testng`/`allure-junit5` register a listener that
+implements TestNG's `ITestListener` (or JUnit 5's `TestExecutionListener`)
+interface, so every lifecycle callback the framework already calls
+internally — `onTestStart`, `onTestSuccess`, `onTestFailure` — is also
+delivered to Allure's listener. On each callback, the listener doesn't
+generate HTML immediately; it writes a small JSON file per test (and per
+"step," if you annotate methods with `@Step`) into `target/allure-results/`
+containing status, timings, parameters and any attachments — a screenshot
+you capture in an `@AfterMethod` failure hook and attach via
+`Allure.addAttachment(...)` is simply saved as a file referenced from that
+JSON. The separate `allure generate`/`allure serve` command is a static
+site generator: it reads every JSON result file after the run has fully
+finished, aggregates them into trend data and a navigable tree, and emits
+a self-contained HTML/JS bundle — which is why Allure results and Allure
+*reports* are two distinct artifacts, and why CI pipelines archive the
+`allure-results` JSON directory (small, one per test) rather than the
+generated site (large, and reproducible from the JSON at any time).
+
+The Surefire/Failsafe XML underneath all of this predates Allure by
+years and follows the *de facto* "JUnit XML" schema — `<testsuite>` /
+`<testcase>` elements with `<failure>`/`<error>` children — which is why
+virtually every CI system and reporting tool can consume it without any
+tool-specific plugin: it's a common interchange format each tool reads
+independently, not something Allure or Jenkins invented.
+
 ## Exercise
 
 1. Run `mvn clean verify` then `mvn surefire-report:report`, open the HTML,

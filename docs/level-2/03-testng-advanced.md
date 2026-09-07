@@ -365,6 +365,36 @@ public void occasionallyFlaky() { }
 | Thread-safe driver | `ThreadLocal<WebDriver>` + `remove()` in teardown |
 | Run a suite file | `mvn test -DsuiteXmlFile=testng.xml` |
 
+## How It Actually Works
+
+A `@DataProvider` method isn't invoked once and cached — TestNG treats it
+as a **factory of argument arrays**, and it re-derives the test count from
+its return value *before* execution begins: during suite construction,
+TestNG's `TestNGMethodFinder` reflectively locates the `@DataProvider`
+method by the name string on `@Test(dataProvider = "...")`, invokes it,
+and gets back an `Object[][]`. It then clones the underlying `@Test`
+method's invocation once per outer array row, so five rows genuinely
+become five separate `ITestResult` entries in the report — each with its
+own pass/fail, its own stack trace on failure, and its own row of
+parameters printed in the output, which is why one bad row doesn't hide
+failures in the other four the way a hand-written loop with assertions
+inside it would (a loop stops or silently continues past the first
+`AssertionError`; TestNG's data-provider expansion runs every row
+independently because each is a distinct reflective `method.invoke(...)`
+call with its own exception boundary).
+
+`parallel="methods"` in `testng.xml` interacts with this directly: because
+data-provider rows are already separate method invocations in TestNG's
+internal model, they're valid units of work for the thread pool — TestNG
+can run five rows of the same data-driven test on five different threads
+concurrently unless you explicitly disable it per data provider
+(`@DataProvider(parallel = false)`), which matters enormously for Selenium
+data-driven tests since each thread then needs its **own** `WebDriver`
+instance (typically via a `ThreadLocal<WebDriver>`) — sharing one browser
+session across data-provider threads produces exactly the kind of
+cross-talk (wrong page, wrong element) that looks like a flaky test but is
+actually a threading bug in the test framework code itself.
+
 ## Exercise
 
 1. Convert your Level 1 login tests to a single `@DataProvider`-driven method

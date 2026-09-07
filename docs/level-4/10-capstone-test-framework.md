@@ -387,6 +387,40 @@ section 7, which was executed for real.
   Selenium/Appium/JMeter/Testcontainers/Pact, none of which were installed
   or reachable in this environment across the whole course.
 
+## How It Actually Works
+
+Running `mvn verify` on this capstone actually chains together every
+mechanism this course has covered, in a fixed order worth tracing end to
+end. Maven walks its lifecycle (Module 2.06) up through `verify`: at
+`test-compile`, `javac` turns every `.java` file — business logic and
+tests alike — into `.class` bytecode loaded later by a classloader (Module
+1.06). At `test`, Surefire forks a fresh JVM with the JaCoCo Java agent
+attached (Module 4.05), which registers its bytecode-rewriting
+transformer before a single test class loads. The JUnit Platform Launcher
+then queries every registered `TestEngine` (Module 3.10) — here just
+Jupiter — which reflectively discovers every `@Test` across `CartTest`,
+`InputValidatorTest`, `EmployeeRepositoryTest`, and
+`TestInvestmentPlannerTest` (Module 1.07's discovery mechanism), builds
+fresh instances of `CapstoneBaseTest` subclasses per test method,
+resolving `@BeforeEach` up the inheritance chain (Module 4.08) before each.
+`EmployeeRepositoryTest` opens a real, disposable in-memory JDBC
+connection (Module 3.07); `InputValidatorTest` runs its payloads through
+`@ParameterizedTest` expansion (Module 4.04); as each test executes, every
+basic block it touches increments a JaCoCo counter inserted into the live
+bytecode.
+
+When the JVM exits, JaCoCo writes its `.exec` data, Surefire aggregates
+pass/fail into its XML report and decides Maven's exit code (Module
+3.03/4.02), and — one phase later, at `verify` — the JaCoCo `check` goal
+independently fails the build if coverage falls under the configured
+threshold regardless of whether every test passed. `.github/workflows/tests.yml`
+checks only that single final exit code to decide whether the pipeline is
+green — which means a "production-grade framework," mechanically, is
+nothing more than this exact chain of independently well-defined
+extension points (classloading, a Java agent, a `TestEngine`, a
+`ParameterResolver`, a Maven lifecycle phase) composed correctly, with no
+single tool needing to know how any of the others work internally.
+
 ## Stretch goals
 
 1. Add a `CheckoutJourneyTest` tagged `@Tag("e2e")` using Selenium against a

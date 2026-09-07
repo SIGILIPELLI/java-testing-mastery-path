@@ -353,6 +353,33 @@ driver.manage().addCookie(new Cookie("session", "abc123"));
 | Upload | `input.sendKeys(absolutePath)` |
 | Shadow root | `el.getShadowRoot()` |
 
+## How It Actually Works
+
+`FluentWait`/`WebDriverWait` are not event listeners — Selenium has no way
+to be notified when the DOM changes, because it's a separate process
+talking over HTTP. They're **polling loops**, plainly: internally,
+`Wait.until(condition)` runs a loop that calls `condition.apply(driver)`,
+catches any exception in the `ignoring(...)` list and treats it as "not yet
+ready," sleeps for `pollingEvery`, and repeats — until either the condition
+returns a truthy/non-null value or the elapsed time exceeds `withTimeout`,
+at which point it throws `TimeoutException`. `ExpectedConditions.visibilityOfElementLocated(by)`
+is just a pre-built `Function<WebDriver, WebElement>` that internally calls
+`driver.findElement(by)` and returns `null` (or lets `NoSuchElementException`
+propagate) if the element isn't visible yet — the "condition" is nothing
+more than a function that keeps getting re-invoked until it stops returning
+falsy/error.
+
+This is exactly why mixing implicit and explicit waits compounds instead of
+overriding: the implicit wait is configured at the `chromedriver` session
+level and applies inside *every* `findElement` call, including the one
+buried inside your `ExpectedConditions` function — so each of `FluentWait`'s
+polling iterations can itself block for up to the implicit-wait duration
+before returning "not found," multiplying the two timeouts together rather
+than one superseding the other. Setting implicit wait to zero removes that
+inner blocking call entirely, leaving `FluentWait`'s own loop as the only
+timing mechanism in play — which is what makes its timeout value actually
+mean what it says.
+
 ## Exercise
 
 All targets are on `https://the-internet.herokuapp.com/`.

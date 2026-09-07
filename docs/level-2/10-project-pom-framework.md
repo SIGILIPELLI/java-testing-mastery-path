@@ -374,6 +374,37 @@ starter cannot run in ten minutes from the README is not finished.
    (`email`, `uri`) as well as presence, and add a test that fails when a
    field's *type* changes rather than only when it disappears.
 
+## How It Actually Works
+
+`ScreenshotListener` is where every mechanism from this level converges,
+so it's worth tracing precisely what happens when a test fails. TestNG's
+`ITestListener` interface defines callback methods
+(`onTestFailure(ITestResult result)`, `onTestSuccess`, etc.) that TestNG's
+test runner invokes at fixed points during execution — registering the
+listener (via `@Listeners(ScreenshotListener.class)` or in `testng.xml`)
+just adds it to an internal list the runner iterates over after every test
+method returns or throws. `onTestFailure` receives an `ITestResult`
+carrying the throwable and the test method's metadata, but *not* a
+reference to the `WebDriver` in use, because TestNG has no concept of
+Selenium — that's why the listener has to reach back into your framework's
+own state, typically by calling the same `ThreadLocal<WebDriver>` driver
+factory the failing test used, retrieving the driver instance for
+*whichever thread just failed* (the callback runs on that same thread),
+and calling `((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE)`
+— which itself sends one more WebDriver-protocol command asking Chrome to
+render its current frame to a PNG, entirely independent of whatever caused
+the test to fail.
+
+That screenshot file is then attached to the Allure result for that same
+test via `Allure.addAttachment(...)`, which — as covered in Module 08 —
+just writes bytes alongside the JSON result file Allure's own listener
+already produced for that test. Three independent listener/callback
+mechanisms (TestNG's `ITestListener`, the driver factory's `ThreadLocal`
+lookup, and Allure's own result writer) chain together through nothing
+more than "run this code when that event fires" — no framework here is
+aware of the others' internals, they're composed entirely through
+well-defined extension points.
+
 ## Exercise
 
 Build the framework above, then produce a `reflection.md` answering:

@@ -345,6 +345,33 @@ diagnosing a CI-only failure. Turn it off on day one.
 | Offline build | `mvn -o verify` |
 | Reports | `target/surefire-reports/`, `target/failsafe-reports/` |
 
+## How It Actually Works
+
+Maven's `<build>` isn't a script you write step by step — it's a
+declarative binding to a fixed **build lifecycle**, a predefined ordered
+sequence of phases (`validate → compile → test-compile → test → package →
+verify → install → deploy`). Running `mvn test` doesn't just run the
+`test` phase in isolation; Maven executes every phase *up to and
+including* `test` in order, which is why a compile error in `src/main`
+fails `mvn test` before a single test runs — the `compile` phase, earlier
+in the lifecycle, never succeeded. Each phase is a named hook that plugins
+bind goals to: the `<suiteXmlFile>` property doesn't do anything by
+itself, it's read by the **Surefire plugin**, which is the plugin actually
+bound to the `test` phase, and Surefire passes that path to the TestNG
+(or JUnit Platform) launcher it forks a JVM to run.
+
+The `-D` system properties (`-Dbrowser=firefox`, `-Dthreads=4`) work
+because Maven resolves `${browser}`/`${threads}` placeholders in the POM
+against the **combined property set** — properties defined in the POM
+itself, overridden by anything passed with `-D` on the command line, at
+the moment the POM is parsed, before any plugin runs. That's a plain
+text-substitution step, not a runtime lookup, which is why a typo in a
+property name silently leaves the literal `${threads}` string in the
+config rather than throwing — Maven only warns about unresolved
+properties in specific contexts, so verifying the substituted value (e.g.
+printing it from a `@BeforeSuite` in TestNG) is the reliable way to catch
+that mistake.
+
 ## Exercise
 
 1. Restructure your Level 2 project with the `pom.xml` from section 1. Rename

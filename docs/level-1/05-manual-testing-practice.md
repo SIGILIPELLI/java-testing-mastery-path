@@ -276,6 +276,28 @@ aaaa…(5,000 chars)           (length — is there a server-side limit?)
 | **State transition** | Every valid and invalid state change | 1 per transition |
 | **Exploratory** | Learn and test simultaneously, time-boxed with a charter | Session-based |
 
+## How It Actually Works
+
+State transition testing maps directly onto how stateful software is
+actually implemented: a login flow, an order status, or a video player
+isn't free-form — internally it's almost always backed by an enum field
+(`OrderStatus.PLACED`, `SHIPPED`, `DELIVERED`, `CANCELLED`) plus guard logic
+that only permits certain transitions (`if (status == PLACED) status =
+CANCELLED else throw IllegalStateException`). A state transition diagram is
+a tester's reconstruction of that guard logic from the outside, and the
+highest-value test cases are exactly the **invalid transitions** — trying
+to cancel an already-delivered order — because those are the `else` /
+`default` branches developers are most likely to have left unguarded or
+misordered. A decision table works the same way for pure branching logic
+without memory: each row is one unique combination of condition inputs
+mapped to an action, which mirrors how the *actual* code is usually
+structured as nested `if`/`else` or a `switch`, so a table with all
+condition combinations covered guarantees every branch in that logic has
+been exercised at least once — decision-table coverage and branch coverage
+are, for pure conditional logic, close to the same thing measured two
+different ways: one on paper before the code exists, one by an instrumented
+coverage tool after it does.
+
 ## Exercise
 
 A hotel booking form has these rules:

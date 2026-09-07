@@ -247,6 +247,39 @@ tests that verify the whole system genuinely works together.
 | Sharing contracts across teams | Pact Broker (or a shared artifact/folder) |
 | Re-verify on every change | Broker webhook or CI job on provider deploy |
 
+## How It Actually Works
+
+Pact's consumer-side test doesn't call the real provider, and it doesn't
+use a hand-written Mockito stub either — `PactConsumerTestExt` starts a
+**real embedded HTTP mock server** (an actual server socket bound to a
+local port, backed by an engine like WireMock or Pact's own) configured
+with expectations built from the interactions you declare via the
+`PactDslWithProvider` builder. Your consumer code then makes a genuine
+HTTP call to that local mock server's URL exactly as it would to the real
+provider — real serialization, real deserialization, real HTTP client
+code path exercised — which is what distinguishes contract testing from
+simply mocking the HTTP client class the way Mockito would (Module 3.02):
+Pact verifies your *actual request-building and response-parsing code*,
+not just your business logic's reaction to a pre-made Java object. As a
+side effect of running that interaction, the extension serializes every
+matched request/response pair to a JSON **pact file** — this is why the
+contract is described as "generated from the consumer's own tests" rather
+than hand-written: it's a recording of what genuinely happened during a
+passing test run, not a spec written independently of the code.
+
+Provider-side verification then does the mirror operation: it reads that
+same JSON file, and for every recorded interaction, replays the exact
+request (method, path, headers, body) against the **provider's own real
+running implementation** (a real Spring Boot context, say, started for the
+verification test), then runs Pact's matching rules against the real
+response — not exact equality, but structural/type matching rules baked
+into the pact file (a field must be a string of this shape, not
+necessarily equal to the exact recorded value) so the provider can add new
+optional fields without breaking. Both sides run in complete process
+isolation, in separate CI pipelines potentially days apart, connected only
+by that JSON artifact — which is the entire point: no environment needs to
+run both services simultaneously for compatibility to be checked.
+
 ## Exercise
 
 1. Write `InventoryClientPactTest` and a minimal `InventoryClient`

@@ -373,6 +373,37 @@ through the form takes 200 ms as a token injected into a cookie.
 | Shared config | `RequestSpecBuilder` + `given().spec(apiSpec)` |
 | Debug logging | `.log().all()` / `.log().ifValidationFails()` |
 
+## How It Actually Works
+
+RestAssured's `given().when().get(...).then()` reads like a sentence, but
+it's really a **builder pattern** accumulating configuration into an
+immutable-ish `RequestSpecification` before a single byte is sent over the
+network: `given()` returns a spec builder object, each chained call
+(`.header(...)`, `.param(...)`, `.body(...)`) mutates and returns that same
+builder, and only `.when().get(url)` actually triggers RestAssured's
+underlying HTTP client (Apache HttpClient or, in newer versions, a
+pluggable client) to open a socket, write the assembled HTTP request line,
+headers and body, and block waiting for the response. Everything after
+`.then()` operates on the already-received `Response` object — the body
+bytes have already been read into memory and, for JSON, already parsed
+into a navigable tree (via Jackson/Gson under the hood) by the time
+`.body("title", equalTo(...))` runs a JsonPath expression against it. That
+ordering — network I/O happens once, at `.when()`, everything else is
+in-memory assertion — is why chaining ten `.body(...)` checks after one
+`.get()` costs one HTTP round trip, not ten.
+
+JSON Schema validation (`matchesJsonSchema(...)`) works differently from a
+field-by-field assertion: it loads the schema document, builds a validator
+against the JSON Schema spec (structural rules — required fields, types,
+patterns — not specific values), and walks the actual response tree
+checking conformance to those rules rather than to any particular expected
+value. That's the mechanical reason schema validation catches
+**structural drift** (a field silently changed from a number to a string,
+a required field disappeared) that a hand-picked `equalTo("foo")` assertion
+on a few fields would never notice, because schema validation checks shape
+across the *entire* payload rather than the handful of fields you
+remembered to assert on.
+
 ## Exercise
 
 Use `https://jsonplaceholder.typicode.com`.

@@ -326,6 +326,34 @@ public class LoginPageFactory {
 | Element storage | Store `By`, never a `WebElement` field |
 | Package layout | `com.example.pages` / `com.example.tests` |
 
+## How It Actually Works
+
+`PageFactory.initElements(driver, this)` doesn't populate `@FindBy` fields
+with real `WebElement` objects at construction time — if it did, they'd go
+stale the instant the page re-rendered. Instead it uses **JDK dynamic
+proxies**: for each annotated field, it generates a runtime proxy object
+implementing the `WebElement` interface via
+`java.lang.reflect.Proxy.newProxyInstance(...)`, backed by a custom
+`InvocationHandler` that stores the `By` locator but does *not* call
+`driver.findElement()` yet. Only when your code actually calls a method on
+that field — `.click()`, `.sendKeys(...)` — does the proxy's
+`InvocationHandler.invoke()` intercept the call, run the real
+`findElement(by)` lookup against the current DOM, and forward the method
+call to the freshly located real element. That's what "lazy proxy
+re-located on each use" means concretely: the field looks like a plain
+`WebElement`, but every single method call on it triggers a brand-new
+locator round trip, which is also why it doesn't protect you from timing
+issues — a proxy re-locating an element that genuinely isn't rendered yet
+still throws `NoSuchElementException`, it just does so at the moment of
+use rather than at construction.
+
+This is the same proxy technique (`java.lang.reflect.Proxy`, requiring an
+interface) you'll meet again in Level 3 with Mockito, which uses a
+conceptually identical intercept-and-redirect pattern — generate an object
+matching a type, intercept every call, decide what to do — but generates
+proxies for concrete classes too via bytecode generation, since mocks
+often need to stand in for classes with no interface.
+
 ## Exercise
 
 Work against `https://the-internet.herokuapp.com/`.

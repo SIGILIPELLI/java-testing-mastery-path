@@ -207,6 +207,35 @@ cross-browser approach from Level 2 Module 09 from sequential to parallel.
 | Fix Chrome crashing in Docker | `shm_size: 2gb` on the node service |
 | Match Grid capacity | `SE_NODE_MAX_SESSIONS` ≈ `thread-count` |
 
+## How It Actually Works
+
+`RemoteWebDriver` pointed at a Grid hub URL uses the *exact same* W3C
+WebDriver JSON-over-HTTP protocol described in Level 1 for local
+`chromedriver` — the only difference is where the HTTP request lands. A
+`new RemoteWebDriver(new URL("http://hub:4444"), options)` sends a
+`POST /session` "new session" request to the hub, which is a stateless
+router: it reads the desired capabilities (browser name/version) in that
+request, consults its live registry of connected nodes and how many
+sessions each is currently running (bounded by `SE_NODE_MAX_SESSIONS`),
+picks a node with capacity and a matching browser, and returns that node's
+session ID back to your test — every WebDriver call after that (`click`,
+`findElement`) is routed by session ID directly to the node that owns it.
+The hub itself never runs a browser; it only ever brokers the initial
+handshake and proxies traffic, which is why the hub can stay lightweight
+even coordinating hundreds of concurrent sessions across many nodes.
+
+The `shm_size` bump matters because of a completely different mechanism —
+Linux shared memory. Chrome uses `/dev/shm` as a tmpfs-backed scratch area
+for passing rendered frames between its renderer and GPU/compositor
+processes; Docker containers default `/dev/shm` to 64MB regardless of the
+host's actual RAM, and a heavier page (large images, many tabs, video)
+exhausts that 64MB and crashes the renderer process with a signal the
+WebDriver layer reports simply as "session deleted" or a generic
+`WebDriverException` — nothing about that error message points at shared
+memory, which is exactly why it's a well-known trap: the fix
+(`shm_size: 2gb`) addresses a container runtime limit that has nothing to
+do with Selenium's own code.
+
 ## Exercise
 
 1. Bring up `selenium-hub` + `chrome-node` + `firefox-node` via the compose

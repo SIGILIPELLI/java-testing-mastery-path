@@ -360,6 +360,37 @@ The failure message now states the domain rule and every value that mattered
 | Soft (TestNG) | `SoftAssert sa = new SoftAssert(); sa.assertAll();` |
 | Group (JUnit) | `assertAll(() -> ..., () -> ...)` |
 
+## How It Actually Works
+
+The rich failure message from `assertThat(order.getItems()).hasSize(3)`
+comes from AssertJ building a **fluent assertion object that carries the
+actual value with it**, not from any special exception-formatting magic.
+`assertThat(x)` simply wraps `x` in a typed assertion class (`ListAssert`,
+`StringAssert`, etc.); `.hasSize(3)` then has direct access to both the
+real `x` and the expected `3` in the same method call, so when the check
+fails it can construct a message by literally printing the collection's
+contents (`toString()` on each element) alongside the size mismatch —
+information a generic `assertTrue(boolean)` never had, because by the time
+`assertTrue` receives its argument, the boolean has already been computed
+and every intermediate value (the list, its size) is gone. This is the
+general principle behind every "good" assertion API: push the comparison
+*inside* the assertion call so it still has both operands in scope when
+building the failure message, rather than reducing everything to a bare
+boolean before the assertion ever sees it.
+
+`SoftAssertions`/`SoftAssert` change *when* a failure is thrown rather than
+how it's detected: a normal assertion throws immediately on failure via
+`AssertionError`, unwinding the test method right there, so only the first
+failure in a method is ever seen. A soft assertion instead catches that
+`AssertionError` internally and appends it to a list, letting execution
+continue to the next assertion — `assertAll()` (or `softly.assertAll()`)
+is the one line that finally throws, aggregating every buffered failure
+into a single combined error message. This is exactly why a `SoftAssert`
+without a trailing `assertAll()` "always passes": the failures were
+recorded, but nothing ever converts the recorded list back into a thrown
+exception, so the test method returns normally and the runner marks it a
+pass.
+
 ## Exercise
 
 1. Add AssertJ to your `pom.xml` and rewrite every `assertTrue` in your suite

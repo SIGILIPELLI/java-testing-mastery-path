@@ -305,6 +305,36 @@ real device when the defect is behavioural.
 | Browsers in parallel | `<suite parallel="tests" thread-count="3">` |
 | Thread safety | `ThreadLocal<WebDriver>` + `remove()` |
 
+## How It Actually Works
+
+`ThreadLocal<WebDriver>` exists to solve a specific memory-model problem:
+when TestNG runs tests across N threads (`parallel="methods"`,
+`thread-count=4`), each thread executes on its own call stack but shares
+the same static class variables in the JVM's heap — a plain `static
+WebDriver driver` field would be one object every thread reads and writes,
+so thread A's `driver.get(url)` could run against a session thread B just
+navigated away from. `ThreadLocal` fixes this without any manual locking:
+internally, each `Thread` object carries its own private
+`ThreadLocalMap`, and `ThreadLocal.get()`/`.set()` key into *that specific
+calling thread's* map using the `ThreadLocal` instance itself as the key —
+so `DriverFactory.get()` called from thread A and the identical call from
+thread B look up entirely separate map entries even though they're
+executing the exact same static method. Each thread transparently gets its
+own `WebDriver` (its own `chromedriver` process and browser session)
+without the factory code needing to know which thread is calling it.
+
+This is also why cross-browser factories are written as a `switch` over an
+enum/string rather than one shared driver class: `ChromeDriver`,
+`FirefoxDriver`, `EdgeDriver` and `SafariDriver` are each thin Java classes
+that construct a `RemoteWebDriver` pointed at a *different* local driver
+executable and a *different* underlying browser process/protocol dialect —
+Safari's driver, for instance, talks to a `safaridriver` binary Apple
+ships with macOS itself rather than a downloaded binary — so "cross-browser"
+at the code level is really "point the same WebDriver-protocol client at a
+different vendor's bridge process," while the protocol contract your test
+code depends on (`findElement`, `click`, `sendKeys`) stays identical across
+all of them by design, per the W3C WebDriver spec.
+
 ## Exercise
 
 1. Build `DriverFactory` exactly as in section 2 and get one test passing on

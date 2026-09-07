@@ -347,6 +347,30 @@ what CI servers and reporting tools (Level 2, Module 08) consume.
 | Dependency scope for test libs | `<scope>test</scope>` |
 | Reports | `target/surefire-reports/` |
 
+## How It Actually Works
+
+`javac` and `java` are two separate programs for a reason worth
+understanding, because it explains almost every "it compiled but won't
+run" problem you'll hit: `javac` reads `.java` source files and emits
+`.class` files containing **JVM bytecode** — a platform-independent
+instruction set, not native machine code. `java` then launches the JVM,
+which loads those `.class` files through a **classloader** (resolving every
+import against the classpath you provide), verifies the bytecode for type
+safety, and either interprets it directly or hands hot methods to the
+**JIT compiler** to be compiled to native code on the fly. This is exactly
+why `JAVA_HOME` matters independently of `PATH`: build tools like Maven
+invoke the JDK's compiler and JVM programmatically by resolving
+`$JAVA_HOME/bin/javac`, not by trusting whatever `java` happens to resolve
+to on your shell's `PATH` — a machine with three JDKs installed can have a
+`PATH` pointing at Java 8 while `JAVA_HOME` (and therefore every Maven
+build) uses Java 21, silently, until a `--release` mismatch error surfaces
+it. Maven itself is a thin Java program that reads `pom.xml`, resolves each
+`<dependency>` against a local cache (`~/.m2/repository`) and remote
+repositories, builds a dependency graph, and then invokes the JVM (via
+`javac` for compilation, then plugins like Surefire for test execution) —
+so "download JUnit" really means Maven fetching a `.jar` of compiled
+bytecode into `~/.m2` and adding it to the classpath the JVM launches with.
+
 ## Exercise
 
 1. Install a JDK (17 or 21) and Maven. Paste the output of `java -version`

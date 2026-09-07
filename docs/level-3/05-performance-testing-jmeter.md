@@ -210,6 +210,32 @@ separate performance dashboard is required to make the number actionable.
 | Generate HTML dashboard | `-e -o report/` |
 | Error count/rate | `Err` column in summary output |
 
+## How It Actually Works
+
+A JMeter Thread Group is, mechanically, a pool of real Java threads inside
+the single JMeter JVM process, each running the same sampler sequence in a
+loop — `num_threads=50` means the JMeter engine spins up 50
+`java.lang.Thread` instances, staggered over `ramp_time` seconds so they
+don't all start their first request in the same instant, and each thread
+independently executes its assigned samplers `loops` times, maintaining
+its own state (cookies, variables) as if it were an independent virtual
+user hitting the same server. This is why 1,000 requests from 50 threads ×
+20 loops arrive with genuine, uncoordinated inter-request timing rather
+than in lockstep batches: each thread runs on its own schedule, subject
+only to normal JVM thread scheduling, blocked on I/O (waiting for the HTTP
+response) between iterations rather than sleeping in sync with the others.
+
+The percentile columns in the Aggregate Report matter because of how a
+mean is computed versus how a percentile is computed: a mean collapses
+1,000 response times into one number by dividing their sum, which weighs
+a single 10-second outlier exactly as much as it weighs 999 fast
+responses divided across the total — heavily diluted. A percentile instead
+sorts all 1,000 recorded response times and reports the value at a
+specific rank (p95 = the 950th-fastest of 1,000), which is precisely why
+it surfaces a "1% of users wait 4 seconds" tail that an average of 142ms
+hides completely: the average and the p95 are answering different
+questions about the exact same underlying sorted list of numbers.
+
 ## Exercise
 
 1. Install JMeter (or note that you're reviewing rather than running it) and

@@ -232,6 +232,40 @@ it belongs in that team's own test code, built *on top of* the framework.
 | Distribution | Independently versioned artifact | Maven dependency, semantic version |
 | Decision rule | "Would another team reuse this unchanged?" | Framework vs. team-local code |
 
+## How It Actually Works
+
+`SignupTest extends OrgBaseTest` relies on two separate JUnit 5 mechanisms
+that are easy to conflate but matter differently at scale. First, plain
+Java inheritance: `@BeforeEach`-annotated methods are inherited like any
+other method, and JUnit 5's discovery walks the *entire* class hierarchy
+looking for lifecycle annotations, not just the immediate class — this is
+why `orgSetUp` runs for every subclass without being redeclared, and why
+JUnit runs inherited `@BeforeEach` methods **before** the subclass's own
+`@BeforeEach` methods (superclass-to-subclass order), guaranteeing
+organization-wide setup always happens first regardless of what a
+subclass adds. Second, `TestInfo testInfo` as a method parameter works
+through JUnit 5's **`ParameterResolver`** extension point: Jupiter doesn't
+know how to construct a `TestInfo` from a no-arg constructor, so before
+invoking any lifecycle or test method with parameters, its execution
+engine checks each parameter's type against every registered
+`ParameterResolver` (a built-in one handles `TestInfo`/`TestReporter`;
+Mockito's JUnit 5 extension registers one for `@Mock`-annotated
+parameters) and asks whichever resolver supports that type to produce an
+instance — `TestInfo`'s resolver simply reads back the display name and
+tags JUnit already computed during discovery for the test currently
+executing.
+
+This is the actual, general mechanism an in-house framework is really
+leaning on: JUnit 5 doesn't have a fixed set of "framework hooks" — its
+entire lifecycle (`BeforeEachCallback`, `AfterEachCallback`,
+`ParameterResolver`, `TestExecutionExceptionHandler`) is a documented
+Extension SPI, and `@ExtendWith` registration works through the same
+`ServiceLoader`-adjacent discovery pattern used for `TestEngine`
+registration in Module 3.10 — an in-house framework built on top of these
+extension points is composing with JUnit's own architecture rather than
+working around it, which is exactly why it stays compatible as the
+underlying JUnit version is upgraded.
+
 ## Exercise
 
 1. Build `OrgBaseTest`, `OrgTestData`, `OrgApiAssertions`, and `SignupTest`

@@ -216,6 +216,29 @@ You will write a real one in this level's project (Module 10).
 | RTM | Requirement ↔ test case ↔ defect mapping; proves coverage |
 | Test summary report | End-of-cycle results and recommendation to release |
 
+## How It Actually Works
+
+Techniques like **equivalence partitioning** and **boundary value analysis**
+aren't just design habits — they're a direct response to combinatorial
+explosion. A password field with rules on length (8–20), case, digits and
+special characters has, in principle, an astronomically large input space;
+you cannot execute even a small fraction of it. Partitioning collapses that
+space into a handful of *classes* (valid, too-short, too-long, missing
+uppercase, missing digit, missing special char) under the assumption that
+every value inside one class exercises the same code path — because the
+validation logic itself is almost always written as a small number of
+branches (`if length < 8`, `if !hasUppercase`, etc.), one representative
+value per branch achieves the same code coverage as testing every value in
+that branch's range. Boundary analysis then targets exactly where those
+branches flip: `length == 7` and `length == 8` are far more likely to expose
+an off-by-one (`<` vs `<=`) than any value in the middle of the valid range,
+because that's precisely where the comparison operator in the source code
+makes its decision. An RTM works the same way in reverse: it's a manual
+trace of the mapping from *requirement* to *code path* to *test case*, and a
+requirement with zero mapped cases is a code path nobody has proven exists
+correctly — the traceability matrix exists to make that gap visible before
+release rather than after.
+
 ## Exercise
 
 Use this requirement set for a **user registration form**:

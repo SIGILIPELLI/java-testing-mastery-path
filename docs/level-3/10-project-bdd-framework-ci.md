@@ -285,6 +285,38 @@ run, one CI job, two different testing styles, zero glue code required to
 combine them — the JUnit Platform runs both engines because both are
 declared on the classpath.
 
+## How It Actually Works
+
+"Hybrid" — Gherkin acceptance tests and plain JUnit unit tests in one
+`mvn test` run — works because of the JUnit Platform's **multi-engine
+architecture**, which is the actual mechanism worth understanding here.
+The JUnit Platform Launcher (invoked by Surefire) doesn't know how to run
+either JUnit Jupiter tests or Cucumber scenarios itself — it delegates to
+whichever `TestEngine` implementations are on the classpath, discovered
+via Java's `ServiceLoader` SPI mechanism (each engine jar ships a
+`META-INF/services/org.junit.platform.engine.TestEngine` file naming its
+implementation class). `cucumber-junit-platform-engine` registers a
+`TestEngine` whose ID is `"cucumber"`; `junit-jupiter-engine` registers one
+whose ID is `"junit-jupiter"`. When Surefire asks the Launcher to discover
+tests, it queries *every* registered engine, and each decides for itself
+what counts as one of its tests — the Jupiter engine looks for `@Test`
+methods, the Cucumber engine looks for `.feature` files matching
+`@SelectClasspathResource` — and both sets of results are merged into one
+report.
+
+`RunCucumberTest`'s `@Suite`/`@IncludeEngines("cucumber")` annotations
+aren't executed as a class at all in the traditional sense — they're
+metadata the Cucumber engine reads during discovery to know *where* to
+look for feature files and step definitions (the `glue` package); the
+class body is empty because it exists purely as an annotation carrier, a
+pattern the JUnit Platform Suite API is specifically designed around. This
+is also why the same `mvn test` invocation, with the same Surefire
+configuration, produces both Cucumber scenario results and Jupiter test
+results in one combined `target/surefire-reports/` output — from CI's
+perspective (Module 03) it's a single process with a single exit code,
+even though two structurally different test-discovery mechanisms ran
+inside it.
+
 ## Stretch goals
 
 1. Add a `@requiresDiscount` tag to the outline scenarios and a

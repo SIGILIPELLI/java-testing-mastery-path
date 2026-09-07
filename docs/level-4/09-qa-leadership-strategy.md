@@ -180,6 +180,40 @@ directly than a from-scratch coding exercise does.
 | Avoiding metric-gaming | Pair every target with a countermeasure check |
 | Staying honest about the plan | A scheduled "what did we get wrong" review |
 
+## How It Actually Works
+
+`record Feature(...)` is worth understanding precisely because a QA lead's
+"defensible model" needs to be trustworthy code, not just a good idea: a
+Java `record` is compiled by `javac` into an ordinary `final` class, but
+the compiler *auto-generates* a canonical constructor, private final
+fields for each component, public accessor methods (`defectProbability()`,
+not `getDefectProbability()`), and `equals()`/`hashCode()`/`toString()`
+implementations based on all components — you get value-object semantics
+(two `Feature`s with identical fields are `.equals()`) for free, which
+matters directly for testability: a `TestInvestmentPlannerTest` can
+construct an expected `Feature` and compare it with `assertEquals`
+against an actual one without writing any equality logic yourself, because
+the compiler already generated correct field-by-field comparison.
+
+`Comparator.comparingDouble(Feature::priorityScore).reversed()` chains two
+separate mechanisms. `Feature::priorityScore` is a **method reference** —
+syntactic sugar the compiler desugars into a lambda implementing the
+`ToDoubleFunction<Feature>` functional interface, calling `priorityScore()`
+on whatever `Feature` it's given. `comparingDouble` wraps that function
+into a full `Comparator<Feature>` whose `compare(a, b)` calls
+`Double.compare(fn.apply(a), fn.apply(b))` — a numerically correct
+comparison that avoids the classic bug of subtracting two doubles and
+casting to `int` (which silently breaks for very small differences due to
+floating-point rounding). `.reversed()` returns a new `Comparator` that
+simply calls the original and negates the sign of its result.
+`sorted.sort(...)` then runs the JDK's `List.sort`, which for `ArrayList`
+delegates to a stable, dual-pivot variant of merge/TimSort over the
+backing array — "stable" specifically meaning two features with an
+identical `priorityScore` retain their original relative order, which
+matters for the model's *reproducibility*: the same input list always
+produces the same ranked output, a property worth being able to say
+out loud when defending the model to stakeholders.
+
 ## Exercise
 
 1. Implement `Feature`, `TestInvestmentPlanner`, and the two tests exactly

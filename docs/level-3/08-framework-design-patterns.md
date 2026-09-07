@@ -250,6 +250,41 @@ BUILD SUCCESS
 | Page Object (Level 2) | One class per UI page/component | `LoginPage` |
 | Template method (via inheritance) | Shared setup/teardown, per-test specifics | `BaseTest` |
 
+## How It Actually Works
+
+These patterns solve problems that are specifically about **compile-time
+binding versus runtime flexibility** in Java's type system, which is worth
+making precise. A direct `new ChromeDriver()` call binds the concrete
+class at compile time — the bytecode literally contains a reference to
+`ChromeDriver`'s constructor, baked into every call site. `DriverFactory
+.create(browser)` moves that decision to a single `switch` evaluated at
+runtime against a `String`, so the compiled bytecode for every *caller*
+references only `DriverFactory.create(String)`, never `ChromeDriver`
+directly — adding a new browser means recompiling one class
+(`DriverFactory`) rather than every call site, because the caller's
+bytecode never needed to change to begin with.
+
+Singleton (Module's shared `ExtentReports` instance, say) relies on
+class-loading guarantees the JVM itself provides: a `private static final`
+field initialized inline is guaranteed by the JVM specification to run its
+initializer exactly once, the first time the class is loaded, and the JVM
+synchronizes class initialization internally — so `Holder.INSTANCE` (the
+initialization-on-demand holder idiom) gets thread-safe, exactly-once
+construction without you writing any explicit `synchronized` block,
+because the classloader's own locking does that work.
+
+The Strategy pattern (pluggable wait/assertion strategies) is structurally
+identical to what `Comparator<T>` or a `Runnable` does in the JDK: it's an
+interface with one abstract method, and Java resolves *which*
+implementation runs via ordinary virtual method dispatch — the JVM looks
+up the concrete object's vtable at the call site, not the declared
+interface type — so swapping strategies at runtime (`new
+FluentWaitStrategy()` vs `new ImplicitWaitStrategy()`) costs nothing more
+than reassigning a reference; no reflection or bytecode generation is
+involved, unlike Mockito's proxies in Module 3.02 — this is the "cheap,"
+purely object-oriented end of runtime flexibility in Java, and part of why
+these four patterns are the first ones every real framework reaches for.
+
 ## Exercise
 
 1. Implement `DriverFactory`, `UserBuilder`/`TestUser`, `ConfigReader`, and

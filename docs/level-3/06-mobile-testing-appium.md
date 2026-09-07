@@ -227,6 +227,37 @@ Level 1/2's Selenium modules; treat it as reviewed, not executed.
 | Auto-grant permissions | `autoGrantPermissions: true` capability |
 | Always tear down | `driver.quit()` in `@AfterEach` |
 
+## How It Actually Works
+
+Appium's `UiAutomator2` driver on Android reveals what "the same WebDriver
+protocol" actually spans: your Java client sends the identical
+`POST /session/{id}/element` JSON request as any Selenium test, but the
+Appium Server (a Node process) translates that request into commands for a
+small **instrumentation APK** it installs and runs on the device/emulator
+alongside your app under test — Google's UiAutomator2 framework. That
+instrumentation process runs *inside the same Android system process
+space* as accessibility services, which is how it can query the entire
+live view hierarchy (every `View`/`Activity`/`Fragment` currently
+rendered) and translate a locator like
+`AppiumBy.androidUIAutomator("new UiSelector().text(\"Login\")")` into a
+real query against that hierarchy, then simulate the actual touch event at
+the resolved coordinates using Android's own input-injection APIs — so a
+"tap" in Appium is mechanically a synthetic `MotionEvent` dispatched
+through the same OS input pipeline a real finger touch would generate, not
+a JavaScript click on a DOM node the way Selenium's is.
+
+This is exactly why "the page" means something different on mobile: there
+is no DOM, so `getPageSource()` in Appium returns a serialized dump of the
+live native view hierarchy (XML resembling Android's layout tree) rather
+than HTML, and locators target that tree's `resource-id`/`class`/`text`
+attributes instead of CSS selectors. iOS's `XCUITest` driver follows the
+same pattern one layer differently: it embeds Apple's own `XCTest`
+framework (normally used for native unit/UI tests) as a bridge process,
+translating WebDriver calls into `XCUIElement` queries against iOS's
+accessibility tree — a different underlying automation technology per
+platform, unified only by the shared WebDriver wire protocol your Java
+code speaks.
+
 ## Exercise
 
 1. Install Appium Server and an Android emulator (or document that you're
