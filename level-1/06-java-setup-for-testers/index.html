@@ -991,6 +991,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2417,6 +2428,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2871,6 +2893,28 @@ what CI servers and reporting tools (Level 2, Module 08) consume.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>javac</code> and <code>java</code> are two separate programs for a reason worth
+understanding, because it explains almost every "it compiled but won't
+run" problem you'll hit: <code>javac</code> reads <code>.java</code> source files and emits
+<code>.class</code> files containing <strong>JVM bytecode</strong> — a platform-independent
+instruction set, not native machine code. <code>java</code> then launches the JVM,
+which loads those <code>.class</code> files through a <strong>classloader</strong> (resolving every
+import against the classpath you provide), verifies the bytecode for type
+safety, and either interprets it directly or hands hot methods to the
+<strong>JIT compiler</strong> to be compiled to native code on the fly. This is exactly
+why <code>JAVA_HOME</code> matters independently of <code>PATH</code>: build tools like Maven
+invoke the JDK's compiler and JVM programmatically by resolving
+<code>$JAVA_HOME/bin/javac</code>, not by trusting whatever <code>java</code> happens to resolve
+to on your shell's <code>PATH</code> — a machine with three JDKs installed can have a
+<code>PATH</code> pointing at Java 8 while <code>JAVA_HOME</code> (and therefore every Maven
+build) uses Java 21, silently, until a <code>--release</code> mismatch error surfaces
+it. Maven itself is a thin Java program that reads <code>pom.xml</code>, resolves each
+<code>&lt;dependency&gt;</code> against a local cache (<code>~/.m2/repository</code>) and remote
+repositories, builds a dependency graph, and then invokes the JVM (via
+<code>javac</code> for compilation, then plugins like Surefire for test execution) —
+so "download JUnit" really means Maven fetching a <code>.jar</code> of compiled
+bytecode into <code>~/.m2</code> and adding it to the classpath the JVM launches with.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Install a JDK (17 or 21) and Maven. Paste the output of <code>java -version</code>

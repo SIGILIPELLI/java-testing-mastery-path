@@ -1996,6 +1996,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2276,6 +2287,17 @@
     <span class="md-ellipsis">
       
         Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
       
     </span>
   </a>
@@ -2571,6 +2593,38 @@ several, not a certification.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>@ParameterizedTest</code> with <code>@ValueSource</code> runs through the same discovery
+mechanism as <code>@Test</code> (Module 1.07's reflective scan), with one addition:
+JUnit's <code>ParameterizedTestExtension</code> intercepts the invocation step and,
+instead of calling your method once, resolves an <code>ArgumentsProvider</code> (for
+<code>@ValueSource</code>, a built-in one that just wraps each literal string) and
+invokes the method once per provided value, each counted and reported as
+its own <code>TestTemplateInvocationContext</code> — mechanically the same
+"one-method-becomes-many-results" pattern as TestNG's <code>@DataProvider</code>
+(Module 2.03), implemented via JUnit 5's <code>TestTemplate</code> extension point
+instead of TestNG's method-cloning.</p>
+<p><code>sanitizeForDisplay</code>'s HTML-entity replacement works because of <em>where</em> a
+browser's HTML parser decides something is a tag versus text: a parser
+only treats <code>&lt;script&gt;</code> as element markup because it recognizes the literal
+<code>&lt;</code> byte as the start of a tag-open token in its state machine. Once <code>&lt;</code>
+has been replaced with the entity reference <code>&amp;lt;</code> in the served HTML, the
+parser's tokenizer never enters "tag open" state at all — it sees <code>&amp;lt;</code>
+as character data, decodes it to a literal <code>&lt;</code> character for <em>display</em>
+only, at a later stage than the phase that would have interpreted it as
+markup. This is exactly why an incomplete escaping list is a real
+vulnerability — missing <code>"</code>/<code>'</code> escaping still permits <strong>attribute
+injection</strong> in contexts like <code>value="INPUT"</code>, because a raw quote there
+closes the attribute early and lets a subsequent word be parsed as a new
+attribute, e.g. an <code>onerror=</code> handler — the escaping has to match every
+syntactic position (tag content, attribute value, JS string, URL) the
+untrusted input could land in, not just the most obvious one.</p>
+<p>The <code>'; DROP TABLE</code> payload targets the SQL-injection mechanism from
+Module 3.07 in reverse: this test suite exists specifically to prove the
+<em>application layer</em> never lets that string reach a query built by
+concatenation, complementing (not replacing) the <code>PreparedStatement</code>
+defense at the persistence layer — defense in depth, tested at two
+different layers independently.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Build <code>InputValidator</code> and <code>InputValidatorTest</code> exactly as above, run

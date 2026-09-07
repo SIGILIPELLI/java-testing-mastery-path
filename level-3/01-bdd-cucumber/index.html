@@ -1558,6 +1558,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2327,6 +2338,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2632,6 +2654,34 @@ tagged <code>@wip</code> and excluded from CI.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>A Gherkin line like <code>When the user logs in as "alice" with password
+"correct-horse"</code> connects to Java through <strong>regular-expression (or Cucumber
+Expression) matching against annotation values</strong>, resolved at runtime, not
+at compile time. Cucumber's <code>cucumber-java</code> module scans your test
+classpath for methods annotated <code>@When</code>, <code>@Given</code>, <code>@Then</code> and builds an
+internal registry mapping each annotation's pattern string to that method
+— <code>@When("the user logs in as {string} with password {string}")</code> compiles
+internally to a regex with two capture groups. When the runner executes a
+feature file, it parses each Gherkin step into plain text, walks the
+registry looking for exactly one pattern that matches, and if it finds one,
+extracts the matched groups, converts them to the method's declared
+parameter types, and invokes the step definition method reflectively with
+those arguments — which is exactly why a step matching <em>two</em> different
+<code>@When</code> patterns throws an <code>AmbiguousStepDefinitionsException</code> at runtime
+rather than a compile error: nothing checks pattern uniqueness until a
+scenario actually tries to run.</p>
+<p><code>Scenario Outline</code> + <code>Examples</code> is a pure text-substitution mechanism
+happening before any of that matching occurs: Cucumber's Gherkin parser
+expands one outline into N concrete scenarios — one per Examples row — by
+literally substituting <code>&lt;username&gt;</code>/<code>&lt;password&gt;</code>/<code>&lt;message&gt;</code> with each
+row's values and treating the result as N independent, ordinary
+scenarios, each matched against step definitions exactly as described
+above. That's why a typo in an <code>&lt;placeholder&gt;</code> name produces a scenario
+whose step text still contains the literal angle brackets — the
+substitution simply found nothing to replace it with and left it alone —
+usually surfacing as a step-matching failure rather than an outline-parsing
+error, which is a common early debugging trap.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Write <code>login.feature</code> and <code>LoginSteps</code> exactly as above; run it through

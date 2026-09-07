@@ -806,6 +806,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2327,6 +2338,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2759,6 +2781,37 @@ execution is what stops the endless "are we done testing yet?" argument.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>"Testing" isn't one activity — it's several distinct feedback loops running
+at different speeds inside real software delivery, and understanding <em>why</em>
+they're separated explains most of what looks arbitrary about QA process:</p>
+<ul>
+<li><strong>Static feedback (no execution)</strong> — a compiler type-checking your code,
+  a linter, or a code review catches whole classes of defects (typos,
+  null-safety violations, unreachable code) before a single test runs, at
+  the cost of milliseconds to seconds. This is why "shift-left" pushes
+  checks as early as possible: the further left a defect is caught, the
+  cheaper it is, because it hasn't yet been built on top of.</li>
+<li><strong>Dynamic feedback (execution)</strong> — unit tests actually run the code in
+  an isolated process, typically inside a JVM the build tool (Maven/Gradle)
+  spins up per test run, loading only the classes under test and their
+  direct dependencies via the normal classloader — no network, no database,
+  no browser. This is why unit tests finish in milliseconds: there's no I/O
+  in the loop, just method calls and JVM bytecode execution.</li>
+<li><strong>Boundary/system feedback</strong> — integration and E2E tests introduce real
+  I/O: a real HTTP call, a real browser process (Selenium spins up an
+  actual Chrome/Firefox binary and talks to it over the W3C WebDriver
+  protocol), a real database connection. Each of these adds seconds because
+  each is a real process boundary with its own startup and network
+  round-trip cost — which is precisely why the test pyramid pushes you
+  toward <em>many</em> fast unit tests and <em>few</em> slow system tests: the total time
+  budget for the pipeline is the sum of every I/O boundary a test crosses.</li>
+</ul>
+<p>The "defect cost curve" you may have heard cited (a bug costs 1x to fix if
+caught in a code review, 10x in a unit test, 100x in production) reflects
+this mechanically: every stage a defect survives means more code was
+written <em>assuming</em> the earlier stage was correct, so the fix now has to
+account for everything built on the wrong assumption.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Pick any app you use daily — a food-delivery app, your banking app, or a
 website's login page.</p>

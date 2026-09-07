@@ -1350,6 +1350,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2327,6 +2338,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2750,6 +2772,34 @@ values. Never wrap a comparison in <code>assertTrue</code>.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>The rich failure message from <code>assertThat(order.getItems()).hasSize(3)</code>
+comes from AssertJ building a <strong>fluent assertion object that carries the
+actual value with it</strong>, not from any special exception-formatting magic.
+<code>assertThat(x)</code> simply wraps <code>x</code> in a typed assertion class (<code>ListAssert</code>,
+<code>StringAssert</code>, etc.); <code>.hasSize(3)</code> then has direct access to both the
+real <code>x</code> and the expected <code>3</code> in the same method call, so when the check
+fails it can construct a message by literally printing the collection's
+contents (<code>toString()</code> on each element) alongside the size mismatch —
+information a generic <code>assertTrue(boolean)</code> never had, because by the time
+<code>assertTrue</code> receives its argument, the boolean has already been computed
+and every intermediate value (the list, its size) is gone. This is the
+general principle behind every "good" assertion API: push the comparison
+<em>inside</em> the assertion call so it still has both operands in scope when
+building the failure message, rather than reducing everything to a bare
+boolean before the assertion ever sees it.</p>
+<p><code>SoftAssertions</code>/<code>SoftAssert</code> change <em>when</em> a failure is thrown rather than
+how it's detected: a normal assertion throws immediately on failure via
+<code>AssertionError</code>, unwinding the test method right there, so only the first
+failure in a method is ever seen. A soft assertion instead catches that
+<code>AssertionError</code> internally and appends it to a list, letting execution
+continue to the next assertion — <code>assertAll()</code> (or <code>softly.assertAll()</code>)
+is the one line that finally throws, aggregating every buffered failure
+into a single combined error message. This is exactly why a <code>SoftAssert</code>
+without a trailing <code>assertAll()</code> "always passes": the failures were
+recorded, but nothing ever converts the recorded list back into a thrown
+exception, so the test method returns normally and the runner marks it a
+pass.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Add AssertJ to your <code>pom.xml</code> and rewrite every <code>assertTrue</code> in your suite

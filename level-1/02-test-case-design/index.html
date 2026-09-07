@@ -885,6 +885,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2429,6 +2440,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2923,6 +2945,27 @@ project; <strong>test cases</strong> are hundreds of small items.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Techniques like <strong>equivalence partitioning</strong> and <strong>boundary value analysis</strong>
+aren't just design habits — they're a direct response to combinatorial
+explosion. A password field with rules on length (8–20), case, digits and
+special characters has, in principle, an astronomically large input space;
+you cannot execute even a small fraction of it. Partitioning collapses that
+space into a handful of <em>classes</em> (valid, too-short, too-long, missing
+uppercase, missing digit, missing special char) under the assumption that
+every value inside one class exercises the same code path — because the
+validation logic itself is almost always written as a small number of
+branches (<code>if length &lt; 8</code>, <code>if !hasUppercase</code>, etc.), one representative
+value per branch achieves the same code coverage as testing every value in
+that branch's range. Boundary analysis then targets exactly where those
+branches flip: <code>length == 7</code> and <code>length == 8</code> are far more likely to expose
+an off-by-one (<code>&lt;</code> vs <code>&lt;=</code>) than any value in the middle of the valid range,
+because that's precisely where the comparison operator in the source code
+makes its decision. An RTM works the same way in reverse: it's a manual
+trace of the mapping from <em>requirement</em> to <em>code path</em> to <em>test case</em>, and a
+requirement with zero mapped cases is a code path nobody has proven exists
+correctly — the traceability matrix exists to make that gap visible before
+release rather than after.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Use this requirement set for a <strong>user registration form</strong>:</p>
 <ul>

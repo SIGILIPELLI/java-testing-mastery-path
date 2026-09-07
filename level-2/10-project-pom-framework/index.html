@@ -1423,6 +1423,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2305,6 +2316,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2685,6 +2707,34 @@ starter cannot run in ten minutes from the README is not finished.</p>
    (<code>email</code>, <code>uri</code>) as well as presence, and add a test that fails when a
    field's <em>type</em> changes rather than only when it disappears.</li>
 </ol>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>ScreenshotListener</code> is where every mechanism from this level converges,
+so it's worth tracing precisely what happens when a test fails. TestNG's
+<code>ITestListener</code> interface defines callback methods
+(<code>onTestFailure(ITestResult result)</code>, <code>onTestSuccess</code>, etc.) that TestNG's
+test runner invokes at fixed points during execution — registering the
+listener (via <code>@Listeners(ScreenshotListener.class)</code> or in <code>testng.xml</code>)
+just adds it to an internal list the runner iterates over after every test
+method returns or throws. <code>onTestFailure</code> receives an <code>ITestResult</code>
+carrying the throwable and the test method's metadata, but <em>not</em> a
+reference to the <code>WebDriver</code> in use, because TestNG has no concept of
+Selenium — that's why the listener has to reach back into your framework's
+own state, typically by calling the same <code>ThreadLocal&lt;WebDriver&gt;</code> driver
+factory the failing test used, retrieving the driver instance for
+<em>whichever thread just failed</em> (the callback runs on that same thread),
+and calling <code>((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE)</code>
+— which itself sends one more WebDriver-protocol command asking Chrome to
+render its current frame to a PNG, entirely independent of whatever caused
+the test to fail.</p>
+<p>That screenshot file is then attached to the Allure result for that same
+test via <code>Allure.addAttachment(...)</code>, which — as covered in Module 08 —
+just writes bytes alongside the JSON result file Allure's own listener
+already produced for that test. Three independent listener/callback
+mechanisms (TestNG's <code>ITestListener</code>, the driver factory's <code>ThreadLocal</code>
+lookup, and Allure's own result writer) chain together through nothing
+more than "run this code when that event fires" — no framework here is
+aware of the others' internals, they're composed entirely through
+well-defined extension points.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Build the framework above, then produce a <code>reflection.md</code> answering:</p>
 <ol>

@@ -1080,6 +1080,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2427,6 +2438,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3121,6 +3143,30 @@ seconds instead of re-running everything.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>TestNG's suite features (grouping, dependencies, XML configuration) exist
+because TestNG builds an explicit <strong>execution graph</strong> before running
+anything, rather than JUnit 5's simpler "discover and invoke each method"
+model. When TestNG parses <code>testng.xml</code> (or reads annotations if you skip
+the XML), it constructs an internal model of suites → tests → classes →
+methods, resolves <code>dependsOnMethods</code>/<code>dependsOnGroups</code> into a directed
+graph, and performs a topological sort so that a method depending on
+<code>login</code> is guaranteed to run only after every method tagged <code>login</code> has
+completed — and if a dependency fails, TestNG marks dependents <code>SKIP</code>
+rather than running them and letting them fail confusingly against broken
+preconditions. This graph is also what <code>parallel="methods"</code> /
+<code>thread-count</code> operates on: TestNG partitions independent nodes of that
+graph across a real Java <code>ExecutorService</code> thread pool, so "parallel"
+tests are literally separate JVM threads calling your test methods
+concurrently — which is exactly why shared mutable state (a static field, a
+single shared <code>WebDriver</code> instance) causes intermittent failures under
+parallel TestNG runs but not sequential ones: two threads are genuinely
+racing on the same object.</p>
+<p>Priorities (<code>priority = 1</code>) are a much blunter mechanism by comparison:
+TestNG simply sorts methods within a class by that integer before
+execution — no graph, just a sort key — which is why priority alone can't
+express "run B only if A passed" the way <code>dependsOnMethods</code> can; it only
+expresses ordering, not conditional execution.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Convert your <code>LoginSeleniumTest</code> from Module 08 to TestNG. Use

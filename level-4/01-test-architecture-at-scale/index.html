@@ -1923,6 +1923,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2305,6 +2316,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2561,6 +2583,32 @@ boundary (Module 03), not deep inside another team's implementation.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>@Tag("unit")</code> looks like metadata but drives an actual <strong>discovery-time
+filter</strong> inside the JUnit Platform Launcher, not a post-hoc grouping
+applied to results. When Surefire (or <code>mvn test -Dgroups=unit</code>) passes tag
+expressions to the Launcher, the Jupiter engine's discovery phase — the
+same reflective classpath scan from Module 1.07 — inspects each
+<code>@Test</code>-annotated method's and class's <code>@Tag</code> annotations <em>before</em>
+constructing anything, and simply never includes non-matching tests in the
+<code>TestPlan</code> it builds. This matters mechanically: a filtered-out
+<code>@Tag("integration")</code> test's <code>@BeforeAll</code> never runs, its class is never
+even instantiated — filtering happens at the discovery/selection stage,
+strictly before the execution stage, so "fast feedback on every commit"
+isn't unit tests running faster than integration tests, it's integration
+tests never being asked to start at all.</p>
+<p>The pyramid's cost ratios trace back to the same process-boundary argument
+from Module 1.03, just compounded at scale: 2,000 unit tests at a few
+milliseconds each is a couple of minutes total because each is a bare
+method call inside one already-running JVM; 200 integration tests each
+paying tens to hundreds of milliseconds of Spring-context or database
+startup cost adds up to minutes even though there are 10x fewer of them;
+50 E2E tests each launching a full browser process and crossing dozens of
+network round trips can singlehandedly dominate total suite time despite
+being the smallest test count — the pyramid's <em>shape</em> (many/few) is a
+direct, deliberate counterweight to each layer's <em>fixed per-test cost</em>
+being roughly inverse to its count, so that no single layer dominates the
+total wall-clock budget.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Take three tests from earlier levels of this course (any mix of unit/

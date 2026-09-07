@@ -2091,6 +2091,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2298,6 +2309,17 @@
     <span class="md-ellipsis">
       
         Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
       
     </span>
   </a>
@@ -2553,6 +2575,39 @@ AI-suggested wait as to a human-written one.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>The <code>assertNotNull(result)</code> bug is worth tracing to the exact language
+mechanism that makes it compile and pass. <code>applyCode</code> returns a primitive
+<code>int</code>, which can never be <code>null</code> by the JVM's own type system — a
+primitive isn't a reference, it has no null representation at all. When
+that <code>int</code> is passed to <code>assertNotNull(Object)</code>, Java's <strong>autoboxing</strong>
+inserts an implicit <code>Integer.valueOf(result)</code> call at compile time,
+wrapping the primitive in a heap object so it satisfies the method's
+<code>Object</code> parameter type — and that wrapper object is, trivially, never
+null, since it was just freshly constructed. The assertion is therefore
+tautological: no return value from <code>applyCode</code> — correct, wrong, or an
+exception thrown before reaching this line — could ever make it fail
+except a <code>null</code> reference itself, which the method's <code>int</code> return type
+makes structurally impossible. This is a useful lens for <em>why</em> an LLM
+produces this pattern reliably: a language model generates test code by
+predicting statistically likely tokens conditioned on the method
+signature and common test idioms it was trained on, not by executing the
+method or reasoning about its actual arithmetic — <code>assertNotNull</code> after
+calling a method is an extremely common token sequence in real codebases
+regardless of return type, so it gets generated with high probability
+whether or not it's meaningful for <em>this</em> particular signature.</p>
+<p>AI-driven visual diffing tools work on a completely different, genuinely
+mechanistic basis worth contrasting: they render a page (via a real
+headless browser, same CDP mechanism as Module 1.08), capture a pixel
+bitmap, and compare it against a stored baseline bitmap using perceptual
+diffing algorithms (structural similarity index, or a trained model
+tolerant of anti-aliasing/font-rendering noise) that flag regions whose
+pixel difference exceeds a threshold — this is closer to a specialized
+image-comparison algorithm than to language generation, and it's why
+visual-diff tools are comparatively reliable at their one narrow job
+(catching unintended visual regressions) while LLM-generated test <em>logic</em>
+requires the same skeptical review as code written by a junior engineer
+who has read a lot of test code but not run this specific one.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Take a method from any earlier module in this course, generate a test

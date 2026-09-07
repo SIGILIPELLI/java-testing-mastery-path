@@ -1810,6 +1810,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#stretch-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2327,6 +2338,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#stretch-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2605,6 +2627,35 @@ through an actual GitHub Actions runner in this environment.</p>
 run, one CI job, two different testing styles, zero glue code required to
 combine them — the JUnit Platform runs both engines because both are
 declared on the classpath.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>"Hybrid" — Gherkin acceptance tests and plain JUnit unit tests in one
+<code>mvn test</code> run — works because of the JUnit Platform's <strong>multi-engine
+architecture</strong>, which is the actual mechanism worth understanding here.
+The JUnit Platform Launcher (invoked by Surefire) doesn't know how to run
+either JUnit Jupiter tests or Cucumber scenarios itself — it delegates to
+whichever <code>TestEngine</code> implementations are on the classpath, discovered
+via Java's <code>ServiceLoader</code> SPI mechanism (each engine jar ships a
+<code>META-INF/services/org.junit.platform.engine.TestEngine</code> file naming its
+implementation class). <code>cucumber-junit-platform-engine</code> registers a
+<code>TestEngine</code> whose ID is <code>"cucumber"</code>; <code>junit-jupiter-engine</code> registers one
+whose ID is <code>"junit-jupiter"</code>. When Surefire asks the Launcher to discover
+tests, it queries <em>every</em> registered engine, and each decides for itself
+what counts as one of its tests — the Jupiter engine looks for <code>@Test</code>
+methods, the Cucumber engine looks for <code>.feature</code> files matching
+<code>@SelectClasspathResource</code> — and both sets of results are merged into one
+report.</p>
+<p><code>RunCucumberTest</code>'s <code>@Suite</code>/<code>@IncludeEngines("cucumber")</code> annotations
+aren't executed as a class at all in the traditional sense — they're
+metadata the Cucumber engine reads during discovery to know <em>where</em> to
+look for feature files and step definitions (the <code>glue</code> package); the
+class body is empty because it exists purely as an annotation carrier, a
+pattern the JUnit Platform Suite API is specifically designed around. This
+is also why the same <code>mvn test</code> invocation, with the same Surefire
+configuration, produces both Cucumber scenario results and Jupiter test
+results in one combined <code>target/surefire-reports/</code> output — from CI's
+perspective (Module 03) it's a single process with a single exit code,
+even though two structurally different test-discovery mechanisms ran
+inside it.</p>
 <h2 id="stretch-goals">Stretch goals<a class="headerlink" href="#stretch-goals" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Add a <code>@requiresDiscount</code> tag to the outline scenarios and a

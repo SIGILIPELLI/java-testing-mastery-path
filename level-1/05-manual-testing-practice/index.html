@@ -1047,6 +1047,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2585,6 +2596,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3320,6 +3342,26 @@ site is not. Level 4, Module 04 covers security testing properly.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>State transition testing maps directly onto how stateful software is
+actually implemented: a login flow, an order status, or a video player
+isn't free-form — internally it's almost always backed by an enum field
+(<code>OrderStatus.PLACED</code>, <code>SHIPPED</code>, <code>DELIVERED</code>, <code>CANCELLED</code>) plus guard logic
+that only permits certain transitions (<code>if (status == PLACED) status =
+CANCELLED else throw IllegalStateException</code>). A state transition diagram is
+a tester's reconstruction of that guard logic from the outside, and the
+highest-value test cases are exactly the <strong>invalid transitions</strong> — trying
+to cancel an already-delivered order — because those are the <code>else</code> /
+<code>default</code> branches developers are most likely to have left unguarded or
+misordered. A decision table works the same way for pure branching logic
+without memory: each row is one unique combination of condition inputs
+mapped to an action, which mirrors how the <em>actual</em> code is usually
+structured as nested <code>if</code>/<code>else</code> or a <code>switch</code>, so a table with all
+condition combinations covered guarantees every branch in that logic has
+been exercised at least once — decision-table coverage and branch coverage
+are, for pure conditional logic, close to the same thing measured two
+different ways: one on paper before the code exists, one by an instrumented
+coverage tool after it does.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>A hotel booking form has these rules:</p>
 <ul>

@@ -2074,6 +2074,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2320,6 +2331,17 @@
     <span class="md-ellipsis">
       
         Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
       
     </span>
   </a>
@@ -2618,6 +2640,33 @@ goal — keep it in the <code>integration</code>/<code>full</code> tier, not <co
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Testcontainers works by talking to the <strong>Docker Engine API</strong> directly over
+its Unix socket (or named pipe on Windows) — <code>/var/run/docker.sock</code> — the
+exact same API the <code>docker</code> CLI itself calls; there's no special
+integration on Docker's side, Testcontainers is simply an HTTP client for
+that API written in Java. When your test class starts a
+<code>PostgreSQLContainer</code>, the library sends a "create container" request
+naming the pinned image, waits (polling, the same repeated-check pattern
+as <code>FluentWait</code> in Module 2.02 and <code>Awaitility</code> in Module 3.09) for the
+container's health check or a log-line pattern indicating Postgres has
+finished booting and is accepting connections, then reads back the
+dynamically-assigned host port Docker mapped to Postgres's internal 5432 —
+this is why your JDBC URL isn't a fixed <code>localhost:5432</code>, it's built at
+runtime from <code>container.getJdbcUrl()</code>, because a fixed port would collide
+the moment two test runs (or two developers) tried to start a container
+simultaneously.</p>
+<p>The "torn down automatically when the JVM exits" guarantee comes from a
+JVM shutdown hook Testcontainers registers via
+<code>Runtime.getRuntime().addShutdownHook(...)</code>, plus a companion "Ryuk"
+container Testcontainers itself starts, which monitors your test JVM's
+process and force-removes any container it created if the JVM dies
+uncleanly (a crash, a killed CI job) rather than exiting gracefully — a
+belt-and-suspenders mechanism specifically because a Docker container,
+unlike a JVM object, doesn't get garbage collected just because nothing
+references it anymore; without Ryuk, a crashed test run would leave
+containers running indefinitely, consuming the CI runner's resources
+until someone notices.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Confirm Docker is available (<code>docker info</code>) and build

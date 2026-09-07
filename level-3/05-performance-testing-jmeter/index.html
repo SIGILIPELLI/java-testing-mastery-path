@@ -1659,6 +1659,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2305,6 +2316,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2561,6 +2583,29 @@ replayed once, alone, is also slow — that points at code, not scale.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>A JMeter Thread Group is, mechanically, a pool of real Java threads inside
+the single JMeter JVM process, each running the same sampler sequence in a
+loop — <code>num_threads=50</code> means the JMeter engine spins up 50
+<code>java.lang.Thread</code> instances, staggered over <code>ramp_time</code> seconds so they
+don't all start their first request in the same instant, and each thread
+independently executes its assigned samplers <code>loops</code> times, maintaining
+its own state (cookies, variables) as if it were an independent virtual
+user hitting the same server. This is why 1,000 requests from 50 threads ×
+20 loops arrive with genuine, uncoordinated inter-request timing rather
+than in lockstep batches: each thread runs on its own schedule, subject
+only to normal JVM thread scheduling, blocked on I/O (waiting for the HTTP
+response) between iterations rather than sleeping in sync with the others.</p>
+<p>The percentile columns in the Aggregate Report matter because of how a
+mean is computed versus how a percentile is computed: a mean collapses
+1,000 response times into one number by dividing their sum, which weighs
+a single 10-second outlier exactly as much as it weighs 999 fast
+responses divided across the total — heavily diluted. A percentile instead
+sorts all 1,000 recorded response times and reports the value at a
+specific rank (p95 = the 950th-fastest of 1,000), which is precisely why
+it surfaces a "1% of users wait 4 seconds" tail that an average of 142ms
+hides completely: the average and the p95 are answering different
+questions about the exact same underlying sorted list of numbers.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Install JMeter (or note that you're reviewing rather than running it) and

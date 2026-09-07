@@ -2119,6 +2119,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2298,6 +2309,17 @@
     <span class="md-ellipsis">
       
         Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
       
     </span>
   </a>
@@ -2591,6 +2613,37 @@ give a migration window, then remove.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>SignupTest extends OrgBaseTest</code> relies on two separate JUnit 5 mechanisms
+that are easy to conflate but matter differently at scale. First, plain
+Java inheritance: <code>@BeforeEach</code>-annotated methods are inherited like any
+other method, and JUnit 5's discovery walks the <em>entire</em> class hierarchy
+looking for lifecycle annotations, not just the immediate class — this is
+why <code>orgSetUp</code> runs for every subclass without being redeclared, and why
+JUnit runs inherited <code>@BeforeEach</code> methods <strong>before</strong> the subclass's own
+<code>@BeforeEach</code> methods (superclass-to-subclass order), guaranteeing
+organization-wide setup always happens first regardless of what a
+subclass adds. Second, <code>TestInfo testInfo</code> as a method parameter works
+through JUnit 5's <strong><code>ParameterResolver</code></strong> extension point: Jupiter doesn't
+know how to construct a <code>TestInfo</code> from a no-arg constructor, so before
+invoking any lifecycle or test method with parameters, its execution
+engine checks each parameter's type against every registered
+<code>ParameterResolver</code> (a built-in one handles <code>TestInfo</code>/<code>TestReporter</code>;
+Mockito's JUnit 5 extension registers one for <code>@Mock</code>-annotated
+parameters) and asks whichever resolver supports that type to produce an
+instance — <code>TestInfo</code>'s resolver simply reads back the display name and
+tags JUnit already computed during discovery for the test currently
+executing.</p>
+<p>This is the actual, general mechanism an in-house framework is really
+leaning on: JUnit 5 doesn't have a fixed set of "framework hooks" — its
+entire lifecycle (<code>BeforeEachCallback</code>, <code>AfterEachCallback</code>,
+<code>ParameterResolver</code>, <code>TestExecutionExceptionHandler</code>) is a documented
+Extension SPI, and <code>@ExtendWith</code> registration works through the same
+<code>ServiceLoader</code>-adjacent discovery pattern used for <code>TestEngine</code>
+registration in Module 3.10 — an in-house framework built on top of these
+extension points is composing with JUnit's own architecture rather than
+working around it, which is exactly why it stays compatible as the
+underlying JUnit version is upgraded.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Build <code>OrgBaseTest</code>, <code>OrgTestData</code>, <code>OrgApiAssertions</code>, and <code>SignupTest</code>

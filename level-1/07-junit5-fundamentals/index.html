@@ -1030,6 +1030,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2439,6 +2450,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2995,6 +3017,41 @@ run becomes a CI dashboard in Level 3.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Nothing in <code>CalculatorTest</code> ever calls <code>addsTwoPositiveNumbers()</code> directly —
+you never write a <code>main</code> method, and no line of your code invokes that
+method by name. JUnit 5 finds and runs it through <strong>reflection-based test
+discovery</strong>: the JUnit Platform's discovery phase scans every <code>.class</code> file
+on the test classpath, loads each class via <code>Class.forName(...)</code>, and asks
+the Jupiter engine's <code>TestEngine</code> implementation to inspect it for methods
+annotated <code>@Test</code> using <code>java.lang.reflect.Method.getAnnotations()</code>. Nothing
+about the <em>name</em> <code>addsTwoPositiveNumbers</code> matters to the framework — only
+the annotation does, which is why you're free to name test methods in plain
+English describing behavior.</p>
+<p>Once a <code>@Test</code> method is found, JUnit builds a fresh instance of the test
+class <strong>per test method</strong> (<code>new CalculatorTest()</code> runs again for every
+<code>@Test</code>, by default) specifically so that fields aren't shared state
+leaking between tests, then invokes the method reflectively via
+<code>method.invoke(instance)</code>. Any thrown exception — including the
+<code>AssertionError</code> an assertion raises — is caught by the engine and recorded
+as a failure; a clean return is recorded as a pass. That's the entire
+mechanism behind <code>expected: &lt;6&gt; but was: &lt;5&gt;</code>: <code>assertEquals</code> doesn't
+"fail" the test in any special way, it just constructs and throws a
+<code>org.opentest4j.AssertionFailedError</code> with that message, and the engine's
+<code>invoke()</code> call sees the exception propagate and marks the result
+accordingly — an assertion failure and an uncaught bug in your code (a
+<code>NullPointerException</code>, say) are structurally the same event to JUnit,
+which is why Surefire's report distinguishes "Failures" (assertion
+failures) from "Errors" (everything else) even though both come through
+the identical reflective invocation path.</p>
+<p>The Maven Surefire plugin sits one layer above this: it doesn't run JUnit
+directly, it forks a JVM process, puts your compiled test classes and
+JUnit's jars on that JVM's classpath, and hands control to the JUnit
+Platform Launcher API, which is what actually drives discovery and
+execution and reports results back up to Maven's build lifecycle — this is
+why <code>mvn test</code> can run tests written against JUnit, TestNG, or both, in the
+same build: Surefire talks to a stable Launcher API, not to any one
+framework's internals.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Working in the <code>java-testing-practice</code> project from Module 06:</p>
 <ol>

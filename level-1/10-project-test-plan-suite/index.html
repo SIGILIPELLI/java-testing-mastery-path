@@ -1119,6 +1119,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2449,6 +2460,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3191,6 +3213,33 @@ through a script — precisely the tester mindset from Module 01.</p>
    field makes the suite unsafe, and what a <code>ThreadLocal&lt;WebDriver&gt;</code> would
    fix.</li>
 </ol>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>REQ-10 — "navigating directly to <code>/secure</code> without logging in is
+rejected" — is worth understanding mechanically because it's the one
+requirement in this list that isn't about the DOM at all: the server holds
+a <strong>session</strong> (typically a cookie-backed session ID mapping to
+server-side state saying "this session authenticated"), and <code>/secure</code>'s
+handler checks that state before rendering anything, redirecting to
+<code>/login</code> if it's absent. Your Selenium test never sees that server-side
+check directly — it only sees the <em>effect</em> (a redirect, a URL change) —
+which is why the correct automated assertion is <code>assertEquals("/login",
+driver.getCurrentUrl())</code> after navigating straight to <code>/secure</code> with a
+fresh <code>WebDriver</code> instance (fresh instance matters: <code>@BeforeEach</code> creating
+a new <code>ChromeDriver</code> means a new browser profile with no cookies, so you're
+verifying the <em>unauthenticated</em> path, not accidentally reusing a session
+from a previous test).</p>
+<p>This is also where JUnit 5's and TestNG's lifecycle guarantees earn their
+keep in a real suite: because each <code>@Test</code> gets setup/teardown around it
+(<code>@BeforeEach driver = new ChromeDriver()</code>, <code>@AfterEach driver.quit()</code>),
+every test in this project starts from an identical, isolated browser
+process with no leftover cookies or local storage from the previous test —
+without that isolation, REQ-10 could pass or fail depending on <strong>test
+execution order</strong>, which is exactly the kind of flakiness Module 3.09
+(Flaky Test Diagnosis) exists to catch. <code>driver.quit()</code> specifically tells
+<code>chromedriver</code> to close every window in the session and then terminate its
+own process — skipping it (using <code>driver.close()</code> instead, or nothing at
+all) is the single most common cause of orphaned <code>chromedriver</code>/browser
+processes silently consuming memory across a long CI run.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Complete all six deliverables and place them in a single repository with this
 structure:</p>

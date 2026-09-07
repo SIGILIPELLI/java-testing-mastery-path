@@ -1333,6 +1333,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2349,6 +2360,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2821,6 +2843,30 @@ for it; a build that skips tests is a build that reports nothing.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Maven's <code>&lt;build&gt;</code> isn't a script you write step by step — it's a
+declarative binding to a fixed <strong>build lifecycle</strong>, a predefined ordered
+sequence of phases (<code>validate → compile → test-compile → test → package →
+verify → install → deploy</code>). Running <code>mvn test</code> doesn't just run the
+<code>test</code> phase in isolation; Maven executes every phase <em>up to and
+including</em> <code>test</code> in order, which is why a compile error in <code>src/main</code>
+fails <code>mvn test</code> before a single test runs — the <code>compile</code> phase, earlier
+in the lifecycle, never succeeded. Each phase is a named hook that plugins
+bind goals to: the <code>&lt;suiteXmlFile&gt;</code> property doesn't do anything by
+itself, it's read by the <strong>Surefire plugin</strong>, which is the plugin actually
+bound to the <code>test</code> phase, and Surefire passes that path to the TestNG
+(or JUnit Platform) launcher it forks a JVM to run.</p>
+<p>The <code>-D</code> system properties (<code>-Dbrowser=firefox</code>, <code>-Dthreads=4</code>) work
+because Maven resolves <code>${browser}</code>/<code>${threads}</code> placeholders in the POM
+against the <strong>combined property set</strong> — properties defined in the POM
+itself, overridden by anything passed with <code>-D</code> on the command line, at
+the moment the POM is parsed, before any plugin runs. That's a plain
+text-substitution step, not a runtime lookup, which is why a typo in a
+property name silently leaves the literal <code>${threads}</code> string in the
+config rather than throwing — Maven only warns about unresolved
+properties in specific contexts, so verifying the substituted value (e.g.
+printing it from a <code>@BeforeSuite</code> in TestNG) is the reliable way to catch
+that mistake.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Restructure your Level 2 project with the <code>pom.xml</code> from section 1. Rename

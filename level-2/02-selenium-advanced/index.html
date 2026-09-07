@@ -1249,6 +1249,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2405,6 +2416,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2900,6 +2922,30 @@ behind a fade-in, and the click then throws
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>FluentWait</code>/<code>WebDriverWait</code> are not event listeners — Selenium has no way
+to be notified when the DOM changes, because it's a separate process
+talking over HTTP. They're <strong>polling loops</strong>, plainly: internally,
+<code>Wait.until(condition)</code> runs a loop that calls <code>condition.apply(driver)</code>,
+catches any exception in the <code>ignoring(...)</code> list and treats it as "not yet
+ready," sleeps for <code>pollingEvery</code>, and repeats — until either the condition
+returns a truthy/non-null value or the elapsed time exceeds <code>withTimeout</code>,
+at which point it throws <code>TimeoutException</code>. <code>ExpectedConditions.visibilityOfElementLocated(by)</code>
+is just a pre-built <code>Function&lt;WebDriver, WebElement&gt;</code> that internally calls
+<code>driver.findElement(by)</code> and returns <code>null</code> (or lets <code>NoSuchElementException</code>
+propagate) if the element isn't visible yet — the "condition" is nothing
+more than a function that keeps getting re-invoked until it stops returning
+falsy/error.</p>
+<p>This is exactly why mixing implicit and explicit waits compounds instead of
+overriding: the implicit wait is configured at the <code>chromedriver</code> session
+level and applies inside <em>every</em> <code>findElement</code> call, including the one
+buried inside your <code>ExpectedConditions</code> function — so each of <code>FluentWait</code>'s
+polling iterations can itself block for up to the implicit-wait duration
+before returning "not found," multiplying the two timeouts together rather
+than one superseding the other. Setting implicit wait to zero removes that
+inner blocking call entirely, leaving <code>FluentWait</code>'s own loop as the only
+timing mechanism in play — which is what makes its timeout value actually
+mean what it says.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>All targets are on <code>https://the-internet.herokuapp.com/</code>.</p>
 <ol>

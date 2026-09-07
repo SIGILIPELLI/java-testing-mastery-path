@@ -1614,6 +1614,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2327,6 +2338,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2608,6 +2630,31 @@ variables, exactly as flagged for RestAssured tokens in Level 2.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>The entire "CI blocks a bad merge" contract rests on one thin mechanism:
+a <strong>process exit code</strong>. Every operating system process, when it
+terminates, returns a small integer to whatever launched it — <code>0</code>
+conventionally means success, anything else means failure. Surefire is
+what actually decides that number for <code>mvn test</code>: it collects results from
+every forked test JVM, and if any test failed <em>and</em> <code>testFailureIgnore</code> is
+<code>false</code> (the default), Surefire causes the overall Maven process to exit
+non-zero. GitHub Actions (or any CI runner) does nothing more sophisticated
+than checking that same exit code on the shell step that ran <code>mvn test</code> —
+a <code>run: mvn test</code> step in a workflow YAML is exit-code-checked exactly like
+a script you run in your own terminal, which is why <code>testFailureIgnore=true</code>
+silently defeats the entire point of CI: Maven exits <code>0</code> regardless of
+failures, so the workflow step is marked green, and GitHub's branch
+protection rule (which also just checks "did this required check report
+success") sees nothing wrong.</p>
+<p>The Surefire XML report exists as a <em>separate</em> artifact from that exit
+code specifically because the exit code alone can't say <em>which</em> test
+failed — CI UIs that show a per-test breakdown (GitHub's own test
+reporting, or a plugin) do so by having a separate step parse
+<code>target/surefire-reports/*.xml</code>, extracting <code>&lt;testcase&gt;</code> elements and
+their <code>&lt;failure&gt;</code> children, and rendering that structured data — the exit
+code answers "did the build pass," the XML answers "what, specifically,
+failed and why," and CI dashboards need both because they're produced,
+and consumed, independently.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Write a <code>tests.yml</code> workflow that runs <code>mvn test</code> on every push and pull

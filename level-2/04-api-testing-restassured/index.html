@@ -1305,6 +1305,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2405,6 +2416,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2831,6 +2853,34 @@ on endpoints with a performance requirement.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>RestAssured's <code>given().when().get(...).then()</code> reads like a sentence, but
+it's really a <strong>builder pattern</strong> accumulating configuration into an
+immutable-ish <code>RequestSpecification</code> before a single byte is sent over the
+network: <code>given()</code> returns a spec builder object, each chained call
+(<code>.header(...)</code>, <code>.param(...)</code>, <code>.body(...)</code>) mutates and returns that same
+builder, and only <code>.when().get(url)</code> actually triggers RestAssured's
+underlying HTTP client (Apache HttpClient or, in newer versions, a
+pluggable client) to open a socket, write the assembled HTTP request line,
+headers and body, and block waiting for the response. Everything after
+<code>.then()</code> operates on the already-received <code>Response</code> object — the body
+bytes have already been read into memory and, for JSON, already parsed
+into a navigable tree (via Jackson/Gson under the hood) by the time
+<code>.body("title", equalTo(...))</code> runs a JsonPath expression against it. That
+ordering — network I/O happens once, at <code>.when()</code>, everything else is
+in-memory assertion — is why chaining ten <code>.body(...)</code> checks after one
+<code>.get()</code> costs one HTTP round trip, not ten.</p>
+<p>JSON Schema validation (<code>matchesJsonSchema(...)</code>) works differently from a
+field-by-field assertion: it loads the schema document, builds a validator
+against the JSON Schema spec (structural rules — required fields, types,
+patterns — not specific values), and walks the actual response tree
+checking conformance to those rules rather than to any particular expected
+value. That's the mechanical reason schema validation catches
+<strong>structural drift</strong> (a field silently changed from a number to a string,
+a required field disappeared) that a hand-picked <code>equalTo("foo")</code> assertion
+on a few fields would never notice, because schema validation checks shape
+across the <em>entire</em> payload rather than the handful of fields you
+remembered to assert on.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Use <code>https://jsonplaceholder.typicode.com</code>.</p>
 <ol>

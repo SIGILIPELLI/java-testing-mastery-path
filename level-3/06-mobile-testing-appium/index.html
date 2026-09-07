@@ -1698,6 +1698,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2327,6 +2338,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2602,6 +2624,34 @@ explicitly rather than hoping it never appears.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Appium's <code>UiAutomator2</code> driver on Android reveals what "the same WebDriver
+protocol" actually spans: your Java client sends the identical
+<code>POST /session/{id}/element</code> JSON request as any Selenium test, but the
+Appium Server (a Node process) translates that request into commands for a
+small <strong>instrumentation APK</strong> it installs and runs on the device/emulator
+alongside your app under test — Google's UiAutomator2 framework. That
+instrumentation process runs <em>inside the same Android system process
+space</em> as accessibility services, which is how it can query the entire
+live view hierarchy (every <code>View</code>/<code>Activity</code>/<code>Fragment</code> currently
+rendered) and translate a locator like
+<code>AppiumBy.androidUIAutomator("new UiSelector().text(\"Login\")")</code> into a
+real query against that hierarchy, then simulate the actual touch event at
+the resolved coordinates using Android's own input-injection APIs — so a
+"tap" in Appium is mechanically a synthetic <code>MotionEvent</code> dispatched
+through the same OS input pipeline a real finger touch would generate, not
+a JavaScript click on a DOM node the way Selenium's is.</p>
+<p>This is exactly why "the page" means something different on mobile: there
+is no DOM, so <code>getPageSource()</code> in Appium returns a serialized dump of the
+live native view hierarchy (XML resembling Android's layout tree) rather
+than HTML, and locators target that tree's <code>resource-id</code>/<code>class</code>/<code>text</code>
+attributes instead of CSS selectors. iOS's <code>XCUITest</code> driver follows the
+same pattern one layer differently: it embeds Apple's own <code>XCTest</code>
+framework (normally used for native unit/UI tests) as a bridge process,
+translating WebDriver calls into <code>XCUIElement</code> queries against iOS's
+accessibility tree — a different underlying automation technology per
+platform, unified only by the shared WebDriver wire protocol your Java
+code speaks.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Install Appium Server and an Android emulator (or document that you're

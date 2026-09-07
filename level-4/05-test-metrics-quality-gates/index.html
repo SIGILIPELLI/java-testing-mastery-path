@@ -2035,6 +2035,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2298,6 +2309,17 @@
     <span class="md-ellipsis">
       
         Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
       
     </span>
   </a>
@@ -2584,6 +2606,34 @@ existence.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>JaCoCo's <code>prepare-agent</code> goal doesn't analyze your source code — it
+attaches a <strong>Java agent</strong> (<code>-javaagent:jacocoagent.jar</code>) to the forked JVM
+that Surefire launches to run your tests, and a Java agent gets a hook
+called <code>premain</code> that runs before your own code, wired via the standard
+<code>java.lang.instrument</code> API. From that hook, JaCoCo registers a
+<strong>bytecode transformer</strong> with the JVM: every time a class is loaded (via
+<code>ClassLoader.defineClass</code>), the JVM hands its raw bytecode to JaCoCo's
+transformer <em>before</em> it becomes a runnable class, and JaCoCo rewrites that
+bytecode, inserting a small counter-increment instruction at the start of
+each basic block (a straight-line run of bytecode instructions with no
+branches in or out) — so a probe fires whenever that block actually
+executes. This is why coverage numbers are exact rather than sampled or
+estimated: every single branch taken during the run increments a real
+counter baked directly into the running bytecode, not observed from
+outside.</p>
+<p>At the end of the test JVM's life, JaCoCo dumps the accumulated
+per-class, per-line, per-branch counter data to a binary <code>.exec</code> file; the
+separate <code>report</code> goal then cross-references that data against your
+compiled <code>.class</code> files' debug information (line-number tables the
+compiler embeds) to produce the human-readable HTML/line-highlighted
+report, and <code>check</code> compares the aggregated ratio against your configured
+<code>&lt;minimum&gt;</code>. Because <code>check</code> is bound to the <code>verify</code> phase — one phase
+<em>after</em> <code>test</code> in Maven's lifecycle (Module 2.06) — a coverage-gate failure
+happens as a distinct build failure from a test-assertion failure, which
+is exactly why "tests passed but the build failed" is a normal, expected
+outcome under a coverage gate: two independent checks, bound to two
+different lifecycle phases, both required to pass.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Add JaCoCo to a project from this course, set a coverage minimum of

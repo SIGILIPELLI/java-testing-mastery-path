@@ -969,6 +969,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2485,6 +2496,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3097,6 +3119,29 @@ than in a spreadsheet.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>A Jira "workflow" is literally a finite state machine defined in
+configuration, not code you write, but it behaves exactly like one: a set
+of named <strong>statuses</strong> (nodes) and named <strong>transitions</strong> (directed edges),
+each transition optionally guarded by a <strong>condition</strong> (e.g. only the
+assignee may transition to Resolved), triggering a <strong>post-function</strong>
+(auto-assign, send a notification, set the Resolution field) and sometimes
+requiring a <strong>screen</strong> (a form, like "Resolution: Fixed / Won't Fix /
+Duplicate"). When you click a transition button, Jira isn't just changing a
+text label — it evaluates every condition, runs every validator, then
+every post-function, in a defined order, and only then writes the new
+status to the issue's history, which is what backs the "Verified vs
+Closed" distinction and lets <code>status != Closed</code> in JQL reliably mean
+"still open" rather than relying on a free-text field.</p>
+<p>JQL itself compiles to a query against Jira's indexed issue store (Lucene
+under the hood in most self-hosted/Data Center deployments), which is why
+<code>created &gt;= -7d</code> and <code>assignee = currentUser()</code> return instantly even
+across a project with hundreds of thousands of issues — the fields you
+filter on (project, status, assignee, created, priority) are indexed
+exactly because they're the fields workflows and dashboards query
+constantly; a JQL search on an unindexed custom field falls back to a much
+slower text scan, which is why teams are told to keep custom fields to a
+minimum.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>You are testing an online bookstore, build 3.1.0, on Chrome 126 / macOS 14.</p>
 <p>You observe: adding a book to the wishlist while logged out shows a "Saved!"

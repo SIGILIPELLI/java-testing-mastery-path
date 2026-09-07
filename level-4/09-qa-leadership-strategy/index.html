@@ -2136,6 +2136,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2276,6 +2287,17 @@
     <span class="md-ellipsis">
       
         Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
       
     </span>
   </a>
@@ -2523,6 +2545,37 @@ achieve" one.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>record Feature(...)</code> is worth understanding precisely because a QA lead's
+"defensible model" needs to be trustworthy code, not just a good idea: a
+Java <code>record</code> is compiled by <code>javac</code> into an ordinary <code>final</code> class, but
+the compiler <em>auto-generates</em> a canonical constructor, private final
+fields for each component, public accessor methods (<code>defectProbability()</code>,
+not <code>getDefectProbability()</code>), and <code>equals()</code>/<code>hashCode()</code>/<code>toString()</code>
+implementations based on all components — you get value-object semantics
+(two <code>Feature</code>s with identical fields are <code>.equals()</code>) for free, which
+matters directly for testability: a <code>TestInvestmentPlannerTest</code> can
+construct an expected <code>Feature</code> and compare it with <code>assertEquals</code>
+against an actual one without writing any equality logic yourself, because
+the compiler already generated correct field-by-field comparison.</p>
+<p><code>Comparator.comparingDouble(Feature::priorityScore).reversed()</code> chains two
+separate mechanisms. <code>Feature::priorityScore</code> is a <strong>method reference</strong> —
+syntactic sugar the compiler desugars into a lambda implementing the
+<code>ToDoubleFunction&lt;Feature&gt;</code> functional interface, calling <code>priorityScore()</code>
+on whatever <code>Feature</code> it's given. <code>comparingDouble</code> wraps that function
+into a full <code>Comparator&lt;Feature&gt;</code> whose <code>compare(a, b)</code> calls
+<code>Double.compare(fn.apply(a), fn.apply(b))</code> — a numerically correct
+comparison that avoids the classic bug of subtracting two doubles and
+casting to <code>int</code> (which silently breaks for very small differences due to
+floating-point rounding). <code>.reversed()</code> returns a new <code>Comparator</code> that
+simply calls the original and negates the sign of its result.
+<code>sorted.sort(...)</code> then runs the JDK's <code>List.sort</code>, which for <code>ArrayList</code>
+delegates to a stable, dual-pivot variant of merge/TimSort over the
+backing array — "stable" specifically meaning two features with an
+identical <code>priorityScore</code> retain their original relative order, which
+matters for the model's <em>reproducibility</em>: the same input list always
+produces the same ranked output, a property worth being able to say
+out loud when defending the model to stakeholders.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Implement <code>Feature</code>, <code>TestInvestmentPlanner</code>, and the two tests exactly

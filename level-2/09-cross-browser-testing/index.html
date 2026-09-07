@@ -1423,6 +1423,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2361,6 +2372,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2740,6 +2762,33 @@ you will triage the same defect three times.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>ThreadLocal&lt;WebDriver&gt;</code> exists to solve a specific memory-model problem:
+when TestNG runs tests across N threads (<code>parallel="methods"</code>,
+<code>thread-count=4</code>), each thread executes on its own call stack but shares
+the same static class variables in the JVM's heap — a plain <code>static
+WebDriver driver</code> field would be one object every thread reads and writes,
+so thread A's <code>driver.get(url)</code> could run against a session thread B just
+navigated away from. <code>ThreadLocal</code> fixes this without any manual locking:
+internally, each <code>Thread</code> object carries its own private
+<code>ThreadLocalMap</code>, and <code>ThreadLocal.get()</code>/<code>.set()</code> key into <em>that specific
+calling thread's</em> map using the <code>ThreadLocal</code> instance itself as the key —
+so <code>DriverFactory.get()</code> called from thread A and the identical call from
+thread B look up entirely separate map entries even though they're
+executing the exact same static method. Each thread transparently gets its
+own <code>WebDriver</code> (its own <code>chromedriver</code> process and browser session)
+without the factory code needing to know which thread is calling it.</p>
+<p>This is also why cross-browser factories are written as a <code>switch</code> over an
+enum/string rather than one shared driver class: <code>ChromeDriver</code>,
+<code>FirefoxDriver</code>, <code>EdgeDriver</code> and <code>SafariDriver</code> are each thin Java classes
+that construct a <code>RemoteWebDriver</code> pointed at a <em>different</em> local driver
+executable and a <em>different</em> underlying browser process/protocol dialect —
+Safari's driver, for instance, talks to a <code>safaridriver</code> binary Apple
+ships with macOS itself rather than a downloaded binary — so "cross-browser"
+at the code level is really "point the same WebDriver-protocol client at a
+different vendor's bridge process," while the protocol contract your test
+code depends on (<code>findElement</code>, <code>click</code>, <code>sendKeys</code>) stays identical across
+all of them by design, per the W3C WebDriver spec.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Build <code>DriverFactory</code> exactly as in section 2 and get one test passing on

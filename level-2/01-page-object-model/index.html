@@ -1182,6 +1182,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2327,6 +2338,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2723,6 +2745,31 @@ and you are back where you started.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>PageFactory.initElements(driver, this)</code> doesn't populate <code>@FindBy</code> fields
+with real <code>WebElement</code> objects at construction time — if it did, they'd go
+stale the instant the page re-rendered. Instead it uses <strong>JDK dynamic
+proxies</strong>: for each annotated field, it generates a runtime proxy object
+implementing the <code>WebElement</code> interface via
+<code>java.lang.reflect.Proxy.newProxyInstance(...)</code>, backed by a custom
+<code>InvocationHandler</code> that stores the <code>By</code> locator but does <em>not</em> call
+<code>driver.findElement()</code> yet. Only when your code actually calls a method on
+that field — <code>.click()</code>, <code>.sendKeys(...)</code> — does the proxy's
+<code>InvocationHandler.invoke()</code> intercept the call, run the real
+<code>findElement(by)</code> lookup against the current DOM, and forward the method
+call to the freshly located real element. That's what "lazy proxy
+re-located on each use" means concretely: the field looks like a plain
+<code>WebElement</code>, but every single method call on it triggers a brand-new
+locator round trip, which is also why it doesn't protect you from timing
+issues — a proxy re-locating an element that genuinely isn't rendered yet
+still throws <code>NoSuchElementException</code>, it just does so at the moment of
+use rather than at construction.</p>
+<p>This is the same proxy technique (<code>java.lang.reflect.Proxy</code>, requiring an
+interface) you'll meet again in Level 3 with Mockito, which uses a
+conceptually identical intercept-and-redirect pattern — generate an object
+matching a type, intercept every call, decide what to do — but generates
+proxies for concrete classes too via bytecode generation, since mocks
+often need to stand in for classes with no interface.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Work against <code>https://the-internet.herokuapp.com/</code>.</p>
 <ol>

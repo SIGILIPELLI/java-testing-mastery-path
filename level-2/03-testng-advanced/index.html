@@ -1272,6 +1272,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2395,6 +2406,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2844,6 +2866,33 @@ resource needs <code>alwaysRun = true</code>.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>A <code>@DataProvider</code> method isn't invoked once and cached — TestNG treats it
+as a <strong>factory of argument arrays</strong>, and it re-derives the test count from
+its return value <em>before</em> execution begins: during suite construction,
+TestNG's <code>TestNGMethodFinder</code> reflectively locates the <code>@DataProvider</code>
+method by the name string on <code>@Test(dataProvider = "...")</code>, invokes it,
+and gets back an <code>Object[][]</code>. It then clones the underlying <code>@Test</code>
+method's invocation once per outer array row, so five rows genuinely
+become five separate <code>ITestResult</code> entries in the report — each with its
+own pass/fail, its own stack trace on failure, and its own row of
+parameters printed in the output, which is why one bad row doesn't hide
+failures in the other four the way a hand-written loop with assertions
+inside it would (a loop stops or silently continues past the first
+<code>AssertionError</code>; TestNG's data-provider expansion runs every row
+independently because each is a distinct reflective <code>method.invoke(...)</code>
+call with its own exception boundary).</p>
+<p><code>parallel="methods"</code> in <code>testng.xml</code> interacts with this directly: because
+data-provider rows are already separate method invocations in TestNG's
+internal model, they're valid units of work for the thread pool — TestNG
+can run five rows of the same data-driven test on five different threads
+concurrently unless you explicitly disable it per data provider
+(<code>@DataProvider(parallel = false)</code>), which matters enormously for Selenium
+data-driven tests since each thread then needs its <strong>own</strong> <code>WebDriver</code>
+instance (typically via a <code>ThreadLocal&lt;WebDriver&gt;</code>) — sharing one browser
+session across data-provider threads produces exactly the kind of
+cross-talk (wrong page, wrong element) that looks like a flaky test but is
+actually a threading bug in the test framework code itself.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Convert your Level 1 login tests to a single <code>@DataProvider</code>-driven method

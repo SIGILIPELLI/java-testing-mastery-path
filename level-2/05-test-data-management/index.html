@@ -1344,6 +1344,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2427,6 +2438,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2864,6 +2886,30 @@ if you are asked to do otherwise.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>DataFaker's <code>new Faker()</code> producing a plausible name or email isn't
+templating strings at random — it's driven by a seeded <strong>pseudo-random
+number generator (PRNG)</strong> combined with large, curated YAML data files
+bundled inside the library's jar (lists of first names, surnames, domain
+words, per-locale format patterns). Calling <code>faker.name().fullName()</code>
+picks an index into those lists using the PRNG's next value, so
+<code>new Faker(new Random(42))</code> is deterministic for one crucial reason:
+<code>java.util.Random</code> (or any seeded PRNG) is a pure function of its seed and
+call sequence — given the same seed and the same sequence of <code>.nextInt()</code>
+calls, it produces the identical stream of indices every time, on any
+machine. That's what makes a seeded Faker safe for tests that must be
+repeatable (a CI failure reproducible locally) while an unseeded one is
+appropriate for tests that specifically want a fresh, collision-free value
+each run (a new user's email, so re-running signup tests doesn't hit a
+"user already exists" from the last run).</p>
+<p>The builder pattern (<code>UserBuilder.aUser().withRole("admin").build()</code>) is a
+different, purely compile-time mechanism: each <code>with*</code> method returns
+<code>this</code>, so the calls chain, and <code>build()</code> is the one method that actually
+constructs the immutable target object from the builder's accumulated
+fields — the intermediate <code>UserBuilder</code> object never escapes into your
+test as usable data, it exists only to make constructing a slightly-varied
+object readable without an explosion of constructor overloads for every
+combination of fields a test might want to vary.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Build the <code>Config</code> class from section 2 with <code>config.properties</code>, and

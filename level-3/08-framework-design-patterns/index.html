@@ -1743,6 +1743,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2305,6 +2316,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2588,6 +2610,37 @@ real cause. Fail loudly and immediately at config-load time instead.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>These patterns solve problems that are specifically about <strong>compile-time
+binding versus runtime flexibility</strong> in Java's type system, which is worth
+making precise. A direct <code>new ChromeDriver()</code> call binds the concrete
+class at compile time — the bytecode literally contains a reference to
+<code>ChromeDriver</code>'s constructor, baked into every call site. <code>DriverFactory
+.create(browser)</code> moves that decision to a single <code>switch</code> evaluated at
+runtime against a <code>String</code>, so the compiled bytecode for every <em>caller</em>
+references only <code>DriverFactory.create(String)</code>, never <code>ChromeDriver</code>
+directly — adding a new browser means recompiling one class
+(<code>DriverFactory</code>) rather than every call site, because the caller's
+bytecode never needed to change to begin with.</p>
+<p>Singleton (Module's shared <code>ExtentReports</code> instance, say) relies on
+class-loading guarantees the JVM itself provides: a <code>private static final</code>
+field initialized inline is guaranteed by the JVM specification to run its
+initializer exactly once, the first time the class is loaded, and the JVM
+synchronizes class initialization internally — so <code>Holder.INSTANCE</code> (the
+initialization-on-demand holder idiom) gets thread-safe, exactly-once
+construction without you writing any explicit <code>synchronized</code> block,
+because the classloader's own locking does that work.</p>
+<p>The Strategy pattern (pluggable wait/assertion strategies) is structurally
+identical to what <code>Comparator&lt;T&gt;</code> or a <code>Runnable</code> does in the JDK: it's an
+interface with one abstract method, and Java resolves <em>which</em>
+implementation runs via ordinary virtual method dispatch — the JVM looks
+up the concrete object's vtable at the call site, not the declared
+interface type — so swapping strategies at runtime (<code>new
+FluentWaitStrategy()</code> vs <code>new ImplicitWaitStrategy()</code>) costs nothing more
+than reassigning a reference; no reflection or bytecode generation is
+involved, unlike Mockito's proxies in Module 3.02 — this is the "cheap,"
+purely object-oriented end of runtime flexibility in Java, and part of why
+these four patterns are the first ones every real framework reaches for.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Implement <code>DriverFactory</code>, <code>UserBuilder</code>/<code>TestUser</code>, <code>ConfigReader</code>, and

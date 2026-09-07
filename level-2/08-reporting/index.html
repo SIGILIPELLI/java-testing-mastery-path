@@ -1406,6 +1406,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2383,6 +2394,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2788,6 +2810,33 @@ generates cleanly with no steps in it — and no error message anywhere.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Allure's step-by-step, screenshot-rich report isn't produced by re-running
+your tests through a special "reporting mode" — it works via a
+<strong>listener/agent hooked into the same lifecycle events every runner
+already fires</strong>. <code>allure-testng</code>/<code>allure-junit5</code> register a listener that
+implements TestNG's <code>ITestListener</code> (or JUnit 5's <code>TestExecutionListener</code>)
+interface, so every lifecycle callback the framework already calls
+internally — <code>onTestStart</code>, <code>onTestSuccess</code>, <code>onTestFailure</code> — is also
+delivered to Allure's listener. On each callback, the listener doesn't
+generate HTML immediately; it writes a small JSON file per test (and per
+"step," if you annotate methods with <code>@Step</code>) into <code>target/allure-results/</code>
+containing status, timings, parameters and any attachments — a screenshot
+you capture in an <code>@AfterMethod</code> failure hook and attach via
+<code>Allure.addAttachment(...)</code> is simply saved as a file referenced from that
+JSON. The separate <code>allure generate</code>/<code>allure serve</code> command is a static
+site generator: it reads every JSON result file after the run has fully
+finished, aggregates them into trend data and a navigable tree, and emits
+a self-contained HTML/JS bundle — which is why Allure results and Allure
+<em>reports</em> are two distinct artifacts, and why CI pipelines archive the
+<code>allure-results</code> JSON directory (small, one per test) rather than the
+generated site (large, and reproducible from the JSON at any time).</p>
+<p>The Surefire/Failsafe XML underneath all of this predates Allure by
+years and follows the <em>de facto</em> "JUnit XML" schema — <code>&lt;testsuite&gt;</code> /
+<code>&lt;testcase&gt;</code> elements with <code>&lt;failure&gt;</code>/<code>&lt;error&gt;</code> children — which is why
+virtually every CI system and reporting tool can consume it without any
+tool-specific plugin: it's a common interchange format each tool reads
+independently, not something Allure or Jenkins invented.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Run <code>mvn clean verify</code> then <code>mvn surefire-report:report</code>, open the HTML,

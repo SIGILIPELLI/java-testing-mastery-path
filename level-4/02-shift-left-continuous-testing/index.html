@@ -1951,6 +1951,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2305,6 +2316,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2565,6 +2587,34 @@ needs a periodic full-suite run as a backstop.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>A Git pre-commit hook is nothing more than an executable file at
+<code>.git/hooks/pre-commit</code> (or one installed by a framework like Husky, which
+just manages the same file) that Git itself invokes — synchronously,
+blocking <code>git commit</code> — right after you run the command and before the
+commit object is actually written to the object database. Git checks that
+script's process <strong>exit code</strong> exactly the way CI does (Module 3.03): a
+non-zero exit aborts the commit before it's created, a zero exit lets it
+proceed. This is why <code>mvn -q test -Dtest.groups=unit</code> is the entire
+enforcement mechanism — there's no special "pre-commit test runner," it's
+the same Surefire exit-code contract, just triggered by a different event
+(a local <code>git commit</code> invocation) instead of a CI webhook. <code>--no-verify</code>
+works because Git explicitly documents that flag as a way to skip the
+hook script entirely — it isn't bypassing a check that ran and failed, it's
+skipping the invocation altogether, which is exactly why an org relying on
+pre-commit hooks alone (with no server-side enforcement) has no real
+guarantee: any developer's local flag defeats it completely, which is why
+production-grade pipelines treat pre-commit hooks as a fast local
+convenience and CI/branch-protection (which nobody can <code>--no-verify</code>
+around) as the actual gate.</p>
+<p>TDD's red-green-refactor cycle maps onto the exact reflective
+discovery/execution loop from Module 1.07 in an inverted order: writing
+the test first means the JUnit Platform discovers and attempts to invoke
+a method against a class or method that doesn't yet compile or exist,
+which is why "red" in TDD is often a compile failure, not a runtime
+assertion failure — the very first feedback loop shift-left produces is
+literally one step earlier than a failing assertion, at the compiler
+stage described in Module 1.01.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Write a pre-commit hook running your <code>unit</code>-tagged tests from Level 4
