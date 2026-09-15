@@ -1,3 +1,7 @@
+---
+description: "Reporting (Allure, ExtentReports) — A test run produces two audiences. The suite tells you what broke. A report tells the release manager, the developer…"
+---
+
 # 08 · Reporting (Allure, ExtentReports)
 
 A test run produces two audiences. The suite tells *you* what broke. A report

@@ -1,3 +1,7 @@
+---
+description: "Project — Manual Test Plan + Automated Suite — This project combines everything in Level 1. You will act as the sole QA engineer for a small web…"
+---
+
 # 10 · Project — Manual Test Plan + Automated Suite
 
 This project combines everything in Level 1. You will act as the sole QA

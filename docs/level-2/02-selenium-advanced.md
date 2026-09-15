@@ -1,3 +1,7 @@
+---
+description: "Selenium Advanced — Level 1 gave you findElement, click and sendKeys — enough for a form. Real applications add spinners, iframes, native alerts…"
+---
+
 # 02 · Selenium Advanced
 
 Level 1 gave you `findElement`, `click` and `sendKeys` — enough for a form.

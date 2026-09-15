@@ -1,3 +1,7 @@
+---
+description: "Assertions & Matchers — An assertion has two jobs: decide pass or fail, and — when it fails — tell whoever reads the CI log what went wrong without them…"
+---
+
 # 07 · Assertions & Matchers
 
 An assertion has two jobs: decide pass or fail, and — when it fails — tell

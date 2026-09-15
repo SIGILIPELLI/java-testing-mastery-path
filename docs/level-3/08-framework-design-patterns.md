@@ -1,3 +1,7 @@
+---
+description: "Framework Design Patterns — Levels 1–2 built individual pieces — Page Objects, RestAssured specs, test data builders. This module names the patterns that…"
+---
+
 # 08 · Framework Design Patterns
 
 Levels 1–2 built individual pieces — Page Objects, RestAssured specs, test

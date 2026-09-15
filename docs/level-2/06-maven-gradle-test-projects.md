@@ -1,3 +1,7 @@
+---
+description: "Maven/Gradle for Test Projects — Level 1 used Maven as a way to download Selenium. In a real framework the build file does much more: it separates fast…"
+---
+
 # 06 · Maven/Gradle for Test Projects
 
 Level 1 used Maven as a way to download Selenium. In a real framework the

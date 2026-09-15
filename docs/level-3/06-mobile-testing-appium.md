@@ -1,3 +1,7 @@
+---
+description: "Mobile Testing with Appium — Appium extends the exact automation model you already know from Selenium WebDriver — find an element, act on it, assert — to…"
+---
+
 # 06 · Mobile Testing with Appium
 
 Appium extends the exact automation model you already know from Selenium

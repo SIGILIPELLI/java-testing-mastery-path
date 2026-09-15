@@ -1,3 +1,7 @@
+---
+description: "CI/CD Integration — A test suite that only runs on your laptop protects nobody but you. The point of everything built in Levels 1–2 is to run…"
+---
+
 # 03 · CI/CD Integration
 
 A test suite that only runs on your laptop protects nobody but you. The

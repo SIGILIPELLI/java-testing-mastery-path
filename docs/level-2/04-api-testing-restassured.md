@@ -1,3 +1,7 @@
+---
+description: "API Testing with RestAssured — Every screen you tested in Level 1 is a thin layer over an HTTP API. Testing that API directly is faster (milliseconds, not…"
+---
+
 # 04 · API Testing with RestAssured
 
 Every screen you tested in Level 1 is a thin layer over an HTTP API. Testing

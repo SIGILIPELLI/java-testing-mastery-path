@@ -1,3 +1,7 @@
+---
+description: "TestNG Advanced — TestNG earns its place in automation frameworks — over JUnit — for three things: data providers that turn one method into fifty test…"
+---
+
 # 03 · TestNG Advanced
 
 TestNG earns its place in automation frameworks — over JUnit — for three

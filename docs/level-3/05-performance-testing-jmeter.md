@@ -1,3 +1,7 @@
+---
+description: "Performance Testing Basics (JMeter) — Every test in this course so far asks 'is the answer correct?' Performance testing asks a different question: 'does…"
+---
+
 # 05 · Performance Testing Basics (JMeter)
 
 Every test in this course so far asks "is the answer correct?" Performance

@@ -1,3 +1,7 @@
+---
+description: "Contract Testing (Pact) — Level 4 Module 01 flagged the problem: at scale, E2E tests that span team boundaries couple teams together in ways that make one…"
+---
+
 # 03 · Contract Testing (Pact)
 
 Level 4 Module 01 flagged the problem: at scale, E2E tests that span team

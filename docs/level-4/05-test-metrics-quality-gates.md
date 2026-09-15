@@ -1,3 +1,7 @@
+---
+description: "Test Metrics & Quality Gates — Every module so far answered 'does this specific thing work?' This module answers a different, organization-level question…"
+---
+
 # 05 · Test Metrics & Quality Gates
 
 Every module so far answered "does this specific thing work?" This module

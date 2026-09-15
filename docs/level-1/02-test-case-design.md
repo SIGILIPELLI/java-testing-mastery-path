@@ -1,3 +1,7 @@
+---
+description: "Test Case Design & Documentation — A test case is the unit of work in manual testing. It is a written, repeatable instruction set that says: given this…"
+---
+
 # 02 · Test Case Design & Documentation
 
 A test case is the unit of work in manual testing. It is a written,

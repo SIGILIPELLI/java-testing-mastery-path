@@ -1,3 +1,7 @@
+---
+description: "What Is Software Testing? — Software testing is the disciplined process of evaluating a product to find the gap between what it does and what it is…"
+---
+
 # 01 · What Is Software Testing?
 
 Software testing is the disciplined process of evaluating a product to find

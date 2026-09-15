@@ -1,3 +1,7 @@
+---
+description: "Project — POM Framework with API Tests — Everything the framework does per test lives here, so no test class ever touches a driver directly."
+---
+
 # 10 · Project — POM Framework with API Tests
 
 This project assembles all nine modules into one deliverable: a Page Object

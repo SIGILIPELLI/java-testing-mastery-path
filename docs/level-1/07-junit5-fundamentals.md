@@ -1,3 +1,7 @@
+---
+description: "JUnit 5 Fundamentals — JUnit 5 is the standard unit-testing framework for Java. It gives you three things: a way to mark a method as a test (@Test), a way…"
+---
+
 # 07 · JUnit 5 Fundamentals
 
 JUnit 5 is the standard unit-testing framework for Java. It gives you three

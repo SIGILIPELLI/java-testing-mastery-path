@@ -1,3 +1,7 @@
+---
+description: "Database Testing from Java — Every layer tested so far — UI, API, mocked service — eventually bottoms out in a database. A passing API test that silently…"
+---
+
 # 07 · Database Testing from Java
 
 Every layer tested so far — UI, API, mocked service — eventually bottoms out

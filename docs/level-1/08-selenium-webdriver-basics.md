@@ -1,3 +1,7 @@
+---
+description: "Selenium WebDriver Basics — Selenium WebDriver drives a real browser programmatically: it opens pages, finds elements, clicks, types and reads text …"
+---
+
 # 08 · Selenium WebDriver Basics
 
 Selenium WebDriver drives a real browser programmatically: it opens pages,

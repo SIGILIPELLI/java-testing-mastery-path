@@ -1,3 +1,7 @@
+---
+description: "Manual Testing in Practice — Exhaustive testing is impossible. A single field accepting 10 alphanumeric characters has more than 3 × 10^15 possible inputs…"
+---
+
 # 05 · Manual Testing in Practice
 
 Exhaustive testing is impossible. A single field accepting 10 alphanumeric

@@ -1,3 +1,7 @@
+---
+description: "TestNG Basics — TestNG ('Next Generation') is the other major Java test framework, and it dominates UI test automation. Where JUnit was designed for…"
+---
+
 # 09 · TestNG Basics
 
 TestNG ("Next Generation") is the other major Java test framework, and it

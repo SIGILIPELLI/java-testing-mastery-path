@@ -1,3 +1,7 @@
+---
+description: "Test Types & Levels — 'We tested it' is meaningless without saying at what level and of what type. A unit test and a UAT session both 'test' the same…"
+---
+
 # 03 · Test Types & Levels
 
 "We tested it" is meaningless without saying *at what level* and *of what

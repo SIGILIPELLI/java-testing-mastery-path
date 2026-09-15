@@ -1,3 +1,7 @@
+---
+description: "Defect Lifecycle & Bug Reporting — Finding a bug is half the job. The other half is communicating it so clearly that a developer who has never seen your…"
+---
+
 # 04 · Defect Lifecycle & Bug Reporting
 
 Finding a bug is half the job. The other half is communicating it so clearly

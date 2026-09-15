@@ -1,3 +1,7 @@
+---
+description: "Java Setup for Testers — From here on, every module runs real code. This one gets your machine ready: a JDK, an IDE, and — most importantly for a tester …"
+---
+
 # 06 · Java Setup for Testers
 
 From here on, every module runs real code. This one gets your machine ready:

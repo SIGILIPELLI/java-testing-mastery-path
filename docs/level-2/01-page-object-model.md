@@ -1,3 +1,7 @@
+---
+description: "Page Object Model (POM) — Level 1 ended with a suite where every test knew By.id('username'). That works for four tests. At forty tests, a single renamed…"
+---
+
 # 01 · Page Object Model (POM)
 
 Level 1 ended with a suite where every test knew `By.id("username")`. That

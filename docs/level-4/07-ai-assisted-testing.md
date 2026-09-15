@@ -1,3 +1,7 @@
+---
+description: "AI-Assisted Testing — AI tools (code-completion assistants, LLM-based test generators, AI-driven visual diffing) are now a normal part of a testing…"
+---
+
 # 07 · AI-Assisted Testing
 
 AI tools (code-completion assistants, LLM-based test generators, AI-driven

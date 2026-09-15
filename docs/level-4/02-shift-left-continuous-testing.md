@@ -1,3 +1,7 @@
+---
+description: "Shift-Left & Continuous Testing — Every module so far tested code that already existed. 'Shift-left' means moving quality checks as early as possible in…"
+---
+
 # 02 · Shift-Left & Continuous Testing
 
 Every module so far tested code that already existed. "Shift-left" means

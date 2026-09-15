@@ -1,3 +1,7 @@
+---
+description: "Capstone — Production-Grade Test Framework — This capstone assembles a small but real production-grade framework out of patterns from across both Level 3…"
+---
+
 # 10 · Capstone — Production-Grade Test Framework
 
 This capstone assembles a small but real production-grade framework out of

@@ -1,3 +1,7 @@
+---
+description: "Test Data Management — Hard-coded test data is the second most common reason a suite rots (locators being the first). 'tomsmith' appears in twelve tests…"
+---
+
 # 05 · Test Data Management
 
 Hard-coded test data is the second most common reason a suite rots (locators

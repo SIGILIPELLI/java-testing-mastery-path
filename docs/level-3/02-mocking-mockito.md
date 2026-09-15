@@ -1,3 +1,7 @@
+---
+description: "Mocking with Mockito — Everything tested so far talked to something real — a browser, a public API, an in-memory fake. Real collaborators are slow, flaky…"
+---
+
 # 02 · Mocking with Mockito
 
 Everything tested so far talked to something real — a browser, a public API,

@@ -1,3 +1,7 @@
+---
+description: "Selenium Grid & Parallel Execution — A suite of 200 UI tests at 5 seconds each is 16 minutes run one at a time. Selenium Grid lets many browsers run those…"
+---
+
 # 04 · Selenium Grid & Parallel Execution
 
 A suite of 200 UI tests at 5 seconds each is 16 minutes run one at a time.

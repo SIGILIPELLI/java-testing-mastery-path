@@ -1,3 +1,7 @@
+---
+description: "QA Leadership & Strategy — Every prior module answered a question inside a test suite. This one steps outside it: as a QA lead, how do you decide where…"
+---
+
 # 09 · QA Leadership & Strategy
 
 Every prior module answered a question inside a test suite. This one steps

@@ -1,3 +1,7 @@
+---
+description: "Building an In-House Test Framework — Every module in this course has used off-the-shelf tools: JUnit, TestNG, RestAssured, Cucumber, Testcontainers. At a…"
+---
+
 # 08 · Building an In-House Test Framework
 
 Every module in this course has used off-the-shelf tools: JUnit, TestNG,

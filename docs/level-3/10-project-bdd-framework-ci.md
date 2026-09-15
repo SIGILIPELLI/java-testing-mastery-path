@@ -1,3 +1,7 @@
+---
+description: "Project — Hybrid BDD Framework with CI — This project pulls together every module in Level 3: a Cucumber feature file (Module 01) drives step definitions…"
+---
+
 # 10 · Project — Hybrid BDD Framework with CI
 
 This project pulls together every module in Level 3: a Cucumber feature file

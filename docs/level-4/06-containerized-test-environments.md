@@ -1,3 +1,7 @@
+---
+description: "Containerized Test Environments — Level 3 Module 07 flagged a real limitation of H2: it's fast and isolated, but its SQL dialect isn't identical to…"
+---
+
 # 06 · Containerized Test Environments
 
 Level 3 Module 07 flagged a real limitation of H2: it's fast and isolated,

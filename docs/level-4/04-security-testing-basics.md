@@ -1,3 +1,7 @@
+---
+description: "Security Testing Basics for QA — Security testing isn't a separate discipline bolted onto functional testing — it's the same skill (find the input the…"
+---
+
 # 04 · Security Testing Basics for QA
 
 Security testing isn't a separate discipline bolted onto functional testing
