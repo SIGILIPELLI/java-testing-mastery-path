@@ -308,6 +308,10 @@ is no second parsing step left in which it could be reinterpreted as SQL
 syntax. String-concatenated SQL has no such separation, which is the whole
 vulnerability.
 
+## 🔀 Related lessons on other tracks
+
+- [Python Testing — 08 · Database Testing from Python](https://sigilipelli.github.io/python-testing-mastery-path/level-3/08-database-testing/)
+
 ## Exercise
 
 1. Build `EmployeeRepository` and `EmployeeRepositoryTest` exactly as above,

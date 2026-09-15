@@ -240,6 +240,11 @@ assertion failure — the very first feedback loop shift-left produces is
 literally one step earlier than a failing assertion, at the compiler
 stage described in Module 1.01.
 
+## 🔀 Related lessons on other tracks
+
+- [Python Testing — 02 · Shift-Left & Continuous Testing](https://sigilipelli.github.io/python-testing-mastery-path/level-4/02-shift-left-continuous-testing/)
+- [Automotive Testing — 02 · Continuous Testing in Automotive](https://sigilipelli.github.io/automotive-testing-mastery-path/level-4/02-continuous-testing-automotive/)
+
 ## Exercise
 
 1. Write a pre-commit hook running your `unit`-tagged tests from Level 4

@@ -539,6 +539,10 @@ JavaScript V8 engine, layout) rather than a lightweight stub — "headless"
 only means no window is drawn to a physical display; every other subsystem,
 including CDP, still runs exactly as in a normal window.
 
+## 🔀 Related lessons on other tracks
+
+- [Python Testing — 09 · Selenium WebDriver Basics with Python](https://sigilipelli.github.io/python-testing-mastery-path/level-1/09-selenium-basics/)
+
 ## Exercise
 
 Use the practice site `https://the-internet.herokuapp.com/`, which is built

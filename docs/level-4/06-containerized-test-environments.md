@@ -264,6 +264,10 @@ references it anymore; without Ryuk, a crashed test run would leave
 containers running indefinitely, consuming the CI runner's resources
 until someone notices.
 
+## 🔀 Related lessons on other tracks
+
+- [Python Testing — 06 · Containerized Test Environments](https://sigilipelli.github.io/python-testing-mastery-path/level-4/06-containerized-environments/)
+
 ## Exercise
 
 1. Confirm Docker is available (`docker info`) and build

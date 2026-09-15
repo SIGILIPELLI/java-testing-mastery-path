@@ -298,6 +298,10 @@ concatenation, complementing (not replacing) the `PreparedStatement`
 defense at the persistence layer — defense in depth, tested at two
 different layers independently.
 
+## 🔀 Related lessons on other tracks
+
+- [Python Testing — 04 · Security Testing Basics for QA](https://sigilipelli.github.io/python-testing-mastery-path/level-4/04-security-testing/)
+
 ## Exercise
 
 1. Build `InputValidator` and `InputValidatorTest` exactly as above, run

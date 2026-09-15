@@ -339,6 +339,11 @@ different vendor's bridge process," while the protocol contract your test
 code depends on (`findElement`, `click`, `sendKeys`) stays identical across
 all of them by design, per the W3C WebDriver spec.
 
+## 🔀 Related lessons on other tracks
+
+- [Python Testing — 09 · Cross-Browser Testing](https://sigilipelli.github.io/python-testing-mastery-path/level-2/09-cross-browser-testing/)
+- [Playwright — 01 · Cross-Browser & Device Strategy](https://sigilipelli.github.io/playwright-mastery-path/level-4/01-cross-browser-strategy/)
+
 ## Exercise
 
 1. Build `DriverFactory` exactly as in section 2 and get one test passing on

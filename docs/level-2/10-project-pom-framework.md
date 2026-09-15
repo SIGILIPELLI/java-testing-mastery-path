@@ -409,6 +409,10 @@ more than "run this code when that event fires" — no framework here is
 aware of the others' internals, they're composed entirely through
 well-defined extension points.
 
+## 🔀 Related lessons on other tracks
+
+- [Python Testing — 10 · Project — POM Framework with API Tests](https://sigilipelli.github.io/python-testing-mastery-path/level-2/10-project-pom-framework/)
+
 ## Exercise
 
 Build the framework above, then produce a `reflection.md` answering:

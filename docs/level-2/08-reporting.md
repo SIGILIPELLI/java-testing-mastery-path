@@ -357,6 +357,10 @@ virtually every CI system and reporting tool can consume it without any
 tool-specific plugin: it's a common interchange format each tool reads
 independently, not something Allure or Jenkins invented.
 
+## 🔀 Related lessons on other tracks
+
+- [Python Testing — 07 · Reporting (pytest-html, Allure)](https://sigilipelli.github.io/python-testing-mastery-path/level-2/07-reporting/)
+
 ## Exercise
 
 1. Run `mvn clean verify` then `mvn surefire-report:report`, open the HTML,

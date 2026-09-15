@@ -272,6 +272,11 @@ polling wait (the `Awaitility`-style `await().until(() -> counter.get() ==
 which is a correctness fix, not a timing tweak — it removes the assumption
 about how long "eventually" takes entirely.
 
+## 🔀 Related lessons on other tracks
+
+- [Python Testing — 09 · Flaky Test Diagnosis & Stabilization](https://sigilipelli.github.io/python-testing-mastery-path/level-3/09-flaky-tests/)
+- [Playwright — 05 · Test Retries & Flaky Test Triage](https://sigilipelli.github.io/playwright-mastery-path/level-3/05-retries-flaky-tests/)
+
 ## Exercise
 
 1. Build `AsyncCounter`/`SuspectedFlakeTest` exactly as above and run it

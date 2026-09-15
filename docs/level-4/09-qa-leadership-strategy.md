@@ -218,6 +218,10 @@ matters for the model's *reproducibility*: the same input list always
 produces the same ranked output, a property worth being able to say
 out loud when defending the model to stakeholders.
 
+## 🔀 Related lessons on other tracks
+
+- [Python Testing — 09 · QA Leadership & Strategy](https://sigilipelli.github.io/python-testing-mastery-path/level-4/09-qa-leadership-strategy/)
+
 ## Exercise
 
 1. Implement `Feature`, `TestInvestmentPlanner`, and the two tests exactly

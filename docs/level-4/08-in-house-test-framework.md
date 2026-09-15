@@ -270,6 +270,11 @@ extension points is composing with JUnit's own architecture rather than
 working around it, which is exactly why it stays compatible as the
 underlying JUnit version is upgraded.
 
+## 🔀 Related lessons on other tracks
+
+- [Cpp Testing — 09 · Building an In-House C/C++ Test Framework](https://sigilipelli.github.io/cpp-testing-mastery-path/level-4/09-in-house-test-framework/)
+- [Python Testing — 08 · Building an In-House Test Framework](https://sigilipelli.github.io/python-testing-mastery-path/level-4/08-inhouse-framework/)
+
 ## Exercise
 
 1. Build `OrgBaseTest`, `OrgTestData`, `OrgApiAssertions`, and `SignupTest`

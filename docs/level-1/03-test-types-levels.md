@@ -237,6 +237,11 @@ layer on every commit (cheap enough to always run) but only runs the full
 E2E regression suite nightly or pre-release, because that layer's total
 wall-clock cost doesn't fit inside a fast feedback loop.
 
+## 🔀 Related lessons on other tracks
+
+- [Cpp Testing — 03 · Test Types & Levels](https://sigilipelli.github.io/cpp-testing-mastery-path/level-1/03-test-types-and-levels/)
+- [Python Testing — 03 · Test Types & Levels](https://sigilipelli.github.io/python-testing-mastery-path/level-1/03-test-types-levels/)
+
 ## Exercise
 
 An e-commerce team has just deployed build 7.3.0 to QA. It contains: (a) a

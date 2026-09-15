@@ -231,6 +231,11 @@ direct, deliberate counterweight to each layer's *fixed per-test cost*
 being roughly inverse to its count, so that no single layer dominates the
 total wall-clock budget.
 
+## 🔀 Related lessons on other tracks
+
+- [Cpp Testing — 01 · Test Architecture for Large Codebases](https://sigilipelli.github.io/cpp-testing-mastery-path/level-4/01-test-architecture-large-codebases/)
+- [Python Testing — 01 · Test Architecture at Scale](https://sigilipelli.github.io/python-testing-mastery-path/level-4/01-test-architecture/)
+
 ## Exercise
 
 1. Take three tests from earlier levels of this course (any mix of unit/

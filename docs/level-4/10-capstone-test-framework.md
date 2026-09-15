@@ -454,3 +454,9 @@ single tool needing to know how any of the others work internally.
    Maven artifact (Level 4 Module 08's packaging pattern) and consume them
    from a second, separate project to prove the framework layer is
    genuinely reusable outside the capstone itself.
+
+## 🔀 Related lessons on other tracks
+
+- [Cpp Testing — 09 · Building an In-House C/C++ Test Framework](https://sigilipelli.github.io/cpp-testing-mastery-path/level-4/09-in-house-test-framework/)
+- [Playwright — 10 · Capstone — Production-Grade E2E Framework](https://sigilipelli.github.io/playwright-mastery-path/level-4/10-capstone-project/)
+- [Python Testing — 08 · Building an In-House Test Framework](https://sigilipelli.github.io/python-testing-mastery-path/level-4/08-inhouse-framework/)

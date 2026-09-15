@@ -240,6 +240,12 @@ it surfaces a "1% of users wait 4 seconds" tail that an average of 142ms
 hides completely: the average and the p95 are answering different
 questions about the exact same underlying sorted list of numbers.
 
+## 🔀 Related lessons on other tracks
+
+- [Azure — 06 · Performance Engineering & Load Testing](https://sigilipelli.github.io/azure-mastery-path/level-4/06-performance-load-testing/)
+- [Cpp Testing — 07 · Performance & Benchmark Testing](https://sigilipelli.github.io/cpp-testing-mastery-path/level-3/07-performance-benchmark-testing/)
+- [Python Testing — 06 · Performance Testing with Locust](https://sigilipelli.github.io/python-testing-mastery-path/level-3/06-performance-testing/)
+
 ## Exercise
 
 1. Install JMeter (or note that you're reviewing rather than running it) and

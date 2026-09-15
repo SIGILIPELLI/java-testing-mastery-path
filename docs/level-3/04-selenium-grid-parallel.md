@@ -240,6 +240,11 @@ memory, which is exactly why it's a well-known trap: the fix
 (`shm_size: 2gb`) addresses a container runtime limit that has nothing to
 do with Selenium's own code.
 
+## 🔀 Related lessons on other tracks
+
+- [Playwright — 06 · Parallel Execution & Sharding](https://sigilipelli.github.io/playwright-mastery-path/level-2/06-parallel-sharding/)
+- [Python Testing — 08 · Parallel Execution (pytest-xdist)](https://sigilipelli.github.io/python-testing-mastery-path/level-2/08-parallel-execution/)
+
 ## Exercise
 
 1. Bring up `selenium-hub` + `chrome-node` + `firefox-node` via the compose

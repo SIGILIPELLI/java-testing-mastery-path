@@ -232,6 +232,11 @@ this mechanically: every stage a defect survives means more code was
 written *assuming* the earlier stage was correct, so the fix now has to
 account for everything built on the wrong assumption.
 
+## 🔀 Related lessons on other tracks
+
+- [Cpp Testing — 01 · What Is Software Testing?](https://sigilipelli.github.io/cpp-testing-mastery-path/level-1/01-what-is-software-testing/)
+- [Python Testing — 01 · What Is Software Testing?](https://sigilipelli.github.io/python-testing-mastery-path/level-1/01-what-is-software-testing/)
+
 ## Exercise
 
 Pick any app you use daily — a food-delivery app, your banking app, or a

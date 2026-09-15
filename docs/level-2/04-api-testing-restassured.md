@@ -408,6 +408,12 @@ on a few fields would never notice, because schema validation checks shape
 across the *entire* payload rather than the handful of fields you
 remembered to assert on.
 
+## 🔀 Related lessons on other tracks
+
+- [Playwright — 03 · API Testing with Request Context](https://sigilipelli.github.io/playwright-mastery-path/level-3/03-api-testing/)
+- [Python Testing — 03 · API Testing with requests + pytest](https://sigilipelli.github.io/python-testing-mastery-path/level-2/03-api-testing/)
+- [REST API — 05 · API Testing Strategy](https://sigilipelli.github.io/rest-api-mastery-path/level-3/05-api-testing-strategy/)
+
 ## Exercise
 
 Use `https://jsonplaceholder.typicode.com`.

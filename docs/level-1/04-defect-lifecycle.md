@@ -322,6 +322,11 @@ constantly; a JQL search on an unindexed custom field falls back to a much
 slower text scan, which is why teams are told to keep custom fields to a
 minimum.
 
+## 🔀 Related lessons on other tracks
+
+- [Cpp Testing — 04 · Defect Lifecycle & Bug Reporting](https://sigilipelli.github.io/cpp-testing-mastery-path/level-1/04-defect-lifecycle-bug-reporting/)
+- [Python Testing — 04 · Defect Lifecycle & Bug Reporting](https://sigilipelli.github.io/python-testing-mastery-path/level-1/04-defect-lifecycle/)
+
 ## Exercise
 
 You are testing an online bookstore, build 3.1.0, on Chrome 126 / macOS 14.

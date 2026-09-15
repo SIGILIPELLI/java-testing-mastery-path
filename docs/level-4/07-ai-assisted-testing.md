@@ -245,6 +245,10 @@ visual-diff tools are comparatively reliable at their one narrow job
 requires the same skeptical review as code written by a junior engineer
 who has read a lot of test code but not run this specific one.
 
+## 🔀 Related lessons on other tracks
+
+- [Python Testing — 07 · AI-Assisted Testing](https://sigilipelli.github.io/python-testing-mastery-path/level-4/07-ai-assisted-testing/)
+
 ## Exercise
 
 1. Take a method from any earlier module in this course, generate a test

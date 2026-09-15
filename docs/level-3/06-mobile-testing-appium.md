@@ -262,6 +262,10 @@ accessibility tree — a different underlying automation technology per
 platform, unified only by the shared WebDriver wire protocol your Java
 code speaks.
 
+## 🔀 Related lessons on other tracks
+
+- [Python Testing — 07 · Mobile Testing with Appium](https://sigilipelli.github.io/python-testing-mastery-path/level-3/07-mobile-testing-appium/)
+
 ## Exercise
 
 1. Install Appium Server and an Android emulator (or document that you're

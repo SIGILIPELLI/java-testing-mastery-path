@@ -376,6 +376,10 @@ properties in specific contexts, so verifying the substituted value (e.g.
 printing it from a `@BeforeSuite` in TestNG) is the reliable way to catch
 that mistake.
 
+## 🔀 Related lessons on other tracks
+
+- [Playwright — 07 · Test Configuration & Projects](https://sigilipelli.github.io/playwright-mastery-path/level-2/07-test-configuration/)
+
 ## Exercise
 
 1. Restructure your Level 2 project with the `pom.xml` from section 1. Rename

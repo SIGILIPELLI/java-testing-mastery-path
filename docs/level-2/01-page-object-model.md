@@ -358,6 +358,11 @@ matching a type, intercept every call, decide what to do — but generates
 proxies for concrete classes too via bytecode generation, since mocks
 often need to stand in for classes with no interface.
 
+## 🔀 Related lessons on other tracks
+
+- [Playwright — 01 · Page Object Model](https://sigilipelli.github.io/playwright-mastery-path/level-2/01-page-object-model/)
+- [Python Testing — 01 · Page Object Model in Python](https://sigilipelli.github.io/python-testing-mastery-path/level-2/01-page-object-model/)
+
 ## Exercise
 
 Work against `https://the-internet.herokuapp.com/`.

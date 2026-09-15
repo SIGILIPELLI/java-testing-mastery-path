@@ -287,6 +287,12 @@ is exactly why "tests passed but the build failed" is a normal, expected
 outcome under a coverage gate: two independent checks, bound to two
 different lifecycle phases, both required to pass.
 
+## 🔀 Related lessons on other tracks
+
+- [Python Testing — 05 · Test Metrics & Quality Gates](https://sigilipelli.github.io/python-testing-mastery-path/level-4/05-test-metrics-quality-gates/)
+- [Cpp Testing — 08 · Quality Gates & Metrics](https://sigilipelli.github.io/cpp-testing-mastery-path/level-4/08-quality-gates-metrics/)
+- [Pyspark — 07 · Data Quality Gates](https://sigilipelli.github.io/pyspark-mastery-path/level-4/07-data-quality-gates/)
+
 ## Exercise
 
 1. Add JaCoCo to a project from this course, set a coverage minimum of

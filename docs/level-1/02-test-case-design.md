@@ -243,6 +243,12 @@ requirement with zero mapped cases is a code path nobody has proven exists
 correctly — the traceability matrix exists to make that gap visible before
 release rather than after.
 
+## 🔀 Related lessons on other tracks
+
+- [Cpp Testing — 02 · Test Case Design & Documentation](https://sigilipelli.github.io/cpp-testing-mastery-path/level-1/02-test-case-design-documentation/)
+- [Python Testing — 02 · Test Case Design & Documentation](https://sigilipelli.github.io/python-testing-mastery-path/level-1/02-test-case-design/)
+- [Automotive Testing — 08 · Test Case Design for ECUs](https://sigilipelli.github.io/automotive-testing-mastery-path/level-1/08-test-case-design-for-ecus/)
+
 ## Exercise
 
 Use this requirement set for a **user registration form**:

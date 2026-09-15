@@ -284,6 +284,10 @@ isolation, in separate CI pipelines potentially days apart, connected only
 by that JSON artifact — which is the entire point: no environment needs to
 run both services simultaneously for compatibility to be checked.
 
+## 🔀 Related lessons on other tracks
+
+- [Python Testing — 03 · Contract Testing (Pact)](https://sigilipelli.github.io/python-testing-mastery-path/level-4/03-contract-testing/)
+
 ## Exercise
 
 1. Write `InventoryClientPactTest` and a minimal `InventoryClient`
