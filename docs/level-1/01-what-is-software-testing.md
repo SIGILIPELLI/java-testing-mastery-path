@@ -234,8 +234,8 @@ account for everything built on the wrong assumption.
 
 ## 🔀 Related lessons on other tracks
 
-- [Cpp Testing — 01 · What Is Software Testing?](https://sigilipelli.github.io/cpp-testing-mastery-path/level-1/01-what-is-software-testing/)
-- [Python Testing — 01 · What Is Software Testing?](https://sigilipelli.github.io/python-testing-mastery-path/level-1/01-what-is-software-testing/)
+- [Cpp Testing — 01 · What Is Software Testing?](https://learnmasterypath.com/cpp-testing-mastery-path/level-1/01-what-is-software-testing/)
+- [Python Testing — 01 · What Is Software Testing?](https://learnmasterypath.com/python-testing-mastery-path/level-1/01-what-is-software-testing/)
 
 ## Exercise
 

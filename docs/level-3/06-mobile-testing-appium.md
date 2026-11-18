@@ -264,7 +264,7 @@ code speaks.
 
 ## 🔀 Related lessons on other tracks
 
-- [Python Testing — 07 · Mobile Testing with Appium](https://sigilipelli.github.io/python-testing-mastery-path/level-3/07-mobile-testing-appium/)
+- [Python Testing — 07 · Mobile Testing with Appium](https://learnmasterypath.com/python-testing-mastery-path/level-3/07-mobile-testing-appium/)
 
 ## Exercise
 

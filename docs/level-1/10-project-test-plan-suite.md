@@ -600,9 +600,9 @@ processes silently consuming memory across a long CI run.
 
 ## 🔀 Related lessons on other tracks
 
-- [Python Testing — 10 · Project — Test Plan + Automated Suite](https://sigilipelli.github.io/python-testing-mastery-path/level-1/10-project-test-suite/)
-- [Cpp Testing — 10 · Project — Test Plan & GoogleTest Suite](https://sigilipelli.github.io/cpp-testing-mastery-path/level-1/10-project-test-plan-and-suite/)
-- [Automotive Testing — 10 · Project — HIL Test Plan for an ECU Feature](https://sigilipelli.github.io/automotive-testing-mastery-path/level-3/10-project-hil-test-plan/)
+- [Python Testing — 10 · Project — Test Plan + Automated Suite](https://learnmasterypath.com/python-testing-mastery-path/level-1/10-project-test-suite/)
+- [Cpp Testing — 10 · Project — Test Plan & GoogleTest Suite](https://learnmasterypath.com/cpp-testing-mastery-path/level-1/10-project-test-plan-and-suite/)
+- [Automotive Testing — 10 · Project — HIL Test Plan for an ECU Feature](https://learnmasterypath.com/automotive-testing-mastery-path/level-3/10-project-hil-test-plan/)
 
 ## Exercise
 

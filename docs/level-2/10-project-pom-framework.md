@@ -411,7 +411,7 @@ well-defined extension points.
 
 ## 🔀 Related lessons on other tracks
 
-- [Python Testing — 10 · Project — POM Framework with API Tests](https://sigilipelli.github.io/python-testing-mastery-path/level-2/10-project-pom-framework/)
+- [Python Testing — 10 · Project — POM Framework with API Tests](https://learnmasterypath.com/python-testing-mastery-path/level-2/10-project-pom-framework/)
 
 ## Exercise
 

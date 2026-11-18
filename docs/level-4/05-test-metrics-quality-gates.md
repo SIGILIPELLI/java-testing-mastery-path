@@ -289,9 +289,9 @@ different lifecycle phases, both required to pass.
 
 ## 🔀 Related lessons on other tracks
 
-- [Python Testing — 05 · Test Metrics & Quality Gates](https://sigilipelli.github.io/python-testing-mastery-path/level-4/05-test-metrics-quality-gates/)
-- [Cpp Testing — 08 · Quality Gates & Metrics](https://sigilipelli.github.io/cpp-testing-mastery-path/level-4/08-quality-gates-metrics/)
-- [Pyspark — 07 · Data Quality Gates](https://sigilipelli.github.io/pyspark-mastery-path/level-4/07-data-quality-gates/)
+- [Python Testing — 05 · Test Metrics & Quality Gates](https://learnmasterypath.com/python-testing-mastery-path/level-4/05-test-metrics-quality-gates/)
+- [Cpp Testing — 08 · Quality Gates & Metrics](https://learnmasterypath.com/cpp-testing-mastery-path/level-4/08-quality-gates-metrics/)
+- [Pyspark — 07 · Data Quality Gates](https://learnmasterypath.com/pyspark-mastery-path/level-4/07-data-quality-gates/)
 
 ## Exercise
 

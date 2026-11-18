@@ -266,7 +266,7 @@ until someone notices.
 
 ## 🔀 Related lessons on other tracks
 
-- [Python Testing — 06 · Containerized Test Environments](https://sigilipelli.github.io/python-testing-mastery-path/level-4/06-containerized-environments/)
+- [Python Testing — 06 · Containerized Test Environments](https://learnmasterypath.com/python-testing-mastery-path/level-4/06-containerized-environments/)
 
 ## Exercise
 

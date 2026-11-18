@@ -233,8 +233,8 @@ total wall-clock budget.
 
 ## 🔀 Related lessons on other tracks
 
-- [Cpp Testing — 01 · Test Architecture for Large Codebases](https://sigilipelli.github.io/cpp-testing-mastery-path/level-4/01-test-architecture-large-codebases/)
-- [Python Testing — 01 · Test Architecture at Scale](https://sigilipelli.github.io/python-testing-mastery-path/level-4/01-test-architecture/)
+- [Cpp Testing — 01 · Test Architecture for Large Codebases](https://learnmasterypath.com/cpp-testing-mastery-path/level-4/01-test-architecture-large-codebases/)
+- [Python Testing — 01 · Test Architecture at Scale](https://learnmasterypath.com/python-testing-mastery-path/level-4/01-test-architecture/)
 
 ## Exercise
 

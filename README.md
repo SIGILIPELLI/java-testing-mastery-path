@@ -2,7 +2,7 @@
 
 A free, structured, module-wise software testing training program using Java — manual QA fundamentals and test automation, entry level to master level, with templates and runnable code in every module and a hands-on project at the end of each level.
 
-**Live site:** https://sigilipelli.github.io/java-testing-mastery-path/
+**Live site:** https://learnmasterypath.com/java-testing-mastery-path/
 
 ## Contents
 
@@ -21,6 +21,6 @@ python3 -m venv .venv
 
 ## Related
 
-- [Java Mastery Path](https://sigilipelli.github.io/java-mastery-path/)
-- [Python Mastery Path](https://sigilipelli.github.io/python-mastery-path/)
-- [SQL Mastery Path](https://sigilipelli.github.io/sql-mastery-path/)
+- [Java Mastery Path](https://learnmasterypath.com/java-mastery-path/)
+- [Python Mastery Path](https://learnmasterypath.com/python-mastery-path/)
+- [SQL Mastery Path](https://learnmasterypath.com/sql-mastery-path/)

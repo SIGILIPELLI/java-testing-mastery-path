@@ -360,8 +360,8 @@ often need to stand in for classes with no interface.
 
 ## 🔀 Related lessons on other tracks
 
-- [Playwright — 01 · Page Object Model](https://sigilipelli.github.io/playwright-mastery-path/level-2/01-page-object-model/)
-- [Python Testing — 01 · Page Object Model in Python](https://sigilipelli.github.io/python-testing-mastery-path/level-2/01-page-object-model/)
+- [Playwright — 01 · Page Object Model](https://learnmasterypath.com/playwright-mastery-path/level-2/01-page-object-model/)
+- [Python Testing — 01 · Page Object Model in Python](https://learnmasterypath.com/python-testing-mastery-path/level-2/01-page-object-model/)
 
 ## Exercise
 

@@ -247,7 +247,7 @@ who has read a lot of test code but not run this specific one.
 
 ## 🔀 Related lessons on other tracks
 
-- [Python Testing — 07 · AI-Assisted Testing](https://sigilipelli.github.io/python-testing-mastery-path/level-4/07-ai-assisted-testing/)
+- [Python Testing — 07 · AI-Assisted Testing](https://learnmasterypath.com/python-testing-mastery-path/level-4/07-ai-assisted-testing/)
 
 ## Exercise
 

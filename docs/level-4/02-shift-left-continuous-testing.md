@@ -242,8 +242,8 @@ stage described in Module 1.01.
 
 ## 🔀 Related lessons on other tracks
 
-- [Python Testing — 02 · Shift-Left & Continuous Testing](https://sigilipelli.github.io/python-testing-mastery-path/level-4/02-shift-left-continuous-testing/)
-- [Automotive Testing — 02 · Continuous Testing in Automotive](https://sigilipelli.github.io/automotive-testing-mastery-path/level-4/02-continuous-testing-automotive/)
+- [Python Testing — 02 · Shift-Left & Continuous Testing](https://learnmasterypath.com/python-testing-mastery-path/level-4/02-shift-left-continuous-testing/)
+- [Automotive Testing — 02 · Continuous Testing in Automotive](https://learnmasterypath.com/automotive-testing-mastery-path/level-4/02-continuous-testing-automotive/)
 
 ## Exercise
 

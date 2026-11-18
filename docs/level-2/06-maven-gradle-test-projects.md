@@ -378,7 +378,7 @@ that mistake.
 
 ## 🔀 Related lessons on other tracks
 
-- [Playwright — 07 · Test Configuration & Projects](https://sigilipelli.github.io/playwright-mastery-path/level-2/07-test-configuration/)
+- [Playwright — 07 · Test Configuration & Projects](https://learnmasterypath.com/playwright-mastery-path/level-2/07-test-configuration/)
 
 ## Exercise
 

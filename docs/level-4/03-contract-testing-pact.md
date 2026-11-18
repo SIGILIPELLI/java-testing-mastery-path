@@ -286,7 +286,7 @@ run both services simultaneously for compatibility to be checked.
 
 ## 🔀 Related lessons on other tracks
 
-- [Python Testing — 03 · Contract Testing (Pact)](https://sigilipelli.github.io/python-testing-mastery-path/level-4/03-contract-testing/)
+- [Python Testing — 03 · Contract Testing (Pact)](https://learnmasterypath.com/python-testing-mastery-path/level-4/03-contract-testing/)
 
 ## Exercise
 

@@ -274,8 +274,8 @@ about how long "eventually" takes entirely.
 
 ## 🔀 Related lessons on other tracks
 
-- [Python Testing — 09 · Flaky Test Diagnosis & Stabilization](https://sigilipelli.github.io/python-testing-mastery-path/level-3/09-flaky-tests/)
-- [Playwright — 05 · Test Retries & Flaky Test Triage](https://sigilipelli.github.io/playwright-mastery-path/level-3/05-retries-flaky-tests/)
+- [Python Testing — 09 · Flaky Test Diagnosis & Stabilization](https://learnmasterypath.com/python-testing-mastery-path/level-3/09-flaky-tests/)
+- [Playwright — 05 · Test Retries & Flaky Test Triage](https://learnmasterypath.com/playwright-mastery-path/level-3/05-retries-flaky-tests/)
 
 ## Exercise
 

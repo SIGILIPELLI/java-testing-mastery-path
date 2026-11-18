@@ -359,7 +359,7 @@ independently, not something Allure or Jenkins invented.
 
 ## 🔀 Related lessons on other tracks
 
-- [Python Testing — 07 · Reporting (pytest-html, Allure)](https://sigilipelli.github.io/python-testing-mastery-path/level-2/07-reporting/)
+- [Python Testing — 07 · Reporting (pytest-html, Allure)](https://learnmasterypath.com/python-testing-mastery-path/level-2/07-reporting/)
 
 ## Exercise
 

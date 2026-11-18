@@ -310,7 +310,7 @@ vulnerability.
 
 ## 🔀 Related lessons on other tracks
 
-- [Python Testing — 08 · Database Testing from Python](https://sigilipelli.github.io/python-testing-mastery-path/level-3/08-database-testing/)
+- [Python Testing — 08 · Database Testing from Python](https://learnmasterypath.com/python-testing-mastery-path/level-3/08-database-testing/)
 
 ## Exercise
 

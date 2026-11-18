@@ -398,9 +398,9 @@ combination of fields a test might want to vary.
 
 ## 🔀 Related lessons on other tracks
 
-- [Automotive Testing — 05 · Test Data Management at Scale](https://sigilipelli.github.io/automotive-testing-mastery-path/level-4/05-test-data-management/)
-- [Playwright — 08 · Environment & Test Data Management](https://sigilipelli.github.io/playwright-mastery-path/level-2/08-env-test-data/)
-- [Python Testing — 05 · Test Data Management & Factories](https://sigilipelli.github.io/python-testing-mastery-path/level-2/05-test-data-management/)
+- [Automotive Testing — 05 · Test Data Management at Scale](https://learnmasterypath.com/automotive-testing-mastery-path/level-4/05-test-data-management/)
+- [Playwright — 08 · Environment & Test Data Management](https://learnmasterypath.com/playwright-mastery-path/level-2/08-env-test-data/)
+- [Python Testing — 05 · Test Data Management & Factories](https://learnmasterypath.com/python-testing-mastery-path/level-2/05-test-data-management/)
 
 ## Exercise
 

@@ -242,8 +242,8 @@ do with Selenium's own code.
 
 ## 🔀 Related lessons on other tracks
 
-- [Playwright — 06 · Parallel Execution & Sharding](https://sigilipelli.github.io/playwright-mastery-path/level-2/06-parallel-sharding/)
-- [Python Testing — 08 · Parallel Execution (pytest-xdist)](https://sigilipelli.github.io/python-testing-mastery-path/level-2/08-parallel-execution/)
+- [Playwright — 06 · Parallel Execution & Sharding](https://learnmasterypath.com/playwright-mastery-path/level-2/06-parallel-sharding/)
+- [Python Testing — 08 · Parallel Execution (pytest-xdist)](https://learnmasterypath.com/python-testing-mastery-path/level-2/08-parallel-execution/)
 
 ## Exercise
 

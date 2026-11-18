@@ -341,8 +341,8 @@ all of them by design, per the W3C WebDriver spec.
 
 ## 🔀 Related lessons on other tracks
 
-- [Python Testing — 09 · Cross-Browser Testing](https://sigilipelli.github.io/python-testing-mastery-path/level-2/09-cross-browser-testing/)
-- [Playwright — 01 · Cross-Browser & Device Strategy](https://sigilipelli.github.io/playwright-mastery-path/level-4/01-cross-browser-strategy/)
+- [Python Testing — 09 · Cross-Browser Testing](https://learnmasterypath.com/python-testing-mastery-path/level-2/09-cross-browser-testing/)
+- [Playwright — 01 · Cross-Browser & Device Strategy](https://learnmasterypath.com/playwright-mastery-path/level-4/01-cross-browser-strategy/)
 
 ## Exercise
 

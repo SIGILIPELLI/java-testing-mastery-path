@@ -220,7 +220,7 @@ out loud when defending the model to stakeholders.
 
 ## 🔀 Related lessons on other tracks
 
-- [Python Testing — 09 · QA Leadership & Strategy](https://sigilipelli.github.io/python-testing-mastery-path/level-4/09-qa-leadership-strategy/)
+- [Python Testing — 09 · QA Leadership & Strategy](https://learnmasterypath.com/python-testing-mastery-path/level-4/09-qa-leadership-strategy/)
 
 ## Exercise
 

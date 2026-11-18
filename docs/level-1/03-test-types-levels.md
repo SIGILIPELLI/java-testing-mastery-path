@@ -239,8 +239,8 @@ wall-clock cost doesn't fit inside a fast feedback loop.
 
 ## 🔀 Related lessons on other tracks
 
-- [Cpp Testing — 03 · Test Types & Levels](https://sigilipelli.github.io/cpp-testing-mastery-path/level-1/03-test-types-and-levels/)
-- [Python Testing — 03 · Test Types & Levels](https://sigilipelli.github.io/python-testing-mastery-path/level-1/03-test-types-levels/)
+- [Cpp Testing — 03 · Test Types & Levels](https://learnmasterypath.com/cpp-testing-mastery-path/level-1/03-test-types-and-levels/)
+- [Python Testing — 03 · Test Types & Levels](https://learnmasterypath.com/python-testing-mastery-path/level-1/03-test-types-levels/)
 
 ## Exercise
 

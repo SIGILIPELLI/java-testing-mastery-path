@@ -300,7 +300,7 @@ different layers independently.
 
 ## 🔀 Related lessons on other tracks
 
-- [Python Testing — 04 · Security Testing Basics for QA](https://sigilipelli.github.io/python-testing-mastery-path/level-4/04-security-testing/)
+- [Python Testing — 04 · Security Testing Basics for QA](https://learnmasterypath.com/python-testing-mastery-path/level-4/04-security-testing/)
 
 ## Exercise
 
