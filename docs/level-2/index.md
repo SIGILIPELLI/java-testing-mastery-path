@@ -1,3 +1,7 @@
+---
+description: "Level 2 (Intermediate) of the free Java Testing Mastery Path: Page Object Model (POM), Selenium Advanced, TestNG Advanced, API Testing with RestAssured…"
+---
+
 # Level 2 · Intermediate
 
 ## Modules

@@ -1,3 +1,7 @@
+---
+description: "Level 3 (Advanced) of the free Java Testing Mastery Path: BDD with Cucumber, Mocking with Mockito, CI/CD Integration, Selenium Grid & Parallel Execution…"
+---
+
 # Level 3 · Advanced
 
 ## Modules

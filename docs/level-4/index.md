@@ -1,3 +1,7 @@
+---
+description: "Level 4 (Master) of the free Java Testing Mastery Path: Test Architecture at Scale, Shift-Left & Continuous Testing, Contract Testing (Pact), Security…"
+---
+
 # Level 4 · Master
 
 ## Modules

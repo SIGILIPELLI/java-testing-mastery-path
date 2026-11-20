@@ -1,3 +1,7 @@
+---
+description: "Level 1 (Entry) of the free Java Testing Mastery Path. Understand what software testing actually is, learn to design and document tests the way a working QA…"
+---
+
 # Level 1 · Entry <span class="level-badge">Foundations</span>
 
 Goal: understand what software testing actually is, learn to design and
