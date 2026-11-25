@@ -8,8 +8,7 @@ description: "Free software testing and QA course using Java -- manual testing f
 A structured, module-wise software testing program that takes you from writing
 your first test case on paper to designing a production-grade automation
 framework — covering **both manual QA fundamentals and test automation in
-Java**, with templates, runnable code, and a hands-on project at the end of
-each level.
+Java**, with templates, runnable code, and a hands-on project at the end of Levels 1–3 and a capstone at the end of Level 4.
 
 ## How the program is organized
 
@@ -27,7 +26,7 @@ each level.
   traceability matrices) you can reuse on a live project immediately.
 - The automation modules have runnable Java code — copy them into a Maven
   project and run with `mvn test`, or paste them into your IDE.
-- Each level ends with a project that combines everything learned in that level.
+- Levels 1–3 each end with a project that combines everything learned in that level, and Level 4 ends with the course capstone.
 - Use the search bar (top of the page) to jump straight to a topic.
 
 Start here → [Level 1 · Entry](level-1/index.md)
