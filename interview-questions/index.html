@@ -1,0 +1,4322 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="179 Java Testing interview questions with answers and explanations, from beginner to advanced, organised by level. Free, from the Java Testing Mastery Path.">
+      
+      
+      
+        <link rel="canonical" href="https://learnmasterypath.com/java-testing-mastery-path/interview-questions/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../cheat-sheet/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+  
+  <title>Java Testing Interview Questions and Answers (179 Questions)</title>
+
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../stylesheets/progress-tracker.css">
+    
+      <link rel="stylesheet" href="../stylesheets/final-quiz.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-05VBGCXN12"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-05VBGCXN12');
+  </script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mastery Path">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Java Testing Interview Questions and Answers (179 Questions)">
+  <meta property="og:description" content="179 Java Testing interview questions with answers and explanations, from beginner to advanced, organised by level. Free, from the Java Testing Mastery Path.">
+  <meta property="og:url" content="https://learnmasterypath.com/java-testing-mastery-path/interview-questions/">
+  <meta property="og:image" content="https://learnmasterypath.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Mastery Path: free structured courses, beginner to master">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Java Testing Interview Questions and Answers (179 Questions)">
+  <meta name="twitter:description" content="179 Java Testing interview questions with answers and explanations, from beginner to advanced, organised by level. Free, from the Java Testing Mastery Path.">
+  <meta name="twitter:image" content="https://learnmasterypath.com/og-image.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9440969811959397"
+     crossorigin="anonymous"></script><script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Mastery Path", "item": "https://learnmasterypath.com/"},
+      {"@type": "ListItem", "position": 2, "name": "Java Testing Mastery Path", "item": "https://learnmasterypath.com/java-testing-mastery-path/"},
+      {"@type": "ListItem", "position": 3, "name": "Interview Questions", "item": "https://learnmasterypath.com/java-testing-mastery-path/interview-questions/"}
+    ]
+  }
+  </script>
+  <style>
+    .md-banner a:hover { text-decoration: underline !important; }
+    .mp-related { margin-top: 2.4rem; padding-top: 1rem; border-top: 1px solid var(--md-default-fg-color--lightest); font-size: .78rem; }
+    .mp-related h2 { font-size: .9rem; margin: 0 0 .5rem; }
+    .mp-related ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .4rem .9rem; }
+    .mp-related li { margin: 0 !important; }
+  </style>
+  <script type="application/json" id="mp-course-meta">{"home": false, "id": "java-testing-mastery-path", "name": "Java Testing Mastery Path", "repo": "https://github.com/SIGILIPELLI/java-testing-mastery-path", "src": "interview-questions.md", "url": "https://learnmasterypath.com/java-testing-mastery-path/"}</script>
+  <link rel="stylesheet" href="https://learnmasterypath.com/assets/learn.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://learnmasterypath.com/assets/course.css?v=1">
+  <script src="https://learnmasterypath.com/assets/learn.js" defer></script>
+  <script src="https://learnmasterypath.com/assets/signup.js" defer></script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#java-testing-interview-questions-and-answers" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <a href="https://learnmasterypath.com/" style="color: inherit; text-decoration: none;">
+    &larr; Mastery Path &middot; all 100+ free courses
+  </a>
+  <span style="opacity: .6; margin: 0 .6em;">|</span>
+  <a href="https://learnmasterypath.com/search/" style="color: inherit; text-decoration: none;">Search all courses</a>
+  <span style="opacity: .6; margin: 0 .6em;">|</span>
+  <a href="https://learnmasterypath.com/resume/" style="color: inherit; font-weight: 700; text-decoration: none;">
+    Got the skills? Free resume ATS check &rarr;
+  </a>
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Java Testing Mastery Path" class="md-header__button md-logo" aria-label="Java Testing Mastery Path" data-md-component="logo">
+      <svg class="mp-mark" viewBox="0 0 160 160" role="img" aria-label="Mastery Path logo">
+  <circle cx="80" cy="80" r="74" fill="#FAF7EF" stroke="#2FA98D" stroke-width="5"/>
+  <rect class="mp-bar mp-bar-1" x="36" y="90" width="17" height="24" rx="5" fill="#2FA98D"/>
+  <rect class="mp-bar mp-bar-2" x="59" y="74" width="17" height="40" rx="5" fill="#7FC9B7"/>
+  <rect class="mp-bar mp-bar-3" x="82" y="56" width="17" height="58" rx="5" fill="#E0B457"/>
+  <rect class="mp-bar mp-bar-4" x="105" y="38" width="17" height="76" rx="5" fill="#C97B4A"/>
+  <circle class="mp-dot" cx="44.5" cy="82" r="7" fill="#22261f"/>
+</svg>
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Java Testing Mastery Path
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Java Testing Interview Questions and Answers (179 Questions)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SIGILIPELLI/java-testing-mastery-path" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    java-testing-mastery-path
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Interview Questions
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../cheat-sheet/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Cheat Sheet
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../level-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 1 · Entry
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../level-2/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 2 · Intermediate
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../level-3/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 3 · Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../level-4/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 4 · Master
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quiz/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Final Quiz
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Java Testing Mastery Path" class="md-nav__button md-logo" aria-label="Java Testing Mastery Path" data-md-component="logo">
+      <svg class="mp-mark" viewBox="0 0 160 160" role="img" aria-label="Mastery Path logo">
+  <circle cx="80" cy="80" r="74" fill="#FAF7EF" stroke="#2FA98D" stroke-width="5"/>
+  <rect class="mp-bar mp-bar-1" x="36" y="90" width="17" height="24" rx="5" fill="#2FA98D"/>
+  <rect class="mp-bar mp-bar-2" x="59" y="74" width="17" height="40" rx="5" fill="#7FC9B7"/>
+  <rect class="mp-bar mp-bar-3" x="82" y="56" width="17" height="58" rx="5" fill="#E0B457"/>
+  <rect class="mp-bar mp-bar-4" x="105" y="38" width="17" height="76" rx="5" fill="#C97B4A"/>
+  <circle class="mp-dot" cx="44.5" cy="82" r="7" fill="#22261f"/>
+</svg>
+    </a>
+    Java Testing Mastery Path
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SIGILIPELLI/java-testing-mastery-path" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    java-testing-mastery-path
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Questions
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#level-1-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 1 · Entry
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 1 · Entry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-what-is-software-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · What Is Software Testing?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-test-case-design-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Test Case Design &amp; Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-test-types-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · Test Types &amp; Levels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-defect-lifecycle-bug-reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · Defect Lifecycle &amp; Bug Reporting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-manual-testing-in-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · Manual Testing in Practice
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-java-setup-for-testers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Java Setup for Testers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-junit-5-fundamentals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · JUnit 5 Fundamentals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-selenium-webdriver-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Selenium WebDriver Basics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-testng-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · TestNG Basics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-project-manual-test-plan-automated-suite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Project — Manual Test Plan + Automated Suite
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-2-intermediate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 2 · Intermediate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 2 · Intermediate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-page-object-model-pom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · Page Object Model (POM)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-selenium-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Selenium Advanced
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-testng-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · TestNG Advanced
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-api-testing-with-restassured" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · API Testing with RestAssured
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-test-data-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · Test Data Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-mavengradle-for-test-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Maven/Gradle for Test Projects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-assertions-matchers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Assertions &amp; Matchers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-reporting-allure-extentreports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Reporting (Allure, ExtentReports)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-cross-browser-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · Cross-Browser Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-project-pom-framework-with-api-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Project — POM Framework with API Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-3-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 3 · Advanced
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 3 · Advanced">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-bdd-with-cucumber" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · BDD with Cucumber
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-mocking-with-mockito" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Mocking with Mockito
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-cicd-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · CI/CD Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-selenium-grid-parallel-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · Selenium Grid &amp; Parallel Execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-performance-testing-basics-jmeter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · Performance Testing Basics (JMeter)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-mobile-testing-with-appium" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Mobile Testing with Appium
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-database-testing-from-java" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Database Testing from Java
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-framework-design-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Framework Design Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-flaky-test-diagnosis-stabilization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · Flaky Test Diagnosis &amp; Stabilization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-project-hybrid-bdd-framework-with-ci" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Project — Hybrid BDD Framework with CI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-4-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 4 · Master
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 4 · Master">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-test-architecture-at-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · Test Architecture at Scale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-shift-left-continuous-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Shift-Left &amp; Continuous Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-contract-testing-pact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · Contract Testing (Pact)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-security-testing-basics-for-qa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · Security Testing Basics for QA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-test-metrics-quality-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · Test Metrics &amp; Quality Gates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-containerized-test-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Containerized Test Environments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-ai-assisted-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · AI-Assisted Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-building-an-in-house-test-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Building an In-House Test Framework
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-qa-leadership-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · QA Leadership &amp; Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-capstone-production-grade-test-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Capstone — Production-Grade Test Framework
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mixed-questions-across-all-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mixed questions across all levels
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-coding-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical coding questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practical coding questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-tiny-junit-style-runner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A tiny JUnit-style runner
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-doubles-for-a-checkout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test doubles for a checkout
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cheat-sheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../level-1/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 1 · Entry
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 1 · Entry
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/01-what-is-software-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · What Is Software Testing?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/02-test-case-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Test Case Design & Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/03-test-types-levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Test Types & Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/04-defect-lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Defect Lifecycle & Bug Reporting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/05-manual-testing-practice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Manual Testing in Practice
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/06-java-setup-for-testers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Java Setup for Testers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/07-junit5-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · JUnit 5 Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/08-selenium-webdriver-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Selenium WebDriver Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/09-testng-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · TestNG Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/10-project-test-plan-suite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Project — Manual Test Plan + Automated Suite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../level-2/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 2 · Intermediate
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 2 · Intermediate
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/01-page-object-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Page Object Model (POM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/02-selenium-advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Selenium Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/03-testng-advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · TestNG Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/04-api-testing-restassured/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · API Testing with RestAssured
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/05-test-data-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Test Data Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/06-maven-gradle-test-projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Maven/Gradle for Test Projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/07-assertions-matchers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Assertions & Matchers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/08-reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Reporting (Allure, ExtentReports)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/09-cross-browser-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Cross-Browser Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/10-project-pom-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Project — POM Framework with API Tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../level-3/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 3 · Advanced
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 3 · Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/01-bdd-cucumber/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · BDD with Cucumber
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/02-mocking-mockito/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Mocking with Mockito
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/03-cicd-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · CI/CD Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/04-selenium-grid-parallel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Selenium Grid & Parallel Execution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/05-performance-testing-jmeter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Performance Testing Basics (JMeter)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/06-mobile-testing-appium/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Mobile Testing with Appium
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/07-database-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Database Testing from Java
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/08-framework-design-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Framework Design Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/09-flaky-test-diagnosis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Flaky Test Diagnosis & Stabilization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/10-project-bdd-framework-ci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Project — Hybrid BDD Framework with CI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../level-4/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 4 · Master
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 4 · Master
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/01-test-architecture-at-scale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Test Architecture at Scale
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/02-shift-left-continuous-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Shift-Left & Continuous Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/03-contract-testing-pact/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Contract Testing (Pact)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/04-security-testing-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Security Testing Basics for QA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/05-test-metrics-quality-gates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Test Metrics & Quality Gates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/06-containerized-test-environments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Containerized Test Environments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/07-ai-assisted-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · AI-Assisted Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/08-in-house-test-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Building an In-House Test Framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/09-qa-leadership-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · QA Leadership & Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/10-capstone-test-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Capstone — Production-Grade Test Framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Final Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#level-1-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 1 · Entry
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 1 · Entry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-what-is-software-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · What Is Software Testing?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-test-case-design-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Test Case Design &amp; Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-test-types-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · Test Types &amp; Levels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-defect-lifecycle-bug-reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · Defect Lifecycle &amp; Bug Reporting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-manual-testing-in-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · Manual Testing in Practice
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-java-setup-for-testers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Java Setup for Testers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-junit-5-fundamentals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · JUnit 5 Fundamentals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-selenium-webdriver-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Selenium WebDriver Basics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-testng-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · TestNG Basics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-project-manual-test-plan-automated-suite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Project — Manual Test Plan + Automated Suite
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-2-intermediate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 2 · Intermediate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 2 · Intermediate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-page-object-model-pom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · Page Object Model (POM)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-selenium-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Selenium Advanced
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-testng-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · TestNG Advanced
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-api-testing-with-restassured" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · API Testing with RestAssured
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-test-data-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · Test Data Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-mavengradle-for-test-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Maven/Gradle for Test Projects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-assertions-matchers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Assertions &amp; Matchers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-reporting-allure-extentreports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Reporting (Allure, ExtentReports)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-cross-browser-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · Cross-Browser Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-project-pom-framework-with-api-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Project — POM Framework with API Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-3-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 3 · Advanced
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 3 · Advanced">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-bdd-with-cucumber" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · BDD with Cucumber
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-mocking-with-mockito" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Mocking with Mockito
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-cicd-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · CI/CD Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-selenium-grid-parallel-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · Selenium Grid &amp; Parallel Execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-performance-testing-basics-jmeter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · Performance Testing Basics (JMeter)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-mobile-testing-with-appium" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Mobile Testing with Appium
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-database-testing-from-java" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Database Testing from Java
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-framework-design-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Framework Design Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-flaky-test-diagnosis-stabilization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · Flaky Test Diagnosis &amp; Stabilization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-project-hybrid-bdd-framework-with-ci" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Project — Hybrid BDD Framework with CI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-4-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 4 · Master
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 4 · Master">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-test-architecture-at-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · Test Architecture at Scale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-shift-left-continuous-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Shift-Left &amp; Continuous Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-contract-testing-pact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · Contract Testing (Pact)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-security-testing-basics-for-qa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · Security Testing Basics for QA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-test-metrics-quality-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · Test Metrics &amp; Quality Gates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-containerized-test-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Containerized Test Environments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-ai-assisted-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · AI-Assisted Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-building-an-in-house-test-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Building an In-House Test Framework
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-qa-leadership-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · QA Leadership &amp; Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-capstone-production-grade-test-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Capstone — Production-Grade Test Framework
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mixed-questions-across-all-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mixed questions across all levels
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-coding-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical coding questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practical coding questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-tiny-junit-style-runner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A tiny JUnit-style runner
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-doubles-for-a-checkout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test doubles for a checkout
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+  
+                  
+
+
+  
+  
+
+
+<h1 id="java-testing-interview-questions-and-answers">Java Testing Interview Questions and Answers<a class="headerlink" href="#java-testing-interview-questions-and-answers" title="Permanent link">&para;</a></h1>
+<p><strong>179 questions</strong> with the correct answer and a short explanation, organised from beginner (Level 1) to advanced (Level 4). Every question comes from a lesson in the free Java Testing Mastery Path, so you can open the lesson to go deeper.</p>
+<div class="admonition tip">
+<p class="admonition-title">Practise, don't just read</p>
+<p>Each lesson also ends with an interactive quiz, and the <a href="../quiz/">final quiz</a> tests all four levels. Try to answer each question below before reading the answer.</p>
+</div>
+<h2 id="level-1-entry">Level 1 · Entry<a class="headerlink" href="#level-1-entry" title="Permanent link">&para;</a></h2>
+<h3 id="01-what-is-software-testing"><a href="../level-1/01-what-is-software-testing/">01 · What Is Software Testing?</a><a class="headerlink" href="#01-what-is-software-testing" title="Permanent link">&para;</a></h3>
+<p><strong>Q1.</strong> What is software testing?</p>
+<p><strong>Answer:</strong> Evaluating a program against expectations to find defects and provide quality information</p>
+<p>Disciplined and repeatable.</p>
+<p><strong>Q2.</strong> Why can't you prove a program has no bugs by testing?</p>
+<p><strong>Answer:</strong> Exhaustive testing is impossible; tests show presence, not absence, of defects</p>
+<p>Choose tests wisely.</p>
+<p><strong>Q3.</strong> What does an oracle provide?</p>
+<p><strong>Answer:</strong> The expected result against which actual output is compared</p>
+<p>No oracle, no test.</p>
+<p><strong>Q4.</strong> What's the cost of late defects?</p>
+<p><strong>Answer:</strong> Much higher than early ones</p>
+<p>Shift left.</p>
+<h3 id="02-test-case-design-documentation"><a href="../level-1/02-test-case-design/">02 · Test Case Design &amp; Documentation</a><a class="headerlink" href="#02-test-case-design-documentation" title="Permanent link">&para;</a></h3>
+<p><strong>Q5.</strong> What's the difference between a test scenario and a test case?</p>
+<p><strong>Answer:</strong> A scenario is a high-level thing to test; a case has precise steps, data and expected results</p>
+<p>Specificity.</p>
+<p><strong>Q6.</strong> What does boundary value analysis suggest for a valid age range 18..65?</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">17</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">65</span><span class="p">,</span><span class="w"> </span><span class="mi">66</span><span class="p">};</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">((</span><span class="n">a</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">18</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">65</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">"Y"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">"N"</span><span class="p">));</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">}</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Answer:</strong> NYYYYN</p>
+<p>Test just inside and outside each boundary. Verified by compiling and running it.</p>
+<p><strong>Q7.</strong> What's equivalence partitioning?</p>
+<p><strong>Answer:</strong> Grouping inputs expected to behave the same and testing one per group</p>
+<p>Reduce tests.</p>
+<p><strong>Q8.</strong> What makes a good expected result?</p>
+<p><strong>Answer:</strong> Specific and observable</p>
+<p>Unambiguous.</p>
+<h3 id="03-test-types-levels"><a href="../level-1/03-test-types-levels/">03 · Test Types &amp; Levels</a><a class="headerlink" href="#03-test-types-levels" title="Permanent link">&para;</a></h3>
+<p><strong>Q9.</strong> List the test levels from small to large.</p>
+<p><strong>Answer:</strong> Unit, integration, system, acceptance</p>
+<p>Scope.</p>
+<p><strong>Q10.</strong> What does regression testing verify?</p>
+<p><strong>Answer:</strong> Previously working behavior still works after changes</p>
+<p>Automate it.</p>
+<p><strong>Q11.</strong> Which is non-functional?</p>
+<p><strong>Answer:</strong> Performance, security and usability testing</p>
+<p>How well it works.</p>
+<p><strong>Q12.</strong> What's a smoke test?</p>
+<p><strong>Answer:</strong> A quick check that critical functions work before deeper testing</p>
+<p>Gate builds.</p>
+<h3 id="04-defect-lifecycle-bug-reporting"><a href="../level-1/04-defect-lifecycle/">04 · Defect Lifecycle &amp; Bug Reporting</a><a class="headerlink" href="#04-defect-lifecycle-bug-reporting" title="Permanent link">&para;</a></h3>
+<p><strong>Q13.</strong> What's the typical defect lifecycle?</p>
+<p><strong>Answer:</strong> New, assigned, fixed, retested/verified, closed (or reopened)</p>
+<p>State machine.</p>
+<p><strong>Q14.</strong> What belongs in a good bug report?</p>
+<p><strong>Answer:</strong> Steps to reproduce, expected vs actual, environment and evidence</p>
+<p>Reproducible.</p>
+<p><strong>Q15.</strong> Severity vs priority?</p>
+<p><strong>Answer:</strong> Severity is impact; priority is urgency to fix</p>
+<p>Different axes.</p>
+<p><strong>Q16.</strong> What if a bug can't be reproduced?</p>
+<p><strong>Answer:</strong> Gather logs/environment details and add precise steps or mark needs info</p>
+<p>Collaboration.</p>
+<h3 id="05-manual-testing-in-practice"><a href="../level-1/05-manual-testing-practice/">05 · Manual Testing in Practice</a><a class="headerlink" href="#05-manual-testing-in-practice" title="Permanent link">&para;</a></h3>
+<p><strong>Q17.</strong> When is manual testing most valuable?</p>
+<p><strong>Answer:</strong> Exploratory, usability and one-off checks not worth automating</p>
+<p>Human judgment.</p>
+<p><strong>Q18.</strong> What's exploratory testing?</p>
+<p><strong>Answer:</strong> Simultaneous learning, test design and execution guided by a charter</p>
+<p>Time-boxed.</p>
+<p><strong>Q19.</strong> Why take notes during sessions?</p>
+<p><strong>Answer:</strong> To reproduce findings and show coverage</p>
+<p>Evidence.</p>
+<p><strong>Q20.</strong> What's a test charter?</p>
+<p><strong>Answer:</strong> A short mission guiding an exploratory session</p>
+<p>Focus.</p>
+<h3 id="06-java-setup-for-testers"><a href="../level-1/06-java-setup-for-testers/">06 · Java Setup for Testers</a><a class="headerlink" href="#06-java-setup-for-testers" title="Permanent link">&para;</a></h3>
+<p><strong>Q21.</strong> Which JDK/tool builds Java test projects?</p>
+<p><strong>Answer:</strong> JDK plus Maven or Gradle</p>
+<p>Dependency management.</p>
+<p><strong>Q22.</strong> What does <code>mvn test</code> do?</p>
+<p><strong>Answer:</strong> Compiles and runs unit tests</p>
+<p>Lifecycle.</p>
+<p><strong>Q23.</strong> Where do Maven test sources live?</p>
+<p><strong>Answer:</strong> src/test/java</p>
+<p>Conventions.</p>
+<p><strong>Q24.</strong> Why use an IDE?</p>
+<p><strong>Answer:</strong> Run/debug tests quickly with navigation and refactoring</p>
+<p>Productivity.</p>
+<h3 id="07-junit-5-fundamentals"><a href="../level-1/07-junit5-fundamentals/">07 · JUnit 5 Fundamentals</a><a class="headerlink" href="#07-junit-5-fundamentals" title="Permanent link">&para;</a></h3>
+<p><strong>Q25.</strong> What does this print (a tiny assertion helper in the style of JUnit)?</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kt">int</span><span class="w"> </span><span class="n">pass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">fail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="kt">int</span><span class="o">[][]</span><span class="w"> </span><span class="n">cases</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{{</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">}};</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">cases</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">c</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">c</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="n">pass</span><span class="o">++</span><span class="p">;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">fail</span><span class="o">++</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">pass</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">" passed, "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fail</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">" failed"</span><span class="p">);</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">}</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Answer:</strong> 3 passed, 1 failed</p>
+<p>A test is input, action and assertion. Verified by compiling and running it.</p>
+<p><strong>Q26.</strong> Which annotation marks a JUnit 5 test?</p>
+<p><strong>Answer:</strong> @Test</p>
+<p>org.junit.jupiter.api.Test.</p>
+<p><strong>Q27.</strong> What does assertEquals(expected, actual) do?</p>
+<p><strong>Answer:</strong> Fails the test when the values differ</p>
+<p>Order matters for messages.</p>
+<p><strong>Q28.</strong> What do @BeforeEach/@AfterEach do?</p>
+<p><strong>Answer:</strong> Run setup/cleanup around every test</p>
+<p>Fresh state.</p>
+<h3 id="08-selenium-webdriver-basics"><a href="../level-1/08-selenium-webdriver-basics/">08 · Selenium WebDriver Basics</a><a class="headerlink" href="#08-selenium-webdriver-basics" title="Permanent link">&para;</a></h3>
+<p><strong>Q29.</strong> What is Selenium WebDriver?</p>
+<p><strong>Answer:</strong> A browser automation API for testing web apps</p>
+<p>Drives real browsers.</p>
+<p><strong>Q30.</strong> Which locator is usually most stable?</p>
+<p><strong>Answer:</strong> IDs or dedicated test attributes (data-testid)</p>
+<p>Resilient.</p>
+<p><strong>Q31.</strong> Why use explicit waits?</p>
+<p><strong>Answer:</strong> Wait for a condition instead of fixed sleeps, reducing flakiness</p>
+<p>WebDriverWait.</p>
+<p><strong>Q32.</strong> What does driver.quit() do?</p>
+<p><strong>Answer:</strong> Closes all windows and ends the session</p>
+<p>Always in teardown.</p>
+<h3 id="09-testng-basics"><a href="../level-1/09-testng-basics/">09 · TestNG Basics</a><a class="headerlink" href="#09-testng-basics" title="Permanent link">&para;</a></h3>
+<p><strong>Q33.</strong> What does TestNG add over basic JUnit 4?</p>
+<p><strong>Answer:</strong> Groups, data providers, dependencies and flexible suites (XML)</p>
+<p>Common in Selenium.</p>
+<p><strong>Q34.</strong> What's @DataProvider?</p>
+<p><strong>Answer:</strong> Supplies multiple data sets to a parameterized test</p>
+<p>Data-driven.</p>
+<p><strong>Q35.</strong> What's testng.xml?</p>
+<p><strong>Answer:</strong> Suite configuration selecting classes, groups and parallelism</p>
+<p>Run control.</p>
+<p><strong>Q36.</strong> What does <code>dependsOnMethods</code> do?</p>
+<p><strong>Answer:</strong> Runs a test only after another passes</p>
+<p>Use sparingly.</p>
+<h3 id="10-project-manual-test-plan-automated-suite"><a href="../level-1/10-project-test-plan-suite/">10 · Project — Manual Test Plan + Automated Suite</a><a class="headerlink" href="#10-project-manual-test-plan-automated-suite" title="Permanent link">&para;</a></h3>
+<p><strong>Q37.</strong> What does the test plan + suite project combine?</p>
+<p><strong>Answer:</strong> A written test plan and automated JUnit/Selenium tests</p>
+<p>Level 1 project.</p>
+<p><strong>Q38.</strong> What should a test plan define?</p>
+<p><strong>Answer:</strong> Scope, approach, risks, environments and exit criteria</p>
+<p>Guidance.</p>
+<p><strong>Q39.</strong> What's traceability?</p>
+<p><strong>Answer:</strong> Linking tests to requirements</p>
+<p>Coverage.</p>
+<p><strong>Q40.</strong> What do you automate first?</p>
+<p><strong>Answer:</strong> Stable, repetitive, high-value checks</p>
+<p>ROI.</p>
+<h2 id="level-2-intermediate">Level 2 · Intermediate<a class="headerlink" href="#level-2-intermediate" title="Permanent link">&para;</a></h2>
+<h3 id="01-page-object-model-pom"><a href="../level-2/01-page-object-model/">01 · Page Object Model (POM)</a><a class="headerlink" href="#01-page-object-model-pom" title="Permanent link">&para;</a></h3>
+<p><strong>Q41.</strong> What is the Page Object Model?</p>
+<p><strong>Answer:</strong> A class per page encapsulating locators and actions</p>
+<p>Maintainability.</p>
+<p><strong>Q42.</strong> What should page objects avoid?</p>
+<p><strong>Answer:</strong> Putting assertions that hide test intent inside them</p>
+<p>Keep assertions in tests.</p>
+<p><strong>Q43.</strong> What do page methods typically return?</p>
+<p><strong>Answer:</strong> The next page object (fluent navigation)</p>
+<p>Readable.</p>
+<p><strong>Q44.</strong> Why is POM valuable?</p>
+<p><strong>Answer:</strong> UI changes are fixed in one place</p>
+<p>DRY.</p>
+<h3 id="02-selenium-advanced"><a href="../level-2/02-selenium-advanced/">02 · Selenium Advanced</a><a class="headerlink" href="#02-selenium-advanced" title="Permanent link">&para;</a></h3>
+<p><strong>Q45.</strong> What are fluent waits?</p>
+<p><strong>Answer:</strong> Waits with custom polling and ignored exceptions</p>
+<p>More control.</p>
+<p><strong>Q46.</strong> Why avoid mixing implicit and explicit waits?</p>
+<p><strong>Answer:</strong> They interact unpredictably, causing long/flaky waits</p>
+<p>Prefer explicit.</p>
+<p><strong>Q47.</strong> How handle iframes?</p>
+<p><strong>Answer:</strong> switchTo().frame(...) then switch back</p>
+<p>Context.</p>
+<p><strong>Q48.</strong> What does JavascriptExecutor allow?</p>
+<p><strong>Answer:</strong> Running JS in the page for edge cases</p>
+<p>Use sparingly.</p>
+<h3 id="03-testng-advanced"><a href="../level-2/03-testng-advanced/">03 · TestNG Advanced</a><a class="headerlink" href="#03-testng-advanced" title="Permanent link">&para;</a></h3>
+<p><strong>Q49.</strong> What does TestNG's retryAnalyzer do?</p>
+<p><strong>Answer:</strong> Re-runs failed tests to detect flakiness (use carefully)</p>
+<p>Don't mask bugs.</p>
+<p><strong>Q50.</strong> How run tests in parallel in TestNG?</p>
+<p><strong>Answer:</strong> parallel/thread-count in the suite XML</p>
+<p>Thread-safe drivers needed.</p>
+<p><strong>Q51.</strong> What's ThreadLocal&lt;WebDriver&gt; for?</p>
+<p><strong>Answer:</strong> Giving each thread its own driver</p>
+<p>Parallel safety.</p>
+<p><strong>Q52.</strong> What are listeners?</p>
+<p><strong>Answer:</strong> Hooks reacting to test events (screenshots on failure)</p>
+<p>ITestListener.</p>
+<h3 id="04-api-testing-with-restassured"><a href="../level-2/04-api-testing-restassured/">04 · API Testing with RestAssured</a><a class="headerlink" href="#04-api-testing-with-restassured" title="Permanent link">&para;</a></h3>
+<p><strong>Q53.</strong> What does REST Assured do?</p>
+<p><strong>Answer:</strong> A Java DSL for testing REST APIs</p>
+<p>given/when/then.</p>
+<p><strong>Q54.</strong> What should API tests verify?</p>
+<p><strong>Answer:</strong> Status code, headers, body and schema</p>
+<p>Contracts.</p>
+<p><strong>Q55.</strong> Why test APIs rather than only UI?</p>
+<p><strong>Answer:</strong> Faster, more stable and closer to the logic</p>
+<p>Pyramid.</p>
+<p><strong>Q56.</strong> What does JSON schema validation check?</p>
+<p><strong>Answer:</strong> Response structure and types</p>
+<p>Contract.</p>
+<h3 id="05-test-data-management"><a href="../level-2/05-test-data-management/">05 · Test Data Management</a><a class="headerlink" href="#05-test-data-management" title="Permanent link">&para;</a></h3>
+<p><strong>Q57.</strong> What's good test data practice?</p>
+<p><strong>Answer:</strong> Create data per test and clean up, avoiding shared state</p>
+<p>Isolation.</p>
+<p><strong>Q58.</strong> Where store data sets?</p>
+<p><strong>Answer:</strong> External files (JSON/CSV) or generators, not hard-coded</p>
+<p>Data-driven.</p>
+<p><strong>Q59.</strong> What's data masking for tests?</p>
+<p><strong>Answer:</strong> Obfuscating real data to protect privacy</p>
+<p>Compliance.</p>
+<p><strong>Q60.</strong> What does a factory/builder give tests?</p>
+<p><strong>Answer:</strong> Readable object creation with sensible defaults</p>
+<p>Test data builders.</p>
+<h3 id="06-mavengradle-for-test-projects"><a href="../level-2/06-maven-gradle-test-projects/">06 · Maven/Gradle for Test Projects</a><a class="headerlink" href="#06-mavengradle-for-test-projects" title="Permanent link">&para;</a></h3>
+<p><strong>Q61.</strong> What does Maven Surefire do?</p>
+<p><strong>Answer:</strong> Runs unit tests in the test phase</p>
+<p>Reports in target/.</p>
+<p><strong>Q62.</strong> What's Failsafe for?</p>
+<p><strong>Answer:</strong> Integration tests in the verify phase</p>
+<p>Separation.</p>
+<p><strong>Q63.</strong> What do profiles do?</p>
+<p><strong>Answer:</strong> Switch configuration/environments (e.g. -P staging)</p>
+<p>Parameterize.</p>
+<p><strong>Q64.</strong> What's a BOM?</p>
+<p><strong>Answer:</strong> A bill of materials aligning dependency versions</p>
+<p>Consistency.</p>
+<h3 id="07-assertions-matchers"><a href="../level-2/07-assertions-matchers/">07 · Assertions &amp; Matchers</a><a class="headerlink" href="#07-assertions-matchers" title="Permanent link">&para;</a></h3>
+<p><strong>Q65.</strong> What does this print (hand-rolled matchers like Hamcrest)?</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.*</span><span class="p">;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">l</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">" "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">" "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">allMatch</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">" "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">anyMatch</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5</span><span class="p">));</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">}</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Answer:</strong> true true true false</p>
+<p>Matchers express intent. Verified by compiling and running it.</p>
+<p><strong>Q66.</strong> What does assertThrows verify?</p>
+<p><strong>Answer:</strong> That a given exception type is thrown</p>
+<p>Error paths.</p>
+<p><strong>Q67.</strong> Why use assertAll?</p>
+<p><strong>Answer:</strong> Report all failures in a group, not just the first</p>
+<p>Soft assertions.</p>
+<p><strong>Q68.</strong> Why prefer descriptive failure messages?</p>
+<p><strong>Answer:</strong> Faster diagnosis without a debugger</p>
+<p>Readable.</p>
+<h3 id="08-reporting-allure-extentreports"><a href="../level-2/08-reporting/">08 · Reporting (Allure, ExtentReports)</a><a class="headerlink" href="#08-reporting-allure-extentreports" title="Permanent link">&para;</a></h3>
+<p><strong>Q69.</strong> What do Allure/Extent reports provide?</p>
+<p><strong>Answer:</strong> Rich HTML reports with steps, attachments and trends</p>
+<p>Stakeholder-friendly.</p>
+<p><strong>Q70.</strong> What should failed UI tests attach?</p>
+<p><strong>Answer:</strong> Screenshots, page source and logs</p>
+<p>Evidence.</p>
+<p><strong>Q71.</strong> What do trends show?</p>
+<p><strong>Answer:</strong> Pass rate, duration and flakiness over time</p>
+<p>Health.</p>
+<p><strong>Q72.</strong> Why publish reports from CI?</p>
+<p><strong>Answer:</strong> Everyone can see results without running tests</p>
+<p>Transparency.</p>
+<h3 id="09-cross-browser-testing"><a href="../level-2/09-cross-browser-testing/">09 · Cross-Browser Testing</a><a class="headerlink" href="#09-cross-browser-testing" title="Permanent link">&para;</a></h3>
+<p><strong>Q73.</strong> How run on multiple browsers?</p>
+<p><strong>Answer:</strong> Parameterize the browser in the driver factory</p>
+<p>Config.</p>
+<p><strong>Q74.</strong> What do cloud grids (BrowserStack/Sauce) offer?</p>
+<p><strong>Answer:</strong> Many browser/OS combinations on demand</p>
+<p>Coverage.</p>
+<p><strong>Q75.</strong> What should cross-browser tests prioritize?</p>
+<p><strong>Answer:</strong> Critical flows on the browsers your users actually use</p>
+<p>Analytics-driven.</p>
+<p><strong>Q76.</strong> What's a common cross-browser issue?</p>
+<p><strong>Answer:</strong> Timing/rendering differences needing robust waits</p>
+<p>Avoid sleeps.</p>
+<h3 id="10-project-pom-framework-with-api-tests"><a href="../level-2/10-project-pom-framework/">10 · Project — POM Framework with API Tests</a><a class="headerlink" href="#10-project-pom-framework-with-api-tests" title="Permanent link">&para;</a></h3>
+<p><strong>Q77.</strong> What does the POM framework project combine?</p>
+<p><strong>Answer:</strong> Page objects, TestNG, data-driven tests, reports and CI</p>
+<p>Level 2 project.</p>
+<p><strong>Q78.</strong> How keep tests independent?</p>
+<p><strong>Answer:</strong> Fresh state per test and no order dependence</p>
+<p>Reliability.</p>
+<p><strong>Q79.</strong> How configure environments?</p>
+<p><strong>Answer:</strong> Properties/env vars loaded by a config class</p>
+<p>Flexibility.</p>
+<p><strong>Q80.</strong> What proves framework quality?</p>
+<p><strong>Answer:</strong> Stable runs, readable tests and quick failure diagnosis</p>
+<p>Maintainable.</p>
+<h2 id="level-3-advanced">Level 3 · Advanced<a class="headerlink" href="#level-3-advanced" title="Permanent link">&para;</a></h2>
+<h3 id="01-bdd-with-cucumber"><a href="../level-3/01-bdd-cucumber/">01 · BDD with Cucumber</a><a class="headerlink" href="#01-bdd-with-cucumber" title="Permanent link">&para;</a></h3>
+<p><strong>Q81.</strong> What is BDD?</p>
+<p><strong>Answer:</strong> Behavior-driven development: specifying behavior in shared, readable language</p>
+<p>Collaboration.</p>
+<p><strong>Q82.</strong> What's Gherkin?</p>
+<p><strong>Answer:</strong> Given/When/Then syntax for scenarios</p>
+<p>Feature files.</p>
+<p><strong>Q83.</strong> What do step definitions do?</p>
+<p><strong>Answer:</strong> Bind Gherkin steps to executable code</p>
+<p>Cucumber.</p>
+<p><strong>Q84.</strong> What's a BDD smell?</p>
+<p><strong>Answer:</strong> Scenarios full of UI details instead of business behavior</p>
+<p>Declarative style.</p>
+<h3 id="02-mocking-with-mockito"><a href="../level-3/02-mocking-mockito/">02 · Mocking with Mockito</a><a class="headerlink" href="#02-mocking-with-mockito" title="Permanent link">&para;</a></h3>
+<p><strong>Q85.</strong> What does this hand-written mock record (the idea behind Mockito)?</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kd">static</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Recorder</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Notifier</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">calls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">send</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">calls</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"sent:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m</span><span class="p">);</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kd">interface</span> <span class="nc">Notifier</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">send</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">m</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="kd">static</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OrderService</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Notifier</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">OrderService</span><span class="p">(</span><span class="n">Notifier</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">place</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="na">send</span><span class="p">(</span><span class="n">id</span><span class="p">);</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">Recorder</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">mailer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Recorder</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">OrderService</span><span class="w"> </span><span class="n">svc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">OrderService</span><span class="p">(</span><span class="n">mailer</span><span class="p">);</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">svc</span><span class="p">.</span><span class="na">place</span><span class="p">(</span><span class="s">"A1"</span><span class="p">);</span><span class="w"> </span><span class="n">svc</span><span class="p">.</span><span class="na">place</span><span class="p">(</span><span class="s">"A2"</span><span class="p">);</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">mailer</span><span class="p">.</span><span class="na">calls</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">" "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">mailer</span><span class="p">.</span><span class="na">calls</span><span class="p">.</span><span class="na">size</span><span class="p">());</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="p">}</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Answer:</strong> [sent:A1, sent:A2] 2</p>
+<p>Mocks verify interactions with collaborators. Verified by compiling and running it.</p>
+<p><strong>Q86.</strong> What's the difference between a stub and a mock?</p>
+<p><strong>Answer:</strong> Stubs supply canned answers; mocks verify interactions</p>
+<p>Mockito does both.</p>
+<p><strong>Q87.</strong> What does <code>verify(mock).method()</code> check?</p>
+<p><strong>Answer:</strong> That the method was called as expected</p>
+<p>Interaction testing.</p>
+<p><strong>Q88.</strong> What's over-mocking?</p>
+<p><strong>Answer:</strong> Mocking so much that tests check implementation details</p>
+<p>Brittle.</p>
+<h3 id="03-cicd-integration"><a href="../level-3/03-cicd-integration/">03 · CI/CD Integration</a><a class="headerlink" href="#03-cicd-integration" title="Permanent link">&para;</a></h3>
+<p><strong>Q89.</strong> What should CI run for tests?</p>
+<p><strong>Answer:</strong> Build, unit and integration tests with reports on every change</p>
+<p>Fast feedback.</p>
+<p><strong>Q90.</strong> Why run tests headless in CI?</p>
+<p><strong>Answer:</strong> No display is needed and runs are faster</p>
+<p>Chrome headless.</p>
+<p><strong>Q91.</strong> What speeds CI?</p>
+<p><strong>Answer:</strong> Caching dependencies and parallelizing suites</p>
+<p>Efficiency.</p>
+<p><strong>Q92.</strong> What should fail the build?</p>
+<p><strong>Answer:</strong> Any test failure or quality gate violation</p>
+<p>Gate.</p>
+<h3 id="04-selenium-grid-parallel-execution"><a href="../level-3/04-selenium-grid-parallel/">04 · Selenium Grid &amp; Parallel Execution</a><a class="headerlink" href="#04-selenium-grid-parallel-execution" title="Permanent link">&para;</a></h3>
+<p><strong>Q93.</strong> What is Selenium Grid?</p>
+<p><strong>Answer:</strong> A hub that distributes tests across nodes/browsers for parallel runs</p>
+<p>Scale.</p>
+<p><strong>Q94.</strong> What does RemoteWebDriver need?</p>
+<p><strong>Answer:</strong> The Grid URL and desired capabilities/options</p>
+<p>Remote.</p>
+<p><strong>Q95.</strong> What's a challenge of parallel UI tests?</p>
+<p><strong>Answer:</strong> Shared state and non-thread-safe drivers</p>
+<p>Isolate.</p>
+<p><strong>Q96.</strong> How size a grid?</p>
+<p><strong>Answer:</strong> Match nodes to the number of parallel sessions</p>
+<p>Capacity.</p>
+<h3 id="05-performance-testing-basics-jmeter"><a href="../level-3/05-performance-testing-jmeter/">05 · Performance Testing Basics (JMeter)</a><a class="headerlink" href="#05-performance-testing-basics-jmeter" title="Permanent link">&para;</a></h3>
+<p><strong>Q97.</strong> What does JMeter test?</p>
+<p><strong>Answer:</strong> Performance: load, stress and endurance of services</p>
+<p>Thread groups.</p>
+<p><strong>Q98.</strong> What's a thread group?</p>
+<p><strong>Answer:</strong> Simulated users running a test plan</p>
+<p>Concurrency.</p>
+<p><strong>Q99.</strong> Which metrics matter?</p>
+<p><strong>Answer:</strong> Response time percentiles, throughput and error rate</p>
+<p>p95/p99.</p>
+<p><strong>Q100.</strong> Why run performance tests in a prod-like environment?</p>
+<p><strong>Answer:</strong> Results depend on realistic capacity and data</p>
+<p>Representative.</p>
+<h3 id="06-mobile-testing-with-appium"><a href="../level-3/06-mobile-testing-appium/">06 · Mobile Testing with Appium</a><a class="headerlink" href="#06-mobile-testing-with-appium" title="Permanent link">&para;</a></h3>
+<p><strong>Q101.</strong> What's Appium?</p>
+<p><strong>Answer:</strong> Automation for mobile apps using the WebDriver protocol</p>
+<p>iOS/Android.</p>
+<p><strong>Q102.</strong> What are desired capabilities?</p>
+<p><strong>Answer:</strong> Settings describing the device/app/platform to automate</p>
+<p>Session config.</p>
+<p><strong>Q103.</strong> What's a mobile test challenge?</p>
+<p><strong>Answer:</strong> Device fragmentation and flaky gestures</p>
+<p>Real devices/emulators.</p>
+<p><strong>Q104.</strong> What's an emulator vs real device?</p>
+<p><strong>Answer:</strong> Emulators are fast and cheap; real devices catch hardware quirks</p>
+<p>Use both.</p>
+<h3 id="07-database-testing-from-java"><a href="../level-3/07-database-testing/">07 · Database Testing from Java</a><a class="headerlink" href="#07-database-testing-from-java" title="Permanent link">&para;</a></h3>
+<p><strong>Q105.</strong> What should database tests verify?</p>
+<p><strong>Answer:</strong> Data changes made by the app and constraints/migrations</p>
+<p>Integrity.</p>
+<p><strong>Q106.</strong> How isolate DB tests?</p>
+<p><strong>Answer:</strong> Transactions rolled back or containerized throwaway databases</p>
+<p>Repeatable.</p>
+<p><strong>Q107.</strong> What's a safe way to query test DBs?</p>
+<p><strong>Answer:</strong> Parameterized queries via JDBC</p>
+<p>Avoid injection.</p>
+<p><strong>Q108.</strong> What do migration tests ensure?</p>
+<p><strong>Answer:</strong> Schema changes apply cleanly and keep data intact</p>
+<p>Flyway/Liquibase.</p>
+<h3 id="08-framework-design-patterns"><a href="../level-3/08-framework-design-patterns/">08 · Framework Design Patterns</a><a class="headerlink" href="#08-framework-design-patterns" title="Permanent link">&para;</a></h3>
+<p><strong>Q109.</strong> Which pattern helps test frameworks?</p>
+<p><strong>Answer:</strong> Factory (drivers), Builder (data), Singleton-free config and Strategy (browsers)</p>
+<p>Design.</p>
+<p><strong>Q110.</strong> What's a fluent interface?</p>
+<p><strong>Answer:</strong> Method chaining for readable setup/actions</p>
+<p>Page objects.</p>
+<p><strong>Q111.</strong> What's the Single Responsibility principle for tests?</p>
+<p><strong>Answer:</strong> Each class/test has one reason to change</p>
+<p>Cohesion.</p>
+<p><strong>Q112.</strong> What's a framework smell?</p>
+<p><strong>Answer:</strong> Static state and sleeps scattered throughout</p>
+<p>Refactor.</p>
+<h3 id="09-flaky-test-diagnosis-stabilization"><a href="../level-3/09-flaky-test-diagnosis/">09 · Flaky Test Diagnosis &amp; Stabilization</a><a class="headerlink" href="#09-flaky-test-diagnosis-stabilization" title="Permanent link">&para;</a></h3>
+<p><strong>Q113.</strong> What's the first step to diagnose a flaky test?</p>
+<p><strong>Answer:</strong> Run it repeatedly and capture failures with evidence</p>
+<p>Data.</p>
+<p><strong>Q114.</strong> Common flakiness causes?</p>
+<p><strong>Answer:</strong> Async timing, shared state, order dependence and environment</p>
+<p>Fix root cause.</p>
+<p><strong>Q115.</strong> Is a retry a fix?</p>
+<p><strong>Answer:</strong> No, it masks the issue; quarantine and fix</p>
+<p>Track flake rate.</p>
+<p><strong>Q116.</strong> What reduces timing flakes?</p>
+<p><strong>Answer:</strong> Waiting on conditions instead of fixed delays</p>
+<p>Explicit waits.</p>
+<h3 id="10-project-hybrid-bdd-framework-with-ci"><a href="../level-3/10-project-bdd-framework-ci/">10 · Project — Hybrid BDD Framework with CI</a><a class="headerlink" href="#10-project-hybrid-bdd-framework-with-ci" title="Permanent link">&para;</a></h3>
+<p><strong>Q117.</strong> What does the BDD + CI project combine?</p>
+<p><strong>Answer:</strong> Cucumber features, page objects, reports and a CI pipeline</p>
+<p>Level 3 project.</p>
+<p><strong>Q118.</strong> How keep feature files maintainable?</p>
+<p><strong>Answer:</strong> Business-readable steps reused across scenarios</p>
+<p>Declarative.</p>
+<p><strong>Q119.</strong> How publish results?</p>
+<p><strong>Answer:</strong> CI artifacts and HTML/Allure reports</p>
+<p>Visible.</p>
+<p><strong>Q120.</strong> What proves reliability?</p>
+<p><strong>Answer:</strong> Repeated green runs and low flake rate</p>
+<p>Trend.</p>
+<h2 id="level-4-master">Level 4 · Master<a class="headerlink" href="#level-4-master" title="Permanent link">&para;</a></h2>
+<h3 id="01-test-architecture-at-scale"><a href="../level-4/01-test-architecture-at-scale/">01 · Test Architecture at Scale</a><a class="headerlink" href="#01-test-architecture-at-scale" title="Permanent link">&para;</a></h3>
+<p><strong>Q121.</strong> What does test architecture at scale require?</p>
+<p><strong>Answer:</strong> Layered, modular frameworks with shared libraries and clear ownership</p>
+<p>Scalable.</p>
+<p><strong>Q122.</strong> What's the test pyramid's advice?</p>
+<p><strong>Answer:</strong> Many fast unit tests, fewer integration, fewest end-to-end</p>
+<p>Cost and speed.</p>
+<p><strong>Q123.</strong> What reduces duplication across teams?</p>
+<p><strong>Answer:</strong> A shared test library with versioned APIs</p>
+<p>Reuse.</p>
+<p><strong>Q124.</strong> What governs a big suite?</p>
+<p><strong>Answer:</strong> Ownership, tagging and running policies</p>
+<p>Maintainability.</p>
+<h3 id="02-shift-left-continuous-testing"><a href="../level-4/02-shift-left-continuous-testing/">02 · Shift-Left &amp; Continuous Testing</a><a class="headerlink" href="#02-shift-left-continuous-testing" title="Permanent link">&para;</a></h3>
+<p><strong>Q125.</strong> What does shift-left mean?</p>
+<p><strong>Answer:</strong> Testing earlier in the lifecycle (requirements, design, dev)</p>
+<p>Cheaper fixes.</p>
+<p><strong>Q126.</strong> What's continuous testing?</p>
+<p><strong>Answer:</strong> Automated tests running throughout the pipeline for fast feedback</p>
+<p>CI/CD.</p>
+<p><strong>Q127.</strong> What helps shift-left?</p>
+<p><strong>Answer:</strong> Unit/API tests, static analysis and test-first practices</p>
+<p>Earlier.</p>
+<p><strong>Q128.</strong> What are quality gates?</p>
+<p><strong>Answer:</strong> Automated criteria blocking progression when unmet</p>
+<p>Enforced.</p>
+<h3 id="03-contract-testing-pact"><a href="../level-4/03-contract-testing-pact/">03 · Contract Testing (Pact)</a><a class="headerlink" href="#03-contract-testing-pact" title="Permanent link">&para;</a></h3>
+<p><strong>Q129.</strong> What problem does contract testing solve?</p>
+<p><strong>Answer:</strong> Verifying service interfaces between consumers and providers without full integration</p>
+<p>Pact.</p>
+<p><strong>Q130.</strong> Who defines the contract in consumer-driven testing?</p>
+<p><strong>Answer:</strong> The consumer's expectations</p>
+<p>CDC.</p>
+<p><strong>Q131.</strong> What's a Pact broker?</p>
+<p><strong>Answer:</strong> A server sharing and versioning contracts</p>
+<p>Can-I-deploy.</p>
+<p><strong>Q132.</strong> Why not rely only on end-to-end tests?</p>
+<p><strong>Answer:</strong> They're slow and flaky for service interactions</p>
+<p>Contracts localize failures.</p>
+<h3 id="04-security-testing-basics-for-qa"><a href="../level-4/04-security-testing-basics/">04 · Security Testing Basics for QA</a><a class="headerlink" href="#04-security-testing-basics-for-qa" title="Permanent link">&para;</a></h3>
+<p><strong>Q133.</strong> What basic security tests can QA do?</p>
+<p><strong>Answer:</strong> Input validation, auth/authorization checks and dependency scanning</p>
+<p>Basics.</p>
+<p><strong>Q134.</strong> What does OWASP ZAP do?</p>
+<p><strong>Answer:</strong> Scans web apps for common vulnerabilities (authorized targets)</p>
+<p>DAST.</p>
+<p><strong>Q135.</strong> What does SCA find?</p>
+<p><strong>Answer:</strong> Known vulnerabilities in dependencies</p>
+<p>OWASP Dependency-Check.</p>
+<p><strong>Q136.</strong> Where integrate security tests?</p>
+<p><strong>Answer:</strong> In CI so issues are caught early</p>
+<p>Shift left.</p>
+<h3 id="05-test-metrics-quality-gates"><a href="../level-4/05-test-metrics-quality-gates/">05 · Test Metrics &amp; Quality Gates</a><a class="headerlink" href="#05-test-metrics-quality-gates" title="Permanent link">&para;</a></h3>
+<p><strong>Q137.</strong> Which metrics are meaningful?</p>
+<p><strong>Answer:</strong> Defect escape rate, flake rate and time to feedback</p>
+<p>Outcomes.</p>
+<p><strong>Q138.</strong> What's wrong with chasing coverage numbers?</p>
+<p><strong>Answer:</strong> They can be gamed and don't measure assertion quality</p>
+<p>Goodhart.</p>
+<p><strong>Q139.</strong> What's a quality gate example?</p>
+<p><strong>Answer:</strong> No new critical bugs and coverage not decreasing</p>
+<p>Ratchet.</p>
+<p><strong>Q140.</strong> What does mutation testing assess?</p>
+<p><strong>Answer:</strong> Whether tests detect small code changes</p>
+<p>PIT.</p>
+<h3 id="06-containerized-test-environments"><a href="../level-4/06-containerized-test-environments/">06 · Containerized Test Environments</a><a class="headerlink" href="#06-containerized-test-environments" title="Permanent link">&para;</a></h3>
+<p><strong>Q141.</strong> Why use Docker for test environments?</p>
+<p><strong>Answer:</strong> Reproducible, isolated and disposable environments</p>
+<p>Consistency.</p>
+<p><strong>Q142.</strong> What's Testcontainers?</p>
+<p><strong>Answer:</strong> A library starting throwaway containers (DB, Kafka) for tests</p>
+<p>Realistic.</p>
+<p><strong>Q143.</strong> What's docker-compose used for in testing?</p>
+<p><strong>Answer:</strong> Bringing up multi-service environments</p>
+<p>Integration.</p>
+<p><strong>Q144.</strong> What's a downside?</p>
+<p><strong>Answer:</strong> Startup time and resource use</p>
+<p>Reuse containers.</p>
+<h3 id="07-ai-assisted-testing"><a href="../level-4/07-ai-assisted-testing/">07 · AI-Assisted Testing</a><a class="headerlink" href="#07-ai-assisted-testing" title="Permanent link">&para;</a></h3>
+<p><strong>Q145.</strong> How can AI assist testing?</p>
+<p><strong>Answer:</strong> Generating test ideas/data and summarizing failures, with human review</p>
+<p>Assistive.</p>
+<p><strong>Q146.</strong> What's a risk of AI-generated tests?</p>
+<p><strong>Answer:</strong> Plausible but wrong assertions and false confidence</p>
+<p>Verify.</p>
+<p><strong>Q147.</strong> What data shouldn't go into public AI tools?</p>
+<p><strong>Answer:</strong> Confidential or personal data</p>
+<p>Privacy.</p>
+<p><strong>Q148.</strong> How validate AI output?</p>
+<p><strong>Answer:</strong> Review, run and mutation-check generated tests</p>
+<p>Evidence.</p>
+<h3 id="08-building-an-in-house-test-framework"><a href="../level-4/08-in-house-test-framework/">08 · Building an In-House Test Framework</a><a class="headerlink" href="#08-building-an-in-house-test-framework" title="Permanent link">&para;</a></h3>
+<p><strong>Q149.</strong> When build an in-house framework?</p>
+<p><strong>Answer:</strong> When constraints exceed existing tools and you can maintain it</p>
+<p>Cost.</p>
+<p><strong>Q150.</strong> What are core components?</p>
+<p><strong>Answer:</strong> Runner, assertions, reporting and utilities</p>
+<p>Minimal.</p>
+<p><strong>Q151.</strong> What's the cost?</p>
+<p><strong>Answer:</strong> Ongoing maintenance and missing community features</p>
+<p>Prefer standard.</p>
+<p><strong>Q152.</strong> How design for adoption?</p>
+<p><strong>Answer:</strong> Simple API, docs and examples</p>
+<p>Developer experience.</p>
+<h3 id="09-qa-leadership-strategy"><a href="../level-4/09-qa-leadership-strategy/">09 · QA Leadership &amp; Strategy</a><a class="headerlink" href="#09-qa-leadership-strategy" title="Permanent link">&para;</a></h3>
+<p><strong>Q153.</strong> What does QA leadership focus on?</p>
+<p><strong>Answer:</strong> Strategy, risk-based testing, people and quality culture</p>
+<p>Enablement.</p>
+<p><strong>Q154.</strong> What's risk-based testing?</p>
+<p><strong>Answer:</strong> Prioritizing effort by likelihood and impact of failure</p>
+<p>Focus.</p>
+<p><strong>Q155.</strong> How grow a team?</p>
+<p><strong>Answer:</strong> Mentoring, clear standards and learning time</p>
+<p>People.</p>
+<p><strong>Q156.</strong> How communicate quality?</p>
+<p><strong>Answer:</strong> Dashboards with actionable metrics and trends</p>
+<p>Transparency.</p>
+<h3 id="10-capstone-production-grade-test-framework"><a href="../level-4/10-capstone-test-framework/">10 · Capstone — Production-Grade Test Framework</a><a class="headerlink" href="#10-capstone-production-grade-test-framework" title="Permanent link">&para;</a></h3>
+<p><strong>Q157.</strong> What does the capstone combine?</p>
+<p><strong>Answer:</strong> Architecture, CI/CD, contracts, security, metrics and containers</p>
+<p>Production framework.</p>
+<p><strong>Q158.</strong> How prove it works?</p>
+<p><strong>Answer:</strong> Stable runs, fast feedback and documented onboarding</p>
+<p>Evidence.</p>
+<p><strong>Q159.</strong> What documentation helps?</p>
+<p><strong>Answer:</strong> Architecture, how to run/extend and troubleshooting</p>
+<p>Adoption.</p>
+<p><strong>Q160.</strong> What sustains it?</p>
+<p><strong>Answer:</strong> Ownership, refactoring and flake budgets</p>
+<p>Care.</p>
+<h2 id="mixed-questions-across-all-levels">Mixed questions across all levels<a class="headerlink" href="#mixed-questions-across-all-levels" title="Permanent link">&para;</a></h2>
+<p><strong>Q161.</strong> What is the best definition of testing?</p>
+<p><strong>Answer:</strong> Evaluating a program against expectations to find defects and give quality information</p>
+<p>It can't prove absence of defects.</p>
+<p><strong>Q162.</strong> Which inputs does boundary value analysis pick for a valid range of 18 to 65? (Y = accepted)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">17</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">65</span><span class="p">,</span><span class="w"> </span><span class="mi">66</span><span class="p">};</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">18</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">65</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">"Y"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">"N"</span><span class="p">);</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">}</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Answer:</strong> NYYYYN</p>
+<p>Test both sides of each boundary. Verified by compiling and running it.</p>
+<p><strong>Q163.</strong> What's the difference between severity and priority of a defect?</p>
+<p><strong>Answer:</strong> Severity is the impact; priority is how urgently to fix it</p>
+<p>Triage uses both.</p>
+<p><strong>Q164.</strong> A test needs to wait for a button to become clickable. What do you use in Selenium?</p>
+<p><strong>Answer:</strong> An explicit wait on the condition (WebDriverWait)</p>
+<p>Condition-based waits reduce flakiness.</p>
+<p><strong>Q165.</strong> Which locator is usually most stable?</p>
+<p><strong>Answer:</strong> A dedicated test attribute or ID</p>
+<p>Locators should survive layout changes.</p>
+<p><strong>Q166.</strong> What is the Page Object Model's main benefit?</p>
+<p><strong>Answer:</strong> UI changes are fixed in one place instead of every test</p>
+<p>Keep assertions in tests.</p>
+<p><strong>Q167.</strong> What does this hand-written mock/spy record?</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.*</span><span class="p">;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="kd">interface</span> <span class="nc">Notifier</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">send</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">m</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="kd">static</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Svc</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Notifier</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">Svc</span><span class="p">(</span><span class="n">Notifier</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">place</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="na">send</span><span class="p">(</span><span class="n">id</span><span class="p">);</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="n">Notifier</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sent</span><span class="p">::</span><span class="n">add</span><span class="p">;</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="k">new</span><span class="w"> </span><span class="n">Svc</span><span class="p">(</span><span class="n">n</span><span class="p">).</span><span class="na">place</span><span class="p">(</span><span class="s">"A1"</span><span class="p">);</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Svc</span><span class="p">(</span><span class="n">n</span><span class="p">).</span><span class="na">place</span><span class="p">(</span><span class="s">"A2"</span><span class="p">);</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">sent</span><span class="p">);</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="p">}</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Answer:</strong> [A1, A2]</p>
+<p>Test doubles let you verify interactions. Verified by compiling and running it.</p>
+<p><strong>Q168.</strong> What's the difference between a stub and a mock?</p>
+<p><strong>Answer:</strong> Stubs return canned answers; mocks verify interactions</p>
+<p>Mockito supports both.</p>
+<p><strong>Q169.</strong> A test passes on retry but fails first time. What should you do?</p>
+<p><strong>Answer:</strong> Treat it as flaky: find the root cause (timing, shared state), quarantine and fix</p>
+<p>Retries mask problems.</p>
+<p><strong>Q170.</strong> Where should test data come from for independent tests?</p>
+<p><strong>Answer:</strong> Created per test (builders/factories) and cleaned up, not shared mutable data</p>
+<p>Isolation.</p>
+<p><strong>Q171.</strong> What does REST Assured let you do in Java?</p>
+<p><strong>Answer:</strong> Write readable given/when/then tests for HTTP APIs</p>
+<p>Verify status, headers and body.</p>
+<p><strong>Q172.</strong> Why test at the API level more than the UI level?</p>
+<p><strong>Answer:</strong> It's faster and more stable while covering the same logic</p>
+<p>The test pyramid.</p>
+<p><strong>Q173.</strong> What does a Cucumber step definition do?</p>
+<p><strong>Answer:</strong> Binds a Gherkin step to executable code</p>
+<p>BDD.</p>
+<p><strong>Q174.</strong> What does Selenium Grid add?</p>
+<p><strong>Answer:</strong> Parallel execution across browsers/nodes</p>
+<p>Drivers must be per-thread.</p>
+<p><strong>Q175.</strong> Why give each parallel test thread its own WebDriver?</p>
+<p><strong>Answer:</strong> WebDriver isn't thread-safe</p>
+<p>ThreadLocal&lt;WebDriver&gt;.</p>
+<p><strong>Q176.</strong> What does contract testing (Pact) verify?</p>
+<p><strong>Answer:</strong> That a consumer and provider agree on an API without a full integration environment</p>
+<p>Consumer-driven.</p>
+<p><strong>Q177.</strong> A service dependency is slow to start in CI. What helps?</p>
+<p><strong>Answer:</strong> Containerized throwaway environments (Testcontainers/docker-compose)</p>
+<p>Reproducible.</p>
+<p><strong>Q178.</strong> Why is a 90% coverage gate not enough?</p>
+<p><strong>Answer:</strong> Coverage doesn't measure assertion quality; use mutation testing and meaningful gates</p>
+<p>Metrics can be gamed.</p>
+<p><strong>Q179.</strong> An AI tool generates tests for you. What must you do?</p>
+<p><strong>Answer:</strong> Review and run them; verify assertions are meaningful and no sensitive data was shared</p>
+<p>AI is an assistant.</p>
+<h2 id="practical-coding-questions">Practical coding questions<a class="headerlink" href="#practical-coding-questions" title="Permanent link">&para;</a></h2>
+<h3 id="a-tiny-junit-style-runner">A tiny JUnit-style runner<a class="headerlink" href="#a-tiny-junit-style-runner" title="Permanent link">&para;</a></h3>
+<p>Complete run(): discover @Test methods by reflection (sorted by name), create a fresh instance per test, run @BeforeEach methods, and report PASS/FAIL, honoring @Test(expected=...). Finish with a summary line.</p>
+<p>Starter code:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>import java.lang.annotation.*;
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>import java.lang.reflect.*;
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>import java.util.*;
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>public class Main {
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    @Retention(RetentionPolicy.RUNTIME) @interface Test { Class&lt;? extends Throwable&gt; expected() default None.class; }
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    @Retention(RetentionPolicy.RUNTIME) @interface BeforeEach {}
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    static class None extends Throwable {}
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    static class CalcTests {
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>        int acc;
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>        @BeforeEach void reset() { acc = 10; }
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>        @Test void adds() { acc += 5; check(acc == 15, "acc should be 15"); }
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>        @Test void freshStatePerTest() { check(acc == 10, "setup must run before each test"); }
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>        @Test void fails() { check(acc == 99, "expected 99"); }
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>        @Test(expected = ArithmeticException.class) void throwsExpected() { int z = 0; int r = 1 / z; }
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>        @Test(expected = IllegalStateException.class) void wrongException() { throw new IllegalArgumentException("x"); }
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>    }
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>    static void check(boolean ok, String msg) { if (!ok) throw new AssertionError(msg); }
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>    static void run(Class&lt;?&gt; cls) throws Exception {
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>        // for every @Test method (sorted by name): create a fresh instance, run @BeforeEach methods, invoke it;
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>        // PASS when it returns normally (and no exception was expected) or throws the expected exception;
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>        // otherwise print FAIL with the reason; finish with "&lt;n&gt; passed, &lt;m&gt; failed"
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>    }
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>
+<a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>    public static void main(String[] args) throws Exception { run(CalcTests.class); }
+<a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>}
+</code></pre></div>
+<p>Expected output:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>PASS adds
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>FAIL fails: AssertionError expected 99
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>PASS freshStatePerTest
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>PASS throwsExpected
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>FAIL wrongException: IllegalArgumentException x
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>3 passed, 2 failed
+</code></pre></div>
+<p>??? success "Show a solution"</p>
+<div class="highlight"><pre><span></span><code>```
+import java.lang.annotation.*;
+import java.lang.reflect.*;
+import java.util.*;
+
+public class Main {
+    @Retention(RetentionPolicy.RUNTIME) @interface Test { Class&lt;? extends Throwable&gt; expected() default None.class; }
+    @Retention(RetentionPolicy.RUNTIME) @interface BeforeEach {}
+    static class None extends Throwable {}
+
+    static class CalcTests {
+        int acc;
+        @BeforeEach void reset() { acc = 10; }
+        @Test void adds() { acc += 5; check(acc == 15, "acc should be 15"); }
+        @Test void freshStatePerTest() { check(acc == 10, "setup must run before each test"); }
+        @Test void fails() { check(acc == 99, "expected 99"); }
+        @Test(expected = ArithmeticException.class) void throwsExpected() { int z = 0; int r = 1 / z; }
+        @Test(expected = IllegalStateException.class) void wrongException() { throw new IllegalArgumentException("x"); }
+    }
+
+    static void check(boolean ok, String msg) { if (!ok) throw new AssertionError(msg); }
+
+    static void run(Class&lt;?&gt; cls) throws Exception {
+        int pass = 0, fail = 0;
+        List&lt;Method&gt; tests = new ArrayList&lt;&gt;();
+        for (Method m : cls.getDeclaredMethods()) if (m.isAnnotationPresent(Test.class)) tests.add(m);
+        tests.sort(Comparator.comparing(Method::getName));
+        for (Method t : tests) {
+            Object inst = cls.getDeclaredConstructor().newInstance();
+            for (Method m : cls.getDeclaredMethods()) if (m.isAnnotationPresent(BeforeEach.class)) { m.setAccessible(true); m.invoke(inst); }
+            Class&lt;? extends Throwable&gt; expected = t.getAnnotation(Test.class).expected();
+            t.setAccessible(true);
+            try {
+                t.invoke(inst);
+                if (expected != None.class) { fail++; System.out.println("FAIL " + t.getName() + ": expected " + expected.getSimpleName()); }
+                else { pass++; System.out.println("PASS " + t.getName()); }
+            } catch (InvocationTargetException e) {
+                Throwable c = e.getCause();
+                if (expected.isInstance(c)) { pass++; System.out.println("PASS " + t.getName()); }
+                else { fail++; System.out.println("FAIL " + t.getName() + ": " + c.getClass().getSimpleName() + (c.getMessage() != null ? " " + c.getMessage() : "")); }
+            }
+        }
+        System.out.println(pass + " passed, " + fail + " failed");
+    }
+
+    public static void main(String[] args) throws Exception { run(CalcTests.class); }
+}
+```
+
+This is how JUnit works conceptually: annotations mark tests, a fresh instance per test gives isolation, and an exception either fails the test or satisfies `expected`. Verified by running the solution with java Main.java.
+</code></pre></div>
+<h3 id="test-doubles-for-a-checkout">Test doubles for a checkout<a class="headerlink" href="#test-doubles-for-a-checkout" title="Permanent link">&para;</a></h3>
+<p>Implement Checkout.pay: reject non-positive amounts before touching the gateway, charge, email a receipt on success and return PAID, otherwise DECLINED. The fake gateway and spy mailer record interactions so the assertions can verify them.</p>
+<p>Starter code:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>import java.util.*;
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>public class Main {
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    interface PaymentGateway { boolean charge(String customer, int cents); }
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    interface Mailer { void send(String to, String body); }
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>    static class FakeGateway implements PaymentGateway {
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>        final List&lt;String&gt; calls = new ArrayList&lt;&gt;();
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>        final Set&lt;String&gt; declines = new HashSet&lt;&gt;();
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>        public boolean charge(String customer, int cents) { calls.add(customer + ":" + cents); return !declines.contains(customer); }
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>    }
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>    static class SpyMailer implements Mailer {
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>        final List&lt;String&gt; sent = new ArrayList&lt;&gt;();
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>        public void send(String to, String body) { sent.add(to + "|" + body); }
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>    }
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>    static class Checkout {
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>        final PaymentGateway gw; final Mailer mailer;
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>        Checkout(PaymentGateway gw, Mailer mailer) { this.gw = gw; this.mailer = mailer; }
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>        String pay(String customer, int cents) {
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>            // throw IllegalArgumentException("amount must be positive") BEFORE touching the gateway when cents &lt;= 0;
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a>            // charge; on success email a receipt ("receipt &lt;cents&gt;") and return "PAID"; otherwise return "DECLINED"
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a>            return "";
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a>        }
+<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a>    }
+<a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a>
+<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a>    public static void main(String[] args) {
+<a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a>        FakeGateway gw = new FakeGateway(); SpyMailer mail = new SpyMailer();
+<a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a>        gw.declines.add("bo");
+<a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a>        Checkout c = new Checkout(gw, mail);
+<a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a>        System.out.println(c.pay("ada", 500));
+<a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a>        System.out.println(c.pay("bo", 700));
+<a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a>        try { c.pay("cy", 0); } catch (IllegalArgumentException e) { System.out.println("rejected: " + e.getMessage()); }
+<a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a>        System.out.println("gateway calls: " + gw.calls);
+<a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a>        System.out.println("emails: " + mail.sent);
+<a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a>        System.out.println("no email for declined: " + mail.sent.stream().noneMatch(s -&gt; s.startsWith("bo")));
+<a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a>        System.out.println("gateway untouched for invalid amount: " + !gw.calls.contains("cy:0"));
+<a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a>    }
+<a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a>}
+</code></pre></div>
+<p>Expected output:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>PAID
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>DECLINED
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>rejected: amount must be positive
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>gateway calls: [ada:500, bo:700]
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>emails: [ada|receipt 500]
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>no email for declined: true
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>gateway untouched for invalid amount: true
+</code></pre></div>
+<p>??? success "Show a solution"</p>
+<div class="highlight"><pre><span></span><code>```
+import java.util.*;
+
+public class Main {
+    interface PaymentGateway { boolean charge(String customer, int cents); }
+    interface Mailer { void send(String to, String body); }
+
+    static class FakeGateway implements PaymentGateway {
+        final List&lt;String&gt; calls = new ArrayList&lt;&gt;();
+        final Set&lt;String&gt; declines = new HashSet&lt;&gt;();
+        public boolean charge(String customer, int cents) { calls.add(customer + ":" + cents); return !declines.contains(customer); }
+    }
+    static class SpyMailer implements Mailer {
+        final List&lt;String&gt; sent = new ArrayList&lt;&gt;();
+        public void send(String to, String body) { sent.add(to + "|" + body); }
+    }
+
+    static class Checkout {
+        final PaymentGateway gw; final Mailer mailer;
+        Checkout(PaymentGateway gw, Mailer mailer) { this.gw = gw; this.mailer = mailer; }
+        String pay(String customer, int cents) {
+            if (cents &lt;= 0) throw new IllegalArgumentException("amount must be positive");
+            if (gw.charge(customer, cents)) { mailer.send(customer, "receipt " + cents); return "PAID"; }
+            return "DECLINED";
+        }
+    }
+
+    public static void main(String[] args) {
+        FakeGateway gw = new FakeGateway(); SpyMailer mail = new SpyMailer();
+        gw.declines.add("bo");
+        Checkout c = new Checkout(gw, mail);
+        System.out.println(c.pay("ada", 500));
+        System.out.println(c.pay("bo", 700));
+        try { c.pay("cy", 0); } catch (IllegalArgumentException e) { System.out.println("rejected: " + e.getMessage()); }
+        System.out.println("gateway calls: " + gw.calls);
+        System.out.println("emails: " + mail.sent);
+        System.out.println("no email for declined: " + mail.sent.stream().noneMatch(s -&gt; s.startsWith("bo")));
+        System.out.println("gateway untouched for invalid amount: " + !gw.calls.contains("cy:0"));
+    }
+}
+```
+
+A fake gateway controls outcomes and a spy mailer records calls, so behavior and interactions can be asserted without real services. Verified by running the solution with java Main.java.
+</code></pre></div>
+<hr />
+<p>More free practice: the <a href="../">Java Testing Mastery Path</a> curriculum, the <a href="https://learnmasterypath.com/interview-pack/">Interview Prep Pack</a> and the <a href="https://learnmasterypath.com/resume/">free resume ATS check</a>.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+  
+  <nav class="mp-related" aria-label="Related free courses">
+    <h2>Related free courses</h2>
+    <ul>
+      <li><a href="https://learnmasterypath.com/cpp-testing-mastery-path/">C/C++ Testing</a></li><li><a href="https://learnmasterypath.com/python-testing-mastery-path/">Python Testing</a></li><li><a href="https://learnmasterypath.com/automotive-testing-mastery-path/">Automotive Testing</a></li><li><a href="https://learnmasterypath.com/selenium-mastery-path/">Selenium</a></li><li><a href="https://learnmasterypath.com/cypress-mastery-path/">Cypress</a></li>
+      <li><a href="https://learnmasterypath.com/">All 100+ courses &rarr;</a></li>
+    </ul>
+  </nav>
+  
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Home
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../cheat-sheet/" class="md-footer__link md-footer__link--next" aria-label="Next: Cheat Sheet">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Cheat Sheet
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+  <div class="mp-foot">
+    <div class="mp-foot-inner">
+      <a class="mp-foot-brand" href="https://learnmasterypath.com/"><svg class="mp-mark" viewBox="0 0 160 160" role="img" aria-label="Mastery Path logo">
+  <circle cx="80" cy="80" r="74" fill="#FAF7EF" stroke="#2FA98D" stroke-width="5"/>
+  <rect class="mp-bar mp-bar-1" x="36" y="90" width="17" height="24" rx="5" fill="#2FA98D"/>
+  <rect class="mp-bar mp-bar-2" x="59" y="74" width="17" height="40" rx="5" fill="#7FC9B7"/>
+  <rect class="mp-bar mp-bar-3" x="82" y="56" width="17" height="58" rx="5" fill="#E0B457"/>
+  <rect class="mp-bar mp-bar-4" x="105" y="38" width="17" height="76" rx="5" fill="#C97B4A"/>
+  <circle class="mp-dot" cx="44.5" cy="82" r="7" fill="#22261f"/>
+</svg><span>Mastery Path</span></a>
+      <nav class="mp-sitelinks" aria-label="Site and legal links">
+        <a href="https://learnmasterypath.com/">All courses</a>
+        <a href="https://learnmasterypath.com/about.html">About</a>
+        <a href="https://learnmasterypath.com/contact.html">Contact</a>
+        <a href="https://learnmasterypath.com/java-testing-mastery-path/privacy/">Privacy Policy</a>
+        <a href="https://learnmasterypath.com/terms.html">Terms</a>
+        <a href="https://learnmasterypath.com/java-testing-mastery-path/license/">License</a>
+        <a href="https://learnmasterypath.com/verify/">Verify a certificate</a>
+      </nav>
+    </div>
+    <p class="mp-license-note">
+      © 2026 Vinod Kumar Sigilipelli · Except where otherwise noted, lesson content is licensed under
+      <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> and code examples under the
+      <a href="https://opensource.org/license/mit">MIT License</a>.
+    </p>
+  </div>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.path", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "navigation.indexes", "toc.follow", "content.code.copy", "content.code.annotate", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+        <script src="../javascripts/progress-tracker.js"></script>
+      
+        <script src="../javascripts/final-quiz.js"></script>
+      
+    
+  </body>
+</html>
